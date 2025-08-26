@@ -5,60 +5,24 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 
-// SIGNUP FORM
-router.get("/signup", (req, res) => {
-    res.render("users/signup.ejs");
-});
+const userController = require("../controllers/user.js");
 
-// SIGNUP LOGIC
-router.post("/signup", wrapAsync(async (req, res, next) => {
-    try {
-        let { username, email, password } = req.body;
-        const newUser = new User({ email, username });
-        const registeredUser = await User.register(newUser, password);
+router
+.route("/signup")
+.get(userController.rendersignup)   //For signup logic
+.post(wrapAsync(userController.signup))  //For signup form
 
-        req.login(registeredUser, (err) => {
-            if (err) {
-                return next(err);
-            }
-            req.flash("success", "Welcome to WanderLust!");
-            res.redirect("/listings");
-        });
-    } catch (e) {
-        req.flash("error", e.message);
-        res.redirect("/signup");
-    }
-}));
-
-// LOGIN FORM
-router.get("/login", (req, res) => {
-    res.render("users/login.ejs");
-});
-
-// LOGIN LOGIC
-router.post(
-    "/login",
+router.route("/login")
+.get(userController.loginrender)  //For login form
+.post(                             //For login logic
     saveRedirectUrl,
     passport.authenticate("local", {
         failureRedirect: "/login",
         failureFlash: true,
-    }),
-    (req, res) => {
-        req.flash("success", "Welcome back to WanderLust!");
-        let redirectUrl = res.locals.redirectUrl || "/listings";
-        res.redirect(redirectUrl);   //  FIXED
-    }
-);
+    }),userController.login);
+
 
 // LOGOUT
-router.get("/logout", (req, res, next) => {
-    req.logout((err) => {
-        if (err) {
-            return next(err);
-        }
-        req.flash("success", "You are logged out!");
-        res.redirect("/listings");
-    });
-});
+router.get("/logout",userController.logout);
 
 module.exports = router;
