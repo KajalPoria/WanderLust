@@ -11,7 +11,7 @@ body{
 
 /* Navbar*/
 .navbar{
-    height:5rem;
+    height:5rem !important;
     background-color: white !important;
 }
 
