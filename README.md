@@ -7,7 +7,8 @@ WanderLust is a travel accommodation web platform inspired by Airbnb. It allows 
 ## 🏖️ Project Overview
 
 WanderLust simplifies travel planning by allowing users to **find, book, and host** stays across multiple destinations.  
-Users can:
+
+**Users can:**
 - Create accounts and manage their listings  
 - Browse and filter destinations  
 - View property details with images, maps, and reviews  
@@ -15,6 +16,7 @@ Users can:
 
 This project demonstrates the power of full-stack JavaScript development and cloud integrations using **Cloudinary** for image storage.
 
+---
 
 ## ✨ Features
 
@@ -32,18 +34,54 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
 
-🧩 Tech Stack
-Frontend: EJS, Bootstrap, CSS, JavaScript
-Backend: Node.js, Express.js
-Database: MongoDB, Mongoose
-Authentication: Passport.js, bcrypt
-Cloud Storage: Cloudinary
-Deployment: Render 
+---
+
+## 🧩 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| **Frontend** | EJS, Bootstrap, CSS, JavaScript |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB, Mongoose |
+| **Authentication** | Passport.js, bcrypt |
+| **Cloud Storage** | Cloudinary |
+| **Deployment** | Render |
+
+---
 
 ## 🗂️ Folder Structure
-<img width="627" height="462" alt="image" src="https://github.com/user-attachments/assets/eb23a1b3-9f4f-48ba-8752-4db53604cc9d" />
 
+```
+WanderLust/
+├── models/
+│   ├── listing.js
+│   ├── user.js
+│   └── review.js
+├── views/
+│   ├── listings/
+│   ├── partials/
+│   └── auth/
+├── controllers/
+│   ├── listings.js
+│   ├── reviews.js
+│   └── users.js
+├── routes/
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+├── public/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── utils/
+│   ├── wrapAsync.js
+│   └── ExpressError.js
+├── middleware.js
+├── app.js
+└── package.json
+```
 
+---
 
 ## 🚀 Getting Started
 
@@ -53,130 +91,131 @@ Follow these steps to set up the project locally:
 ```bash
 git clone https://github.com/<your-username>/WanderLust.git
 cd WanderLust
+```
 
-npm install ( to install dependencies)
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-Create a .env file and add all these info in that
+### 3. Environment Configuration
+Create a `.env` file in the root directory and add the following variables:
+
+```env
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_KEY=your_cloud_key
 CLOUDINARY_SECRET=your_cloud_secret
 MONGO_URL=your_mongodb_connection_string
 SECRET=your_session_secret
-
-To run the application
-npm start
-
-Then open in your browser
-👉 http://localhost:8080
-
 ```
 
-🧩 API and Routing Overview
-| Route                | Method | Description                  |
-| -------------------- | ------ | ---------------------------- |
-| `/listings`          | GET    | View all listings            |
-| `/listings/new`      | GET    | Form to create a new listing |
-| `/listings`          | POST   | Create a new listing         |
-| `/listings/:id`      | GET    | View a specific listing      |
-| `/listings/:id/edit` | GET    | Edit a listing               |
-| `/listings/:id`      | PUT    | Update a listing             |
-| `/listings/:id`      | DELETE | Delete a listing             |
-| `/reviews`           | POST   | Add a review                 |
-| `/reviews/:id`       | DELETE | Remove a review              |
-| `/register`          | POST   | Register a new user          |
-| `/login`             | POST   | Log in a user                |
-| `/logout`            | GET    | Log out the current user     |
+### 4. Start the Application
+```bash
+npm start
+```
 
+### 5. Access the Application
+Open your browser and navigate to:
+```
+http://localhost:8080
+```
 
-🔐 Authentication System
+---
 
+## 🧩 API and Routing Overview
 
-•Uses Passport.js for local authentication
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/listings` | GET | View all listings |
+| `/listings/new` | GET | Form to create a new listing |
+| `/listings` | POST | Create a new listing |
+| `/listings/:id` | GET | View a specific listing |
+| `/listings/:id/edit` | GET | Edit a listing |
+| `/listings/:id` | PUT | Update a listing |
+| `/listings/:id` | DELETE | Delete a listing |
+| `/reviews` | POST | Add a review |
+| `/reviews/:id` | DELETE | Remove a review |
+| `/register` | POST | Register a new user |
+| `/login` | POST | Log in a user |
+| `/logout` | GET | Log out the current user |
 
-•Passwords are hashed using bcrypt
+---
 
-•Session handling with express-session
+## 🔐 Authentication System
 
+- Uses **Passport.js** for local authentication
+- Passwords are hashed using **bcrypt**
+- Session handling with **express-session**
+- Flash messages for feedback during login, signup, and errors
 
-•Flash messages for feedback during login, signup, and errors
+---
 
+## 📈 Future Roadmap
 
+### 🚀 Planned Enhancements
+- 🌐 Add Map integration in WanderLust
+- 📱 Add progressive web app (PWA) features for mobile
+- 🔔 Enable real-time updates using Socket.io
+- 💳 Integrate payment gateway for online booking
+- 📊 Build an Admin Dashboard for analytics
+- 🌍 Add multilingual support and smart filters
 
-📈 Future Roadmap
+---
 
+## 🤝 Open Source Contribution Guide
 
-🚀 Planned Enhancements
-🌐 Add Map integration in WanderLust
-📱 Add progressive web app (PWA) features for mobile
-🔔 Enable real-time updates using Socket.io
-💳 Integrate payment gateway for online booking
-📊 Build an Admin Dashboard for analytics
-🌍 Add multilingual support and smart filters
+We encourage developers to contribute through the **Commit & Conquer Open Source Event** 🎉
 
+| Level | Description | Points |
+|-------|-------------|--------|
+| 🟢 Easy | UI tweaks, documentation, small fixes | **5 points** |
+| 🟡 Medium | Feature enhancement, data validation | **10 points** |
+| 🔴 Hard | Full module creation, backend integrations | **15 points** |
 
-🤝 Open Source Contribution Guide
+### To contribute:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a Pull Request 🚀
 
+*See CONTRIBUTING.md for more details.*
 
-We encourage developers to contribute through the Commit & Conquer Open Source Event 🎉
-| Level     | Description                                | Points        |
-| --------- | ------------------------------------------ | ------------- |
-| 🟢 Easy   | UI tweaks, documentation, small fixes      | **5 points**  |
-| 🟡 Medium | Feature enhancement, data validation       | **10 points** |
-| 🔴 Hard   | Full module creation, backend integrations | **15 points** |
+---
 
-To contribute:
-1)Fork the repository
-2)Create a feature branch
-3)Make your changes
-4)Submit a Pull Request 🚀
-See CONTRIBUTING.md for more details.
-
-
-
-📌 Real-World Insights
+## 📌 Real-World Insights
 
 The WanderLust project demonstrates:
-•Full-stack integration with real-world web patterns
+- Full-stack integration with real-world web patterns
+- Scalable RESTful APIs for booking and listings
+- Strong backend–frontend synchronization
+- Clean modular code using the MVC pattern
+- Secure authentication & session handling
 
-•Scalable RESTful APIs for booking and listings
+This project serves as a practical foundation for modern travel and property platforms.
 
-•Strong backend–frontend synchronization
+---
 
-•Clean modular code using the MVC pattern
+## 📜 License
 
-•Secure authentication & session handling
+This project is licensed under the **MIT License**. Please review the LICENSE file for details.
 
-•This project serves as a practical foundation for modern travel and property platforms.
+---
 
-
-
-📜 License
-
-
-This project is licensed under the MIT License. Please review the LICENSE file for details.
-
-📬 Contact
-
+## 📬 Contact
 
 For contributions, queries, or collaborations related to open-source initiatives, reach out via:
-GitHub: @KajalPoria
 
-💎 Acknowledgments
+**GitHub:** [@KajalPoria](https://github.com/KajalPoria)
 
+---
 
-•MongoDB
+## 💎 Acknowledgments
 
-•Express.js
+- **MongoDB**
+- **Express.js**
+- **Bootstrap**
+- **Cloudinary**
+- **Passport.js**
 
-•Bootstrap
-
-•Cloudinary
-
-•Passport.js
-
-
-
-
-
-
+---
 
