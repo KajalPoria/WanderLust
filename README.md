@@ -89,6 +89,8 @@ Then open in your browser
 
 
 🔐 Authentication System
+
+
 •Uses Passport.js for local authentication
 
 •Passwords are hashed using bcrypt
@@ -98,7 +100,11 @@ Then open in your browser
 
 •Flash messages for feedback during login, signup, and errors
 
+
+
 📈 Future Roadmap
+
+
 🚀 Planned Enhancements
 🌐 Add Map integration in WanderLust
 📱 Add progressive web app (PWA) features for mobile
@@ -109,6 +115,8 @@ Then open in your browser
 
 
 🤝 Open Source Contribution Guide
+
+
 We encourage developers to contribute through the Commit & Conquer Open Source Event 🎉
 | Level     | Description                                | Points        |
 | --------- | ------------------------------------------ | ------------- |
@@ -122,6 +130,8 @@ To contribute:
 3)Make your changes
 4)Submit a Pull Request 🚀
 See CONTRIBUTING.md for more details.
+
+
 
 📌 Real-World Insights
 
@@ -138,14 +148,22 @@ The WanderLust project demonstrates:
 
 •This project serves as a practical foundation for modern travel and property platforms.
 
+
+
 📜 License
+
+
 This project is licensed under the MIT License. Please review the LICENSE file for details.
 
 📬 Contact
+
+
 For contributions, queries, or collaborations related to open-source initiatives, reach out via:
 GitHub: @KajalPoria
 
 💎 Acknowledgments
+
+
 •MongoDB
 
 •Express.js
