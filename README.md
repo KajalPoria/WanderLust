@@ -32,33 +32,17 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
 
-## 🧰 Tech Stack
-
-| Layer | Technologies |
-|-------|---------------|
-| **Frontend** | EJS, Bootstrap, CSS, JavaScript |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB, Mongoose |
-| **Authentication** | Passport.js, Express-session |
-| **Cloud Storage** | Cloudinary |
-| **Map & Geolocation** | Mapbox API |
-| **Deployment (Optional)** | Render / Vercel / Railway |
+🧩 Tech Stack
+Frontend: EJS, Bootstrap, CSS, JavaScript
+Backend: Node.js, Express.js
+Database: MongoDB, Mongoose
+Authentication: Passport.js, bcrypt
+Cloud Storage: Cloudinary
+Deployment: Render 
 
 ## 🗂️ Folder Structure
-WanderLust/
-│
-├── controllers/ # Handles logic for routes
-├── models/ # MongoDB schema definitions
-├── routes/ # Express routing for listings, users, and reviews
-├── views/ # EJS templates (UI components)
-├── public/ # Static assets (CSS, JS, images)
-├── utils/ # Helper functions and middleware
-├── init/ # Seed data or initial setup scripts
-├── middleware.js # Custom middleware functions
-├── cloudConfig.js # Cloudinary configuration
-├── app.js # Main entry point
-├── package.json # Dependencies and scripts
-└── .gitignore # Ignored files
+<img width="627" height="462" alt="image" src="https://github.com/user-attachments/assets/eb23a1b3-9f4f-48ba-8752-4db53604cc9d" />
+
 
 
 ## 🚀 Getting Started
@@ -103,13 +87,61 @@ Then open in your browser
 | `/login`             | POST   | Log in a user                |
 | `/logout`            | GET    | Log out the current user     |
 
-<img width="785" height="696" alt="image" src="https://github.com/user-attachments/assets/1ca0ed85-977d-4e9c-9431-65fbf7f52322" />
 
 🔐 Authentication System
-Uses Passport.js for local authentication
-Passwords are hashed using bcrypt
-Session handling with express-session
-Flash messages for feedback during login, signup, and errors
+&#8226;Uses Passport.js for local authentication
+&#8226;Passwords are hashed using bcrypt
+&#8226;Session handling with express-session
+&#8226;Flash messages for feedback during login, signup, and errors
+
+📈 Future Roadmap
+🚀 Planned Enhancements
+🌐 Add Map integration in WanderLust
+📱 Add progressive web app (PWA) features for mobile
+🔔 Enable real-time updates using Socket.io
+💳 Integrate payment gateway for online booking
+📊 Build an Admin Dashboard for analytics
+🌍 Add multilingual support and smart filters
+
+
+🤝 Open Source Contribution Guide
+We encourage developers to contribute through the Commit & Conquer Open Source Event 🎉
+| Level     | Description                                | Points        |
+| --------- | ------------------------------------------ | ------------- |
+| 🟢 Easy   | UI tweaks, documentation, small fixes      | **5 points**  |
+| 🟡 Medium | Feature enhancement, data validation       | **10 points** |
+| 🔴 Hard   | Full module creation, backend integrations | **15 points** |
+
+To contribute:
+1)Fork the repository
+2)Create a feature branch
+3)Make your changes
+4)Submit a Pull Request 🚀
+See CONTRIBUTING.md for more details.
+
+📌 Real-World Insights
+
+The WanderLust project demonstrates:
+&#8226;Full-stack integration with real-world web patterns
+&#8226;Scalable RESTful APIs for booking and listings
+&#8226;Strong backend–frontend synchronization
+&#8226;Clean modular code using the MVC pattern
+&#8226;Secure authentication & session handling
+&#8226;This project serves as a practical foundation for modern travel and property platforms.
+
+📜 License
+This project is licensed under the MIT License. Please review the LICENSE file for details.
+
+📬 Contact
+For contributions, queries, or collaborations related to open-source initiatives, reach out via:
+GitHub: @KajalPoria
+
+💎 Acknowledgments
+&#8226;MongoDB
+&#8226;Express.js
+&#8226;Bootstrap
+&#8226;Cloudinary
+&#8226;Passport.js
 
 
 
