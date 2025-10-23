@@ -162,25 +162,6 @@ http://localhost:8080
 
 ---
 
-## 🤝 Open Source Contribution Guide
-
-We encourage developers to contribute through the **Commit & Conquer Open Source Event** 🎉
-
-| Level | Description | Points |
-|-------|-------------|--------|
-| 🟢 Easy | UI tweaks, documentation, small fixes | **5 points** |
-| 🟡 Medium | Feature enhancement, data validation | **10 points** |
-| 🔴 Hard | Full module creation, backend integrations | **15 points** |
-
-### To contribute:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a Pull Request 🚀
-
-*See CONTRIBUTING.md for more details.*
-
----
 
 ## 📌 Real-World Insights
 
