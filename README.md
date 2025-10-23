@@ -89,10 +89,14 @@ Then open in your browser
 
 
 🔐 Authentication System
-&#8226;Uses Passport.js for local authentication
-&#8226;Passwords are hashed using bcrypt
-&#8226;Session handling with express-session
-&#8226;Flash messages for feedback during login, signup, and errors
+•Uses Passport.js for local authentication
+
+•Passwords are hashed using bcrypt
+
+•Session handling with express-session
+
+
+•Flash messages for feedback during login, signup, and errors
 
 📈 Future Roadmap
 🚀 Planned Enhancements
@@ -122,12 +126,17 @@ See CONTRIBUTING.md for more details.
 📌 Real-World Insights
 
 The WanderLust project demonstrates:
-&#8226;Full-stack integration with real-world web patterns
-&#8226;Scalable RESTful APIs for booking and listings
-&#8226;Strong backend–frontend synchronization
-&#8226;Clean modular code using the MVC pattern
-&#8226;Secure authentication & session handling
-&#8226;This project serves as a practical foundation for modern travel and property platforms.
+•Full-stack integration with real-world web patterns
+
+•Scalable RESTful APIs for booking and listings
+
+•Strong backend–frontend synchronization
+
+•Clean modular code using the MVC pattern
+
+•Secure authentication & session handling
+
+•This project serves as a practical foundation for modern travel and property platforms.
 
 📜 License
 This project is licensed under the MIT License. Please review the LICENSE file for details.
@@ -137,11 +146,15 @@ For contributions, queries, or collaborations related to open-source initiatives
 GitHub: @KajalPoria
 
 💎 Acknowledgments
-&#8226;MongoDB
-&#8226;Express.js
-&#8226;Bootstrap
-&#8226;Cloudinary
-&#8226;Passport.js
+•MongoDB
+
+•Express.js
+
+•Bootstrap
+
+•Cloudinary
+
+•Passport.js
 
 
 
