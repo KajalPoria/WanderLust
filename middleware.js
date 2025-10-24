@@ -1,7 +1,8 @@
 const Listing = require("./models/listing");
 const Review = require("./models/review");
+const Booking = require("./models/booking");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema,reviewSchema }= require("./schema.js");
+const { listingSchema, reviewSchema, bookingSchema }= require("./schema.js");
 
 
 module.exports.isLoggedIn = (req,res,next) => {
@@ -56,6 +57,30 @@ module.exports.isreviewAuthor = async(req,res,next)=>{
     if(!review.author._id.equals(res.locals.currUser._id)){
         req.flash("error", "You don't have access!");
         return res.redirect(`/listings/${id}`);
+    }
+    next();
+};
+
+module.exports.validateBooking = (req,res,next)=>{
+    let {error}=bookingSchema.validate(req.body);
+    if(error){
+        let errMsg= error.details.map((el)=> el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    }else{
+        next();
+    }
+};
+
+module.exports.isBookingOwner = async(req,res,next)=>{
+    let {id} = req.params;
+    let booking = await Booking.findById(id);
+    if(!booking){
+        req.flash("error", "Booking not found!");
+        return res.redirect("/bookings");
+    }
+    if(!booking.user.equals(res.locals.currUser._id)){
+        req.flash("error", "You don't have access to this booking!");
+        return res.redirect("/bookings");
     }
     next();
 };
