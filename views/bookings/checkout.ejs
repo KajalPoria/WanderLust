@@ -1,28 +1,127 @@
-const express = require("express");
-const router = express.Router();
-const wrapAsync = require("../utils/wrapAsync.js");
-const { isLoggedIn } = require("../middleware.js");
-const bookingController = require("../controllers/booking.js");
+<%- layout("/layouts/boilerplate") %>
 
-// Show booking form for a listing
-router.get("/new/:id", isLoggedIn, wrapAsync(bookingController.showBookingForm));
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Book: <%= listing.title %></h3>
+        <hr />
+        
+        <div class="card mb-4">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="<%= listing.image.url %>" class="img-fluid rounded-start" alt="<%= listing.title %>">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= listing.title %></h5>
+                        <p class="card-text"><%= listing.location %>, <%= listing.country %></p>
+                        <p class="card-text"><strong>Price:</strong> &#8377 <%= listing.price.toLocaleString("en-IN") %> per night</p>
+                        <p class="card-text"><small class="text-muted">Hosted by <%= listing.owner.username %></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-// Create Razorpay order
-router.post("/create-order", isLoggedIn, wrapAsync(bookingController.createOrder));
+        <!-- Map Section -->
+        <% if(listing.geometry && listing.geometry.coordinates) { %>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-map-marker-alt"></i> Destination Location</h5>
+                <p class="text-muted">Preview the exact location of your booking</p>
+                <div id="booking-map" style="height: 350px; width: 100%; border-radius: 8px;"></div>
+            </div>
+        </div>
+        <% } %>
 
-// Verify payment
-router.post("/verify-payment", isLoggedIn, wrapAsync(bookingController.verifyPayment));
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Booking Details</h5>
+                <form id="bookingForm">
+                    <input type="hidden" name="listingId" value="<%= listing._id %>">
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="checkIn" class="form-label">Check-in Date</label>
+                            <input type="date" class="form-control" id="checkIn" name="checkIn" required min="<%= new Date().toISOString().split('T')[0] %>">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="checkOut" class="form-label">Check-out Date</label>
+                            <input type="date" class="form-control" id="checkOut" name="checkOut" required min="<%= new Date().toISOString().split('T')[0] %>">
+                        </div>
+                    </div>
 
-// Webhook endpoint for Razorpay (no authentication middleware)
-router.post("/webhook", express.raw({ type: "application/json" }), wrapAsync(bookingController.webhook));
+                    <div class="mb-3">
+                        <label for="guests" class="form-label">Number of Guests</label>
+                        <input type="number" class="form-control" id="guests" name="guests" min="1" max="10" value="1" required>
+                    </div>
 
-// Show all bookings for logged in user
-router.get("/", isLoggedIn, wrapAsync(bookingController.index));
+                    <div class="mb-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6>Price Breakdown</h6>
+                                <p class="mb-1">
+                                    &#8377; <%= listing.price.toLocaleString("en-IN") %> x <span id="nights">0</span> nights = 
+                                    <strong>&#8377; <span id="totalPrice">0</span></strong>
+                                </p>
+                                <p class="mb-0 text-muted small">* Taxes may apply</p>
+                            </div>
+                        </div>
+                    </div>
 
-// Show specific booking
-router.get("/:id", isLoggedIn, wrapAsync(bookingController.show));
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-shield-check"></i> Your payment is secured by Razorpay. We use industry-standard encryption to protect your information.
+                    </div>
 
-// Cancel booking
-router.delete("/:id", isLoggedIn, wrapAsync(bookingController.cancel));
+                    <button type="submit" class="btn btn-primary btn-lg w-100" id="rzp-button">
+                        <i class="bi bi-credit-card"></i> Proceed to Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-module.exports = router;
+<script>
+    const listingPrice = <%= listing.price %>;
+    const listingId = "<%= listing._id %>";
+    
+    // Calculate total price when dates change
+    function calculateTotal() {
+        const checkIn = new Date(document.getElementById('checkIn').value);
+        const checkOut = new Date(document.getElementById('checkOut').value);
+        
+        if (checkIn && checkOut && checkOut > checkIn) {
+            const nights = Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+            const total = listingPrice * nights;
+            
+            document.getElementById('nights').textContent = nights;
+            document.getElementById('totalPrice').textContent = total.toLocaleString("en-IN");
+        } else {
+            document.getElementById('nights').textContent = '0';
+            document.getElementById('totalPrice').textContent = '0';
+        }
+    }
+    
+    document.getElementById('checkIn').addEventListener('change', calculateTotal);
+    document.getElementById('checkOut').addEventListener('change', calculateTotal);
+    
+    // Validate checkout is after checkin
+    document.getElementById('checkOut').addEventListener('change', function() {
+        const checkIn = document.getElementById('checkIn').value;
+        const checkOut = this.value;
+        
+        if (checkIn && checkOut && new Date(checkOut) <= new Date(checkIn)) {
+            alert('Check-out date must be after check-in date');
+            this.value = '';
+        }
+    });
+</script>
+
+<script src="/js/map.js"></script>
+<% if(listing.geometry && listing.geometry.coordinates) { %>
+<script>
+    const bookingCoordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    const bookingTitle = "<%= listing.title %>";
+    const bookingLocation = "<%= listing.location %>, <%= listing.country %>";
+    initBookingMap(bookingCoordinates, bookingTitle, bookingLocation);
+</script>
+<% } %>

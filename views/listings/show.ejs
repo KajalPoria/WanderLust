@@ -13,10 +13,18 @@
     <div class="card-body">
     <p class="card-text"><i><%= listing.owner.username %></i></p>
     <p class="card-text"><%= listing.description %><br /></p>
-    <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %> per night<br /></p>
+    <p class="card-text">&#8377 <%= listing.price.toLocaleString("en-IN") %> per night<br /></p>
     <p class="card-text"><%= listing.location %></p>
     <p class="card-text"><%= listing.country %></p>
     </div>
+    
+    <!-- Map Section -->
+    <% if(listing.geometry && listing.geometry.coordinates) { %>
+    <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-map-marker-alt"></i> Where you'll be</h5>
+        <div id="map" style="height: 300px; width: 100%; border-radius: 8px;"></div>
+    </div>
+    <% } %>
     
     <!-- Book Now Button for non-owners -->
     <% if(currUser && !listing.owner._id.equals(currUser._id)) { %>
@@ -113,3 +121,13 @@
 </div>
 </div>
 </div>
+
+<script src="/js/map.js"></script>
+<% if(listing.geometry && listing.geometry.coordinates) { %>
+<script>
+    const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    const title = "<%= listing.title %>";
+    const location = "<%= listing.location %>, <%= listing.country %>";
+    initListingMap(coordinates, title, location);
+</script>
+<% } %>

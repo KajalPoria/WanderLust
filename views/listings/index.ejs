@@ -119,6 +119,16 @@
     </div>
 </div>
 
+<!-- Map Section -->
+<div class="container mt-4 mb-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-map-marked-alt"></i> Explore Listings on Map</h5>
+            <div id="cluster-map" style="height: 400px; width: 100%; border-radius: 8px;"></div>
+            <small class="text-muted mt-2 d-block">Click on markers to view listing details</small>
+        </div>
+    </div>
+</div>
 
 
 <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1 mt-3">
@@ -141,6 +151,14 @@
 <% } %>
 </div>
 
+
+<script src="/js/map.js"></script>
+<script>
+    const listings = <%- JSON.stringify(allListings) %>;
+    if (listings && listings.length > 0) {
+        initIndexMap(listings);
+    }
+</script>
 
 <script>
     let taxSwitch = document.getElementById("flexSwitchCheckDefault");

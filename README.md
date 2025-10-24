@@ -29,6 +29,9 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - **💳 Online payment integration with Razorpay**
 - **📅 Booking system with date selection**
 - **📊 Booking management dashboard**
+- **🗺️ Interactive maps with Leaflet.js and OpenStreetMap**
+- **📍 Automatic location geocoding**
+- **🌍 Explore all listings on an interactive map**
 
 ### 💡 Additional Highlights
 - Responsive and mobile-friendly design
@@ -39,6 +42,8 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - **🔐 Secure payment processing with signature verification**
 - **📱 Real-time price calculation**
 - **✅ Payment status tracking**
+- **🗺️ Visual destination preview before booking**
+- **📌 Custom map markers and popups**
 
 ---
 
@@ -51,6 +56,7 @@ This project demonstrates the power of full-stack JavaScript development and clo
 | **Database** | MongoDB, Mongoose |
 | **Authentication** | Passport.js, bcrypt |
 | **Payment Gateway** | Razorpay |
+| **Maps** | Leaflet.js, OpenStreetMap, Mapbox Geocoding |
 | **Cloud Storage** | Cloudinary |
 | **Deployment** | Render |
 
@@ -119,12 +125,15 @@ CLOUDINARY_KEY=your_cloud_key
 CLOUDINARY_SECRET=your_cloud_secret
 MONGO_URL=your_mongodb_connection_string
 SECRET=your_session_secret
+MAP_TOKEN=your_mapbox_access_token
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_secret
 RAZORPAY_WEBHOOK_SECRET=your_webhook_secret
 ```
 
-> **📌 Note:** For detailed payment setup instructions, see [PAYMENT_SETUP.md](./PAYMENT_SETUP.md)
+> **📌 Note:** 
+> - For payment setup: See [PAYMENT_SETUP.md](./PAYMENT_SETUP.md)
+> - For map integration: See [MAP_INTEGRATION_GUIDE.md](./MAP_INTEGRATION_GUIDE.md)
 
 ### 4. Start the Application
 ```bash
@@ -176,7 +185,7 @@ http://localhost:8080
 ## 📈 Future Roadmap
 
 ### 🚀 Planned Enhancements
-- 🌐 Add Map integration in WanderLust
+- ~~🌐 Add Map integration in WanderLust~~ ✅ **COMPLETED**
 - 📱 Add progressive web app (PWA) features for mobile
 - 🔔 Enable real-time updates using Socket.io
 - ~~💳 Integrate payment gateway for online booking~~ ✅ **COMPLETED**
@@ -185,6 +194,8 @@ http://localhost:8080
 - 📧 Email notifications for bookings
 - 💰 Refund and cancellation management
 - 📊 Revenue dashboard for hosts
+- 🗺️ Show nearby attractions on maps
+- 🚗 Distance calculator and route planning
 
 ---
 
@@ -224,6 +235,32 @@ For contributions, queries, or collaborations related to open-source initiatives
 - **Cloudinary**
 - **Passport.js**
 - **Razorpay**
+- **Leaflet.js**
+- **OpenStreetMap**
+- **Mapbox**
+
+---
+
+## 🗺️ Map Integration Highlights
+
+WanderLust now features **interactive maps** on every page:
+
+### ✨ What's New:
+- 🗺️ **Interactive Maps**: Leaflet.js + OpenStreetMap (free, no API key)
+- 📍 **Auto Geocoding**: Converts addresses to coordinates automatically
+- 🌍 **Cluster Map**: View all listings on one interactive map
+- 📌 **Custom Markers**: Color-coded for different views (red/blue/green)
+- 🔍 **Clickable Popups**: Direct navigation to listing details
+- 🎯 **Smart Zoom**: Auto-fits to show all markers
+- 📱 **Mobile Friendly**: Fully responsive on all devices
+
+### 🎨 Where Maps Appear:
+1. **Listing Details** - See exact location before booking
+2. **All Listings** - Explore properties geographically
+3. **Booking Checkout** - Preview destination location
+4. **Interactive Controls** - Zoom, pan, and click markers
+
+For complete setup instructions, see [MAP_INTEGRATION_GUIDE.md](./MAP_INTEGRATION_GUIDE.md)
 
 ---
 
