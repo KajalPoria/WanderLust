@@ -26,9 +26,6 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - Add and manage property reviews
 - Image upload and management via Cloudinary
 - Secure form validation and input sanitization
-- **💳 Online payment integration with Razorpay**
-- **📅 Booking system with date selection**
-- **📊 Booking management dashboard**
 
 ### 💡 Additional Highlights
 - Responsive and mobile-friendly design
@@ -36,9 +33,6 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - Role-based access control
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
-- **🔐 Secure payment processing with signature verification**
-- **📱 Real-time price calculation**
-- **✅ Payment status tracking**
 
 ---
 
@@ -50,7 +44,6 @@ This project demonstrates the power of full-stack JavaScript development and clo
 | **Backend** | Node.js, Express.js |
 | **Database** | MongoDB, Mongoose |
 | **Authentication** | Passport.js, bcrypt |
-| **Payment Gateway** | Razorpay |
 | **Cloud Storage** | Cloudinary |
 | **Deployment** | Render |
 
@@ -63,27 +56,22 @@ WanderLust/
 ├── models/
 │   ├── listing.js
 │   ├── user.js
-│   ├── review.js
-│   └── booking.js          # ← NEW: Booking model
+│   └── review.js
 ├── views/
 │   ├── listings/
-│   ├── bookings/           # ← NEW: Booking views
 │   ├── partials/
 │   └── auth/
 ├── controllers/
 │   ├── listings.js
 │   ├── reviews.js
-│   ├── users.js
-│   └── booking.js          # ← NEW: Booking controller
+│   └── users.js
 ├── routes/
 │   ├── listing.js
 │   ├── review.js
-│   ├── user.js
-│   └── booking.js          # ← NEW: Booking routes
+│   └── user.js
 ├── public/
 │   ├── css/
 │   ├── js/
-│   │   └── payment.js      # ← NEW: Payment integration
 │   └── images/
 ├── utils/
 │   ├── wrapAsync.js
@@ -119,12 +107,7 @@ CLOUDINARY_KEY=your_cloud_key
 CLOUDINARY_SECRET=your_cloud_secret
 MONGO_URL=your_mongodb_connection_string
 SECRET=your_session_secret
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_secret
-RAZORPAY_WEBHOOK_SECRET=your_webhook_secret
 ```
-
-> **📌 Note:** For detailed payment setup instructions, see [PAYMENT_SETUP.md](./PAYMENT_SETUP.md)
 
 ### 4. Start the Application
 ```bash
@@ -155,12 +138,6 @@ http://localhost:8080
 | `/register` | POST | Register a new user |
 | `/login` | POST | Log in a user |
 | `/logout` | GET | Log out the current user |
-| **`/bookings/new/:id`** | **GET** | **Show booking form for listing** |
-| **`/bookings`** | **GET** | **View all user bookings** |
-| **`/bookings/:id`** | **GET** | **View booking details** |
-| **`/bookings/create-order`** | **POST** | **Create payment order** |
-| **`/bookings/verify-payment`** | **POST** | **Verify payment** |
-| **`/bookings/webhook`** | **POST** | **Razorpay webhook handler** |
 
 ---
 
@@ -179,12 +156,9 @@ http://localhost:8080
 - 🌐 Add Map integration in WanderLust
 - 📱 Add progressive web app (PWA) features for mobile
 - 🔔 Enable real-time updates using Socket.io
-- ~~💳 Integrate payment gateway for online booking~~ ✅ **COMPLETED**
+- 💳 Integrate payment gateway for online booking
 - 📊 Build an Admin Dashboard for analytics
 - 🌍 Add multilingual support and smart filters
-- 📧 Email notifications for bookings
-- 💰 Refund and cancellation management
-- 📊 Revenue dashboard for hosts
 
 ---
 
@@ -223,33 +197,6 @@ For contributions, queries, or collaborations related to open-source initiatives
 - **Bootstrap**
 - **Cloudinary**
 - **Passport.js**
-- **Razorpay**
-
----
-
-## 🎯 Payment Integration Highlights
-
-WanderLust now features a complete **end-to-end payment system**:
-
-### ✨ What's New:
-- 💳 **Secure Razorpay Integration**: Industry-standard payment processing
-- 📅 **Smart Booking System**: Date validation and price calculation
-- 🔐 **Payment Verification**: HMAC SHA256 signature validation
-- 📊 **Booking Management**: Track all bookings with payment status
-- 🔔 **Webhook Support**: Real-time payment event handling
-- 🎨 **Beautiful UI**: Responsive checkout and booking views
-- 🛡️ **Security First**: Never store sensitive payment data
-
-### 🚀 How It Works:
-1. User selects dates and guest count
-2. System calculates total price automatically
-3. Razorpay secure checkout opens
-4. Payment processed with multiple options (Card/UPI/Netbanking)
-5. Backend verifies payment authenticity
-6. Booking confirmed and stored in database
-7. User can view all bookings in dashboard
-
-For complete setup instructions, see [PAYMENT_SETUP.md](./PAYMENT_SETUP.md)
 
 ---
 
