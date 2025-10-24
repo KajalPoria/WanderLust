@@ -111,7 +111,9 @@ SECRET=your_session_secret
 
 ### 4. Start the Application
 ```bash
-npm start
+nodemon app.js
+
+and then mavigate to the browser
 ```
 
 ### 5. Access the Application
