@@ -26,6 +26,10 @@ const listingSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "User",
         },
+    category: {
+        type: String,
+        default: "Trending", // You can set a default if you like
+    },
 });
 
 listingSchema.post("findOneAndDelete", async(listing) =>{
