@@ -65,6 +65,7 @@ const sessionOptions={
     },
 };
 
+app.use(express.static('public'));
 
 app.use(session(sessionOptions));
 app.use(flash());
