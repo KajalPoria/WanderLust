@@ -53,4 +53,30 @@
       </div>
     </div>
   </div>
+
+  <button id="theme-toggle" class="btn btn-sm btn-outline-secondary">
+  🌞 Light
+</button>
+
+<script>
+  const toggleBtn = document.getElementById("theme-toggle");
+
+  // Load saved theme or default to light
+  const currentTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", currentTheme);
+  toggleBtn.textContent = currentTheme === "light" ? "🌞 Light" : "🌙 Dark";
+
+  // Toggle and save
+  toggleBtn.addEventListener("click", () => {
+    const newTheme =
+      document.documentElement.getAttribute("data-theme") === "light"
+        ? "dark"
+        : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    toggleBtn.textContent = newTheme === "light" ? "🌞 Light" : "🌙 Dark";
+  });
+</script>
+
+
 </nav>

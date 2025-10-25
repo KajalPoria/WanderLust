@@ -1,121 +1,157 @@
-body{
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    display:flex;
-    flex-direction:column;
-    min-height: 100vh;
+/* Default: Light Theme */
+:root {
+  --primary-color: #fe424d;
+  --background-color: #ffffff;
+  --text-color: #222222;
+  --nav-bg: #ffffff;
+  --footer-bg: #ebebeb;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.175);
+  --overlay-bg: rgba(255, 255, 255, 0.2);
 }
 
-.container{
-    flex:1;
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --primary-color: #e03842;
+  --background-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --nav-bg: #222222;
+  --footer-bg: #222222;
+  --card-bg: #2c2c2c;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --overlay-bg: rgba(0, 0, 0, 0.2);
 }
 
-/* Navbar*/
-.navbar{
-    height:5rem !important;
-    background-color: white !important;
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Use variables and add transitions */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.fa-compass{
-    color: #fe424d;
-    font-size: 2rem;
+.container {
+  flex: 1;
 }
 
-.nav-link{
-    color:#222222 !important;
+.navbar {
+  height: 5rem !important;
+  /* Use variables and add transitions */
+  background-color: var(--nav-bg) !important;
+  transition: background-color 0.3s;
 }
 
-/*Footer*/
+.fa-compass {
+  /* Use variable */
+  color: var(--primary-color);
+  font-size: 2rem;
+}
+
+.nav-link {
+  /* Use variable */
+  color: var(--text-color) !important;
+  transition: color 0.3s ease;
+}
+
+.f-info {
+  text-align: center;
+  height: 8rem;
+  /* Use variables and add transitions */
+  background-color: var(--footer-bg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+  transition: background-color 0.3s;
+}
+
 .f-info-links a {
-    text-decoration: none;
-    color:#222222;
+  text-decoration: none;
+  /* Use variable */
+  color: var(--text-color);
 }
 
-.f-info-links a:hover{
-    text-decoration: underline;
+.f-info-links a:hover {
+  text-decoration: underline;
 }
 
-.f-info-links,.f-info-socials,
-.f-info-brand{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  width: 100%;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.f-info-socials i{
-    margin-right:1rem;
-    font-size: 1.2rem;
+.f-info-socials i {
+  margin-right: 1rem;
+  font-size: 1.2rem;
 }
 
-.f-info{
-    text-align: center;
-    height: 8rem;
-    background-color:#ebebeb;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: center;
-    align-items:space-evenly;
+.listing-card {
+  border: 1px solid var(--card-border) !important; /* Changed from none to use var */
+  background-color: var(--card-bg);
+  margin-bottom: 2rem;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-
-/*Cards*/
-.listing-card{
-    border:none !important;
-    margin-bottom:2rem;
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
 }
 
-.card-img-top{
-    border-radius:1rem !important;
-    width:100% !important;
-    object-fit:cover !important;
+.card-body {
+  padding: 0;
 }
 
-.card-body{
-    padding:0;
+.card-text p {
+  font-weight: 400;
 }
 
-.card-text p{
-    font-weight:400;
+.listing-link {
+  text-decoration: none;
 }
 
-.listing-link{
-    text-decoration:none;
+.card-img-overlay {
+  opacity: 0;
 }
 
-/*Card Effect*/
-.card-img-overlay{
-    opacity:0;
+.card-img-overlay:hover {
+  opacity: 1; /* Changed from 0.2 to 1 */
+  /* Use variable */
+  background-color: var(--overlay-bg);
 }
 
-.card-img-overlay:hover{
-    opacity:0.2;
-    background-color: white;
+.add-btn {
+
+  background-color: var(--primary-color) !important;
+  border: none !important;
 }
 
-/*New Page*/
-
-.add-btn{
-    background-color: #fe424d !important;
-    border:none !important;
+.edit-btn {
+  /* Use variable */
+  background-color: var(--primary-color) !important;
+  border: none !important;
 }
 
-/*Edit Page*/
-.edit-btn{
-    background-color: #fe424d !important;
-    border:none !important;
+.show-img {
+  height: 30vh;
 }
 
-/*Show img*/
-.show-img{
-    height:30vh;
+.btns {
+  display: flex;
 }
 
-.btns{
-    display:flex;
-}
-
-.show-card{
-    padding-left: 0;
-    padding-right: 0;
+.show-card {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: var(--card-bg); /* Added for dark mode */
+  border: 1px solid var(--card-border); /* Added for dark mode */
 }
