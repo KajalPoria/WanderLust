@@ -271,3 +271,253 @@ body{
 [data-theme="dark"] .navbar-toggler-icon {
     filter: invert(1);
 }
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+
+/* Tablets and below */
+@media (max-width: 991px) {
+    .navbar {
+        height: auto !important;
+        padding: 1rem;
+    }
+    
+    .fa-compass {
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .row {
+        margin: 0 -0.5rem;
+    }
+    
+    .row > * {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+    
+    .listing-card {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .card-img-top {
+        height: 250px !important;
+    }
+    
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    .show-img {
+        height: 250px !important;
+    }
+    
+    .btns {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .btns .btn,
+    .btns form {
+        width: 100%;
+    }
+    
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    /* Filter buttons */
+    #filters {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+    }
+    
+    #filters::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    #filters::-webkit-scrollbar-thumb {
+        background: #fe424d;
+        border-radius: 4px;
+    }
+    
+    .filter {
+        margin-right: 1rem !important;
+        margin-top: 1rem !important;
+        min-width: 60px;
+    }
+    
+    .filter p {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Forms */
+    .form-control {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+    
+    .form-label {
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+    
+    /* Footer */
+    .f-info {
+        height: auto;
+        padding: 1.5rem 1rem;
+    }
+    
+    .f-info-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    body {
+        font-size: 13px;
+    }
+    
+    .container {
+        padding: 0.5rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .fa-compass {
+        font-size: 1.3rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    .card-img-top {
+        height: 200px !important;
+    }
+    
+    .listing-card {
+        margin-bottom: 1rem !important;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    /* Make cards full width on very small screens */
+    .row-cols-sm-1 > * {
+        width: 100%;
+    }
+    
+    /* Adjust padding for better mobile experience */
+    .offset-2,
+    .offset-3 {
+        margin-left: 0 !important;
+    }
+    
+    .col-6,
+    .col-8 {
+        width: 100% !important;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Forms */
+    .needs-validation {
+        padding: 1rem;
+    }
+    
+    .form-control,
+    textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+    
+    .container {
+        padding: 0.25rem;
+    }
+    
+    .listing-card {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .card-img-top {
+        height: 180px !important;
+    }
+    
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+/* Touch-friendly improvements for all mobile */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger tap targets for touch devices */
+    .btn,
+    .nav-link,
+    .filter,
+    .nav-icon-btn,
+    .theme-toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .card-img-overlay:hover {
+        opacity: 0;
+    }
+    
+    /* Improve scroll performance */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 991px) and (orientation: landscape) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    
+    .show-img,
+    .card-img-top {
+        height: 35vh !important;
+    }
+}

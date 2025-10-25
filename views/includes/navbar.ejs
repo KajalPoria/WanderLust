@@ -56,13 +56,95 @@
   }
   .navbar {
     background-color: var(--navbar-bg) !important;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  
+  /* Professional icon buttons - Filled with gradient */
+  .nav-icon-btn {
+    position: relative;
+    background: linear-gradient(135deg, #fe424d, #ff6b6b);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.3rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(254, 66, 77, 0.3);
+  }
+  
+  .nav-icon-btn:hover {
+    background: linear-gradient(135deg, #ff6b6b, #fe424d);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(254, 66, 77, 0.5);
+  }
+  
+  .nav-icon-btn i {
+    font-size: 1.2rem;
+    color: white !important;
+    transition: all 0.3s ease;
+  }
+  
+  /* Airbnb Home Button */
+  .airbnb-home-btn {
+    background: linear-gradient(135deg, #fe424d, #ff6b6b);
+    color: white !important;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(254, 66, 77, 0.3);
+  }
+  
+  .airbnb-home-btn:hover {
+    background: linear-gradient(135deg, #ff6b6b, #fe424d);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(254, 66, 77, 0.5);
+    color: white !important;
+  }
+  
+  .airbnb-home-btn i {
+    font-size: 1.1rem;
+  }
+  
+  .user-greeting {
+    color: var(--text-primary);
+    font-weight: 500;
+    margin: 0 0.5rem;
+  }
+  
+  .navbar-toggler {
+    border: 2px solid var(--text-primary);
+  }
+  
+  @media (max-width: 768px) {
+    .search-form {
+      width: 100%;
+      margin: 1rem 0;
+    }
+    .nav-icon-btn {
+      width: 38px;
+      height: 38px;
+      margin: 0.3rem;
+    }
   }
 </style>
 
-<nav class="navbar navbar-expand-md border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" style="background-color: #fff;">
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -75,25 +157,28 @@
           <input class="form-control me-2 search-inp"
           type="search"
           placeholder="Search destinations">
-          <button class="btn search-btn" type="sumbit">
+          <button class="btn search-btn" type="submit">
                 <i class="fa-solid fa-magnifying-glass "></i>Search</button>
         </form>
       </div>
 
       <div class="navbar-nav ms-auto d-flex align-items-center">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <a class="airbnb-home-btn" href="/listings/new">
+          <i class="fa-solid fa-house"></i>
+          Airbnb your home
+        </a>
         <% if(!currUser)  { %>
         <a class="nav-link"  href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log in</b></a>
         <% } %>
         <% if(currUser) { %>
-        <a class="nav-link" href="/recommendations" title="For You">
-          <i class="fa-solid fa-sparkles" style="color: #fe424d; font-size: 1.2rem;"></i>
+        <a href="/recommendations" class="nav-icon-btn" title="For You">
+          <i class="fa-solid fa-sparkles"></i>
         </a>
-        <a class="nav-link wishlist-link" href="/wishlist" title="My Wishlist">
-          <i class="fa-solid fa-heart" style="color: #fe424d; font-size: 1.3rem;"></i>
+        <a href="/wishlist" class="nav-icon-btn" title="My Wishlist">
+          <i class="fa-solid fa-heart"></i>
         </a>
-        <span class="nav-link">Hi, <%= currUser.username %>!</span>
+        <span class="user-greeting d-none d-md-inline">Hi, <%= currUser.username %>!</span>
         <a class="nav-link" href="/logout"><b>Log out</b></a>
         <% } %>
         <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
