@@ -1,6 +1,11 @@
 const Listing = require("../models/listing");
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find({}).populate("owner");
+    const { category } = req.query;
+    let filter = {};
+    if (category) {
+        filter = { category: category };
+    }
+    const allListings = await Listing.find(filter).populate("owner");
     res.render("listings/index.ejs", { allListings });
 };
 
