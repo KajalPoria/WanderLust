@@ -123,8 +123,28 @@ body{
     color: var(--text-secondary);
 }
 
+.card-text b{
+    color: var(--text-primary);
+}
+
+.card-text small{
+    color: var(--text-muted);
+}
+
 .listing-link{
     text-decoration:none;
+    color: var(--text-primary);
+}
+
+.listing-link:hover {
+    color: var(--text-primary);
+}
+
+.listing-link .card-text {
+    color: var(--text-primary);
+}
+
+.listing-link .card-text b {
     color: var(--text-primary);
 }
 
@@ -200,6 +220,21 @@ body{
     border-color: var(--border-color);
 }
 
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+[data-theme="dark"] textarea.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+[data-theme="dark"] input.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
 [data-theme="dark"] .form-control:focus,
 [data-theme="dark"] .form-select:focus {
     background-color: var(--bg-secondary);
@@ -211,6 +246,42 @@ body{
     background-color: var(--bg-card);
     color: var(--text-primary);
     border-color: var(--border-color);
+}
+
+[data-theme="dark"] .card-body {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .card-text {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card-text b {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card-text small {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .listing-link {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] input[type="file"] {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] input[type="file"]::file-selector-button {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] input[type="file"]::file-selector-button:hover {
+    background-color: var(--accent-color);
+    color: white;
 }
 
 [data-theme="dark"] .modal-content {
@@ -228,7 +299,36 @@ body{
 }
 
 [data-theme="dark"] .dropdown-item:hover {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-card);
+}
+
+[data-theme="dark"] .form-check-label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] small {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .tax-info {
+    color: var(--text-muted);
 }
 
 /* Additional dark mode overrides for Bootstrap */

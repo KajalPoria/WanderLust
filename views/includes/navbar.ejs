@@ -17,6 +17,24 @@
     border-radius:25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+  
+  .search-inp::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  
+  [data-theme="dark"] .search-inp {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  
+  [data-theme="dark"] .search-inp::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
   }
   .wishlist-link {
     position: relative;

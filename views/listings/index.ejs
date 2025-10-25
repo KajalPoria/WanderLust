@@ -73,9 +73,39 @@
             align-items: center;
         }
         .filter-link {
-        text-decoration: none;
-        color: inherit;
-    }
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        
+        .filter {
+            color: var(--text-primary);
+        }
+        
+        .filter i {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+        
+        .filter p {
+            color: var(--text-primary);
+        }
+        
+        .tax-toggle {
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        [data-theme="dark"] #filters {
+            background-color: var(--bg-primary);
+        }
+        
+        [data-theme="dark"] .form-check-label {
+            color: var(--text-primary);
+        }
+        
+        .form-check-label {
+            color: var(--text-primary);
+        }
     </style>
     <div id="filters">
         <a href="/listings" class="filter-link">
