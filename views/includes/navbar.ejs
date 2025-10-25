@@ -1,25 +1,29 @@
 <style>
-  .search-btn{
-    background-color: #fe424d;
-    color:#fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
+  /* Navbar Base */
+  .navbar {
+    padding: 0.75rem 1rem;
   }
-  .search-btn:hover{
-    background-color: #fe424d;
-    color:#fff;
+  
+  .navbar-brand i {
+    font-size: 2rem;
+    color: #fe424d;
   }
-  .search-btn i{
-    display:inline;
-    margin-right: 0.5rem;
+  
+  /* Search Bar */
+  .search-form-main {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
   }
-  .search-inp{
-    border-radius:25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
+  
+  .search-inp {
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
+    width: 100%;
   }
   
   .search-inp::placeholder {
@@ -36,173 +40,461 @@
     color: var(--text-muted);
     opacity: 1;
   }
-  .wishlist-link {
-    position: relative;
-    display: inline-block;
-    margin-right: 1rem;
-  }
-  .wishlist-badge {
-    position: absolute;
-    top: -5px;
-    right: -10px;
+  
+  .search-btn {
     background-color: #fe424d;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.7rem;
-    font-weight: bold;
+    color: #fff;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    font-weight: 500;
   }
-  .theme-toggle {
+  
+  .search-btn:hover {
+    background-color: #e63946;
+    color: #fff;
+  }
+  
+  .search-btn i {
+    margin-right: 0.5rem;
+  }
+  
+  /* Hamburger Menu Button */
+  .navbar-toggler {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    border-radius: 50px;
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  
+  .navbar-toggler-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  /* Side Menu - Professional Slide from Right */
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 320px;
+    background-color: var(--bg-primary);
+    box-shadow: -2px 0 20px var(--shadow);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    overflow-y: auto;
+    padding: 0;
+  }
+  
+  .navbar-collapse.show {
+    right: 0;
+  }
+  
+  .navbar-collapse.collapsing {
+    right: -100%;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Menu Overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  
+  .menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Menu Header */
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .menu-close {
     background: none;
-    border: 2px solid var(--text-primary);
+    border: none;
+    font-size: 1.5rem;
     color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    margin-left: 0.5rem;
-  }
-  .theme-toggle:hover {
-    background-color: #fe424d;
-    border-color: #fe424d;
-    color: white;
-    transform: rotate(180deg);
-  }
-  .navbar {
-    background-color: var(--navbar-bg) !important;
-    box-shadow: 0 2px 8px var(--shadow);
   }
   
-  /* Professional icon buttons - Filled with gradient */
-  .nav-icon-btn {
-    position: relative;
+  .menu-close:hover {
+    background-color: var(--bg-secondary);
+  }
+  
+  /* Menu Content */
+  .menu-content {
+    padding: 1.5rem;
+  }
+  
+  /* User Profile Section */
+  .user-profile-section {
+    padding: 1.5rem;
     background: linear-gradient(135deg, #fe424d, #ff6b6b);
-    border: none;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .user-profile-section .user-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 0.3rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(254, 66, 77, 0.3);
+    margin: 0 auto 1rem;
+    font-size: 2rem;
   }
   
-  .nav-icon-btn:hover {
-    background: linear-gradient(135deg, #ff6b6b, #fe424d);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(254, 66, 77, 0.5);
+  .user-profile-section .user-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
   }
   
-  .nav-icon-btn i {
-    font-size: 1.2rem;
-    color: white !important;
-    transition: all 0.3s ease;
-  }
-  
-  /* Airbnb Home Button */
-  .airbnb-home-btn {
-    background: linear-gradient(135deg, #fe424d, #ff6b6b);
-    color: white !important;
-    border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 25px;
-    font-weight: 500;
-    text-decoration: none;
-    display: inline-flex;
+  /* Menu Items */
+  .menu-item {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(254, 66, 77, 0.3);
-  }
-  
-  .airbnb-home-btn:hover {
-    background: linear-gradient(135deg, #ff6b6b, #fe424d);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(254, 66, 77, 0.5);
-    color: white !important;
-  }
-  
-  .airbnb-home-btn i {
-    font-size: 1.1rem;
-  }
-  
-  .user-greeting {
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
     color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .menu-item:hover {
+    background-color: var(--bg-secondary);
+    transform: translateX(-5px);
+    color: var(--text-primary);
+  }
+  
+  .menu-item i {
+    width: 24px;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+  
+  .menu-item.primary {
+    background: linear-gradient(135deg, #fe424d, #ff6b6b);
+    color: white;
     font-weight: 500;
-    margin: 0 0.5rem;
   }
   
-  .navbar-toggler {
-    border: 2px solid var(--text-primary);
+  .menu-item.primary:hover {
+    background: linear-gradient(135deg, #ff6b6b, #fe424d);
+    color: white;
+    transform: translateX(-5px);
   }
   
+  .menu-item.primary i {
+    color: white;
+  }
+  
+  /* Menu Section Divider */
+  .menu-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 1rem 0;
+  }
+  
+  /* Auth Links */
+  .auth-links {
+    padding: 1rem 0;
+  }
+  
+  .auth-links .menu-item {
+    font-weight: 500;
+  }
+  
+  /* Theme Toggle in Menu */
+  .theme-toggle-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background-color: var(--bg-secondary);
+    margin-top: 1rem;
+  }
+  
+  .theme-toggle-item span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+  }
+  
+  .theme-toggle-item i {
+    font-size: 1.25rem;
+    width: 24px;
+  }
+  
+  .theme-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+  }
+  
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .theme-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .theme-slider {
+    background-color: #fe424d;
+  }
+  
+  input:checked + .theme-slider:before {
+    transform: translateX(24px);
+  }
+  
+  /* Responsive */
   @media (max-width: 768px) {
-    .search-form {
-      width: 100%;
-      margin: 1rem 0;
+    .navbar-collapse {
+      width: 85%;
+      max-width: 320px;
     }
-    .nav-icon-btn {
-      width: 38px;
-      height: 38px;
-      margin: 0.3rem;
+    
+    .search-form-main {
+      margin: 0 0.5rem;
+    }
+    
+    .search-inp {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .search-btn {
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .search-btn span {
+      display: none;
+    }
+    
+    .search-btn {
+      padding: 0.5rem 0.75rem;
     }
   }
 </style>
 
 <nav class="navbar navbar-expand-lg border-bottom sticky-top">
   <div class="container-fluid">
+    <!-- Logo -->
     <a class="navbar-brand" href="/listings">
       <i class="fa-regular fa-compass"></i>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    
+    <!-- Search Bar - Always Visible -->
+    <form class="d-flex search-form-main" role="search">
+      <input class="form-control search-inp" type="search" placeholder="Search destinations" aria-label="Search">
+      <button class="btn search-btn" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Search</span>
+      </button>
+    </form>
+    
+    <!-- Hamburger Menu Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sideMenu" aria-controls="sideMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
-
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 search-inp"
-          type="search"
-          placeholder="Search destinations">
-          <button class="btn search-btn" type="submit">
-                <i class="fa-solid fa-magnifying-glass "></i>Search</button>
-        </form>
-      </div>
-
-      <div class="navbar-nav ms-auto d-flex align-items-center">
-        <a class="airbnb-home-btn" href="/listings/new">
-          <i class="fa-solid fa-house"></i>
-          Airbnb your home
-        </a>
-        <% if(!currUser)  { %>
-        <a class="nav-link"  href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %>
-        <% if(currUser) { %>
-        <a href="/recommendations" class="nav-icon-btn" title="For You">
-          <i class="fa-solid fa-sparkles"></i>
-        </a>
-        <a href="/wishlist" class="nav-icon-btn" title="My Wishlist">
-          <i class="fa-solid fa-heart"></i>
-        </a>
-        <span class="user-greeting d-none d-md-inline">Hi, <%= currUser.username %>!</span>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
-        <% } %>
-        <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
-          <i id="theme-icon" class="fa-solid fa-moon"></i>
+    
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- Side Menu -->
+    <div class="collapse navbar-collapse" id="sideMenu">
+      <!-- Menu Header -->
+      <div class="menu-header">
+        <h5 style="margin: 0; color: var(--text-primary);">Menu</h5>
+        <button class="menu-close" id="menuClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
         </button>
+      </div>
+      
+      <!-- Menu Content -->
+      <div class="menu-content">
+        <% if(currUser) { %>
+          <!-- User Profile Section -->
+          <div class="user-profile-section">
+            <div class="user-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <p class="user-name">Hi, <%= currUser.username %>!</p>
+          </div>
+          
+          <!-- Main Actions -->
+          <a href="/listings/new" class="menu-item primary">
+            <i class="fa-solid fa-house"></i>
+            <span>Airbnb your home</span>
+          </a>
+          
+          <a href="/wishlist" class="menu-item">
+            <i class="fa-solid fa-heart"></i>
+            <span>My Wishlist</span>
+          </a>
+          
+          <a href="/recommendations" class="menu-item">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>For You</span>
+          </a>
+          
+          <div class="menu-divider"></div>
+          
+          <a href="/listings" class="menu-item">
+            <i class="fa-solid fa-compass"></i>
+            <span>Explore</span>
+          </a>
+          
+          <a href="/logout" class="menu-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Log out</span>
+          </a>
+          
+        <% } else { %>
+          <!-- Auth Links for Non-logged Users -->
+          <div class="auth-links">
+            <a href="/signup" class="menu-item primary">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Sign up</span>
+            </a>
+            
+            <a href="/login" class="menu-item">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span>Log in</span>
+            </a>
+          </div>
+          
+          <div class="menu-divider"></div>
+          
+          <a href="/listings/new" class="menu-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Airbnb your home</span>
+          </a>
+          
+          <a href="/listings" class="menu-item">
+            <i class="fa-solid fa-compass"></i>
+            <span>Explore</span>
+          </a>
+        <% } %>
+        
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-item">
+          <span>
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            Dark Mode
+          </span>
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle-checkbox">
+            <span class="theme-slider"></span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+
+<script>
+  // Handle menu overlay and close
+  const menuToggle = document.querySelector('.navbar-toggler');
+  const menuClose = document.getElementById('menuClose');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const sideMenu = document.getElementById('sideMenu');
+  
+  menuToggle.addEventListener('click', function() {
+    setTimeout(() => {
+      menuOverlay.classList.add('show');
+    }, 100);
+  });
+  
+  function closeMenu() {
+    sideMenu.classList.remove('show');
+    menuOverlay.classList.remove('show');
+  }
+  
+  menuClose.addEventListener('click', closeMenu);
+  menuOverlay.addEventListener('click', closeMenu);
+  
+  // Theme toggle with checkbox
+  const themeCheckbox = document.getElementById('theme-toggle-checkbox');
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  
+  // Set initial checkbox state
+  if (savedTheme === 'dark') {
+    themeCheckbox.checked = true;
+  }
+  
+  themeCheckbox.addEventListener('change', function() {
+    const newTheme = this.checked ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+</script>
