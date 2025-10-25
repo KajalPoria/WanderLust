@@ -32,11 +32,22 @@ res.render("listings/show.ejs" , {listing});
 };
 
 module.exports.create = async(req,res,next)=>{
-    let url = req.file.path;
-    let filename = req.file.filename;
     const newListing= new Listing(req.body.listing);
     newListing.owner= req.user._id;
-    newListing.image={url, filename};
+    
+    // Check if file was uploaded
+    if (req.file) {
+        let url = req.file.path;
+        let filename = req.file.filename;
+        newListing.image = {url, filename};
+    } else {
+        // Set a default image if no file is uploaded
+        newListing.image = {
+            url: "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+            filename: "default"
+        };
+    }
+    
     await newListing.save();
     req.flash("success", "New Listing Created!");
     res.redirect("/listings");

@@ -1,18 +1,55 @@
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #222222;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+    --navbar-bg: #ffffff;
+    --footer-bg: #ebebeb;
+    --accent-color: #fe424d;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-card: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --border-color: #404040;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+    --navbar-bg: #1a1a1a;
+    --footer-bg: #2d2d2d;
+    --accent-color: #fe424d;
+}
+
 body{
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     display:flex;
     flex-direction:column;
     min-height: 100vh;
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container{
     flex:1;
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease;
 }
 
 /* Navbar*/
 .navbar{
     height:5rem !important;
-    background-color: white !important;
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
 }
 
 .fa-compass{
@@ -21,13 +58,15 @@ body{
 }
 
 .nav-link{
-    color:#222222 !important;
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease;
 }
 
 /*Footer*/
 .f-info-links a {
     text-decoration: none;
-    color:#222222;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 .f-info-links a:hover{
@@ -46,16 +85,18 @@ body{
 .f-info-socials i{
     margin-right:1rem;
     font-size: 1.2rem;
+    color: var(--text-primary);
 }
 
 .f-info{
     text-align: center;
     height: 8rem;
-    background-color:#ebebeb;
+    background-color: var(--footer-bg);
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
     align-items:space-evenly;
+    transition: background-color 0.3s ease;
 }
 
 
@@ -63,6 +104,8 @@ body{
 .listing-card{
     border:none !important;
     margin-bottom:2rem;
+    background-color: var(--bg-card);
+    transition: background-color 0.3s ease;
 }
 
 .card-img-top{
@@ -77,10 +120,12 @@ body{
 
 .card-text p{
     font-weight:400;
+    color: var(--text-secondary);
 }
 
 .listing-link{
     text-decoration:none;
+    color: var(--text-primary);
 }
 
 /*Card Effect*/
@@ -118,4 +163,111 @@ body{
 .show-card{
     padding-left: 0;
     padding-right: 0;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    transform: rotate(180deg);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+}
+
+/* Additional dark mode styles for forms and inputs */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: var(--bg-primary);
+}
+
+/* Additional dark mode overrides for Bootstrap */
+[data-theme="dark"] .btn-outline-dark {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-outline-dark:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] small {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .border-bottom {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .navbar-toggler {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1);
 }

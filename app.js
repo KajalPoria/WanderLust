@@ -20,6 +20,8 @@ const User = require("./models/user.js");
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const wishlistRouter = require("./routes/wishlist.js");
+const recommendationsRouter = require("./routes/recommendations.js");
 
 const dbUrl = process.env.ATLAS_URL;
 
@@ -85,6 +87,8 @@ app.use((req,res,next) => {
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
+app.use("/wishlist", wishlistRouter);
+app.use("/recommendations", recommendationsRouter);
 
 app.get("/", (req, res) => {
     res.redirect("/listings");

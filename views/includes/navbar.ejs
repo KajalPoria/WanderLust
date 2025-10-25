@@ -18,9 +18,48 @@
     padding: 0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
   }
+  .wishlist-link {
+    position: relative;
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  .wishlist-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #fe424d;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+  .theme-toggle {
+    background: none;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 0.5rem;
+  }
+  .theme-toggle:hover {
+    background-color: #fe424d;
+    border-color: #fe424d;
+    color: white;
+    transform: rotate(180deg);
+  }
+  .navbar {
+    background-color: var(--navbar-bg) !important;
+  }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" style="background-color: #fff;">
@@ -41,15 +80,25 @@
         </form>
       </div>
 
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-auto d-flex align-items-center">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if(!currUser)  { %>
         <a class="nav-link"  href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log in</b></a>
         <% } %>
         <% if(currUser) { %>
+        <a class="nav-link" href="/recommendations" title="For You">
+          <i class="fa-solid fa-sparkles" style="color: #fe424d; font-size: 1.2rem;"></i>
+        </a>
+        <a class="nav-link wishlist-link" href="/wishlist" title="My Wishlist">
+          <i class="fa-solid fa-heart" style="color: #fe424d; font-size: 1.3rem;"></i>
+        </a>
+        <span class="nav-link">Hi, <%= currUser.username %>!</span>
         <a class="nav-link" href="/logout"><b>Log out</b></a>
         <% } %>
+        <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </div>
   </div>

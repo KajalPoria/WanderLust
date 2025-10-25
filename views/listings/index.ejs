@@ -164,8 +164,15 @@
 
     <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1 mt-3">
         <% for(let listing of allListings){ %>
-            <a href="/listings/<%= listing._id %>" class="listing-link">
-                <div class="card col listing-card">
+            <div class="card col listing-card" style="position: relative;">
+                <% if(currUser) { %>
+                    <button class="wishlist-btn" data-listing-id="<%= listing._id %>" 
+                            onclick="toggleWishlist(event, '<%= listing._id %>')" 
+                            style="position: absolute; top: 1rem; right: 1rem; z-index: 10; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                        <i class="fa-regular fa-heart" style="color: #fe424d; font-size: 1.2rem;"></i>
+                    </button>
+                <% } %>
+                <a href="/listings/<%= listing._id %>" class="listing-link">
                     <img src="<%= listing.image.url%>" class="card-img-top" alt="listing_image" style="height:20rem">
                     <div class="card-img-overlay"></div>
                     <div class="card-body">
@@ -180,9 +187,9 @@
                                     <% } %>
                         </p>
                     </div>
-                </div>
-
-                <% } %>
+                </a>
+            </div>
+        <% } %>
     </div>
 
 
@@ -197,5 +204,52 @@
                     info.style.display = "none";
                 }
             }
+        });
+
+        // Wishlist toggle function
+        async function toggleWishlist(event, listingId) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const button = event.currentTarget;
+            const icon = button.querySelector('i');
+            
+            try {
+                const response = await fetch(`/wishlist/${listingId}/toggle`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.inWishlist) {
+                        icon.classList.remove('fa-regular');
+                        icon.classList.add('fa-solid');
+                    } else {
+                        icon.classList.remove('fa-solid');
+                        icon.classList.add('fa-regular');
+                    }
+                }
+            } catch (error) {
+                console.error('Error toggling wishlist:', error);
+            }
+        }
+
+        // Check wishlist status on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            <% if(currUser) { %>
+                try {
+                    const response = await fetch('/wishlist');
+                    if (response.ok) {
+                        const text = await response.text();
+                        // Parse wishlist IDs from response if needed
+                    }
+                } catch (error) {
+                    console.error('Error checking wishlist:', error);
+                }
+            <% } %>
         });
     </script>

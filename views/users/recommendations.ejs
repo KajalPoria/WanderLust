@@ -1,0 +1,239 @@
+<%- layout("/layouts/boilerplate") %>
+
+<style>
+    .recommendations-header {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .recommendations-header h1 {
+        font-weight: 700;
+        background: linear-gradient(135deg, #fe424d, #ff6b6b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .recommendations-header p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+    }
+
+    .stats-card {
+        background: linear-gradient(135deg, #fe424d, #ff6b6b);
+        color: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(254, 66, 77, 0.2);
+    }
+
+    .stats-card .stat {
+        text-align: center;
+    }
+
+    .stats-card .stat h3 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .stats-card .stat p {
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+
+    .recommendations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .recommendation-card {
+        border: none;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: var(--bg-card);
+        position: relative;
+    }
+
+    .recommendation-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 6px 16px var(--shadow-hover);
+    }
+
+    .recommendation-card img {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .recommendation-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: linear-gradient(135deg, #fe424d, #ff6b6b);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 5;
+    }
+
+    .recommendation-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .recommendation-card .card-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .recommendation-card .card-text {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .recommendation-card .price {
+        font-weight: 700;
+        color: #fe424d;
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+    }
+
+    .recommendation-card .category-tag {
+        display: inline-block;
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    .view-details-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #fe424d, #ff6b6b);
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        transition: transform 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .view-details-btn:hover {
+        transform: scale(1.02);
+        color: white;
+    }
+
+    .no-recommendations {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .no-recommendations i {
+        font-size: 5rem;
+        color: #ccc;
+        margin-bottom: 1rem;
+    }
+
+    .no-recommendations h3 {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .recommendations-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .stats-card .stat h3 {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="recommendations-header">
+        <h1><i class="fa-solid fa-sparkles"></i> Personalized Recommendations</h1>
+        <p>Destinations curated just for you based on your preferences</p>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="stats-card">
+                <div class="row">
+                    <div class="col-md-4 stat">
+                        <h3><%= wishlistCount %></h3>
+                        <p>Saved Destinations</p>
+                    </div>
+                    <div class="col-md-4 stat">
+                        <h3><%= reviewCount %></h3>
+                        <p>Reviews Written</p>
+                    </div>
+                    <div class="col-md-4 stat">
+                        <h3><%= recommendations.length %></h3>
+                        <p>Personalized Picks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% if (recommendations && recommendations.length > 0) { %>
+        <div class="recommendations-grid">
+            <% for (let listing of recommendations) { %>
+                <div class="recommendation-card">
+                    <div class="recommendation-badge">
+                        <i class="fa-solid fa-star"></i> Recommended
+                    </div>
+                    <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= listing.title %></h5>
+                        <p class="card-text">
+                            <i class="fa-solid fa-location-dot"></i> <%= listing.location %>, <%= listing.country %>
+                        </p>
+                        <% if(listing.category) { %>
+                            <span class="category-tag">
+                                <i class="fa-solid fa-tag"></i> <%= listing.category %>
+                            </span>
+                        <% } %>
+                        <p class="price">₹<%= listing.price.toLocaleString("en-IN") %> / night</p>
+                        <% if(listing.owner) { %>
+                            <p class="card-text">
+                                <small class="text-muted">Hosted by <%= listing.owner.username %></small>
+                            </p>
+                        <% } %>
+                        <a href="/listings/<%= listing._id %>" class="view-details-btn">
+                            <i class="fa-solid fa-eye"></i> View Details
+                        </a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="no-recommendations">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <h3>Start Building Your Profile</h3>
+            <p>Add listings to your wishlist or write reviews to get personalized recommendations!</p>
+            <div class="mt-4">
+                <a href="/listings" class="btn btn-primary me-2" style="background-color: #fe424d; border: none;">
+                    <i class="fa-solid fa-search"></i> Explore Listings
+                </a>
+                <a href="/wishlist" class="btn btn-outline-primary" style="border-color: #fe424d; color: #fe424d;">
+                    <i class="fa-solid fa-heart"></i> View Wishlist
+                </a>
+            </div>
+        </div>
+    <% } %>
+</div>
