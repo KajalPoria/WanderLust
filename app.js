@@ -83,6 +83,26 @@ app.use((req,res,next) => {
     next();
 });
 
+// --- ROUTERS ---
+
+// Handle /listings AND /listings/:id/reviews first
+app.use("/listings", listingsRouter);
+app.use("/listings/:id/reviews", reviewsRouter);
+
+// redirected to the listings page when site is loaded
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
+// FINALLY, handle all other user routes (e.g., /login, /signup)
+app.use("/", userRouter);
+
+
+// This will now only catch routes that truly don't exist
+app.all(/.*/, (req, res, next) => {
+        next(new ExpressError(404, "Page Not Found"));
+    });
+
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
