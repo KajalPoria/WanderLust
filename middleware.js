@@ -31,7 +31,15 @@ module.exports.isOwner = async(req,res,next)=>{
 };
 
 module.exports.validateListing = (req,res,next)=>{
-    let {error}=listingSchema.validate(req.body);
+    // Create a copy of req.body for validation
+    let dataToValidate = {...req.body};
+    
+    // If file is uploaded, remove image field from validation
+    if(req.file && dataToValidate.listing) {
+        delete dataToValidate.listing.image;
+    }
+    
+    let {error}=listingSchema.validate(dataToValidate);
     if(error){
         let errMsg= error.details.map((el)=> el.message).join(",");
         throw new ExpressError(400, errMsg);

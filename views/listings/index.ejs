@@ -237,19 +237,4 @@
                 console.error('Error toggling wishlist:', error);
             }
         }
-
-        // Check wishlist status on page load
-        document.addEventListener('DOMContentLoaded', async function() {
-            <% if(currUser) { %>
-                try {
-                    const response = await fetch('/wishlist');
-                    if (response.ok) {
-                        const text = await response.text();
-                        // Parse wishlist IDs from response if needed
-                    }
-                } catch (error) {
-                    console.error('Error checking wishlist:', error);
-                }
-            <% } %>
-        });
     </script>
