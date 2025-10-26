@@ -28,75 +28,109 @@
     --accent-color: #fe424d;
 }
 
-body{
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    display:flex;
-    flex-direction:column;
-    min-height: 100vh;
+/* Default: Light Theme */
+:root {
+  --primary-color: #fe424d;
+  --background-color: #ffffff;
+  --text-color: #222222;
+  --nav-bg: #ffffff;
+  --footer-bg: #ebebeb;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.175);
+  --overlay-bg: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --primary-color: #e03842;
+  --background-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --nav-bg: #222222;
+  --footer-bg: #222222;
+  --card-bg: #2c2c2c;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --overlay-bg: rgba(0, 0, 0, 0.2);
+}
+
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
     background-color: var(--bg-primary) !important;
     color: var(--text-primary) !important;
     transition: background-color 0.3s ease, color 0.3s ease;
+  /* Use variables and add transitions */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .container{
     flex:1;
-    background-color: var(--bg-primary);
-    transition: background-color 0.3s ease;
 }
 
 /* Navbar*/
 .navbar{
     height:5rem !important;
-    background-color: var(--navbar-bg) !important;
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.3s ease;
+    background-color: white !important;
 }
 
-.fa-compass{
-    color: #fe424d;
-    font-size: 2rem;
+.fa-compass {
+  /* Use variable */
+  color: var(--primary-color);
+  font-size: 2rem;
 }
 
 .nav-link{
-    color: var(--text-primary) !important;
-    transition: color 0.3s ease;
+    color:#222222 !important;
 }
 
-/*Footer*/
+.f-info {
+  text-align: center;
+  height: 8rem;
+  /* Use variables and add transitions */
+  background-color: var(--footer-bg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+  transition: background-color 0.3s;
+}
+
 .f-info-links a {
     text-decoration: none;
-    color: var(--text-primary);
-    transition: color 0.3s ease;
+    color:#222222;
 }
 
-.f-info-links a:hover{
-    text-decoration: underline;
+.f-info-links a:hover {
+  text-decoration: underline;
 }
 
-.f-info-links,.f-info-socials,
-.f-info-brand{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  width: 100%;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .f-info-socials i{
     margin-right:1rem;
     font-size: 1.2rem;
-    color: var(--text-primary);
 }
 
 .f-info{
     text-align: center;
     height: 8rem;
-    background-color: var(--footer-bg);
+    background-color:#ebebeb;
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
     align-items:space-evenly;
-    transition: background-color 0.3s ease;
 }
 
 
@@ -104,85 +138,61 @@ body{
 .listing-card{
     border:none !important;
     margin-bottom:2rem;
-    background-color: var(--bg-card);
-    transition: background-color 0.3s ease;
 }
 
-.card-img-top{
-    border-radius:1rem !important;
-    width:100% !important;
-    object-fit:cover !important;
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
 }
 
-.card-body{
-    padding:0;
+.card-body {
+  padding: 0;
 }
 
 .card-text p{
     font-weight:400;
-    color: var(--text-secondary);
-}
-
-.card-text b{
-    color: var(--text-primary);
-}
-
-.card-text small{
-    color: var(--text-muted);
 }
 
 .listing-link{
     text-decoration:none;
-    color: var(--text-primary);
 }
 
-.listing-link:hover {
-    color: var(--text-primary);
+.card-img-overlay {
+  opacity: 0;
 }
 
-.listing-link .card-text {
-    color: var(--text-primary);
+.card-img-overlay:hover {
+  opacity: 1; /* Changed from 0.2 to 1 */
+  /* Use variable */
+  background-color: var(--overlay-bg);
 }
 
-.listing-link .card-text b {
-    color: var(--text-primary);
+.add-btn {
+
+  background-color: var(--primary-color) !important;
+  border: none !important;
 }
 
-/*Card Effect*/
-.card-img-overlay{
-    opacity:0;
+.edit-btn {
+  /* Use variable */
+  background-color: var(--primary-color) !important;
+  border: none !important;
 }
 
-.card-img-overlay:hover{
-    opacity:0.2;
-    background-color: white;
+.show-img {
+  height: 30vh;
 }
 
-/*New Page*/
-
-.add-btn{
-    background-color: #fe424d !important;
-    border:none !important;
+.btns {
+  display: flex;
 }
 
-/*Edit Page*/
-.edit-btn{
-    background-color: #fe424d !important;
-    border:none !important;
-}
-
-/*Show img*/
-.show-img{
-    height:30vh;
-}
-
-.btns{
-    display:flex;
-}
-
-.show-card{
-    padding-left: 0;
-    padding-right: 0;
+.show-card {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: var(--card-bg); /* Added for dark mode */
+  border: 1px solid var(--card-border); /* Added for dark mode */
 }
 
 /* Theme Toggle Button */
