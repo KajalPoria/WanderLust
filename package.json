@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "22.14.0"
+    "node": "^22.14.0"
   },
   "name": "major-project-(airbnb)",
   "version": "1.0.0",
