@@ -23,33 +23,9 @@
     --border-color: #404040;
     --shadow: rgba(0, 0, 0, 0.3);
     --shadow-hover: rgba(0, 0, 0, 0.5);
-    --navbar-bg: #1a1a1a;
+    --navbar-bg: #222222;
     --footer-bg: #2d2d2d;
     --accent-color: #fe424d;
-}
-
-/* Default: Light Theme */
-:root {
-  --primary-color: #fe424d;
-  --background-color: #ffffff;
-  --text-color: #222222;
-  --nav-bg: #ffffff;
-  --footer-bg: #ebebeb;
-  --card-bg: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.175);
-  --overlay-bg: rgba(255, 255, 255, 0.2);
-}
-
-/* Dark Theme Overrides */
-[data-theme="dark"] {
-  --primary-color: #e03842;
-  --background-color: #1a1a1a;
-  --text-color: #f0f0f0;
-  --nav-bg: #222222;
-  --footer-bg: #222222;
-  --card-bg: #2c2c2c;
-  --card-border: rgba(255, 255, 255, 0.1);
-  --overlay-bg: rgba(0, 0, 0, 0.2);
 }
 
 
@@ -58,13 +34,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-    background-color: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  /* Use variables and add transitions */
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container{
@@ -74,23 +46,24 @@ body {
 /* Navbar*/
 .navbar{
     height:5rem !important;
-    background-color: white !important;
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .fa-compass {
-  /* Use variable */
-  color: var(--primary-color);
+  color: var(--accent-color);
   font-size: 2rem;
 }
 
 .nav-link{
-    color:#222222 !important;
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease;
 }
 
 .f-info {
   text-align: center;
   height: 8rem;
-  /* Use variables and add transitions */
   background-color: var(--footer-bg);
   display: flex;
   flex-wrap: wrap;
@@ -100,8 +73,9 @@ body {
 }
 
 .f-info-links a {
-    text-decoration: none;
-    color:#222222;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .f-info-links a:hover {
@@ -112,27 +86,18 @@ body {
 .f-info-socials,
 .f-info-brand {
   width: 100%;
-  color: var(--text-color);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.f-info-socials i{
-    margin-right:1rem;
-    font-size: 1.2rem;
+.f-info-socials i {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
-
-.f-info{
-    text-align: center;
-    height: 8rem;
-    background-color:#ebebeb;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: center;
-    align-items:space-evenly;
-}
-
 
 /*Cards*/
 .listing-card{
@@ -414,12 +379,33 @@ body {
         font-size: 14px;
     }
     
+    /* Force single column for listings */
+    .row-cols-lg-3,
+    .row-cols-md-2 {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .row-cols-lg-3 > *,
+    .row-cols-md-2 > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    
     .navbar {
         padding: 0.75rem 1rem;
     }
     
+    /* Single column layout for listings on mobile */
+    .row-cols-lg-3 > * {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
     .listing-card {
         margin-bottom: 1.5rem !important;
+        width: 100% !important;
     }
     
     .card-img-top {
@@ -540,9 +526,13 @@ body {
         font-size: 0.9rem;
     }
     
-    /* Make cards full width on very small screens */
+    /* Make cards full width single column on small mobile */
+    .row-cols-lg-3 > *,
+    .row-cols-md-2 > *,
     .row-cols-sm-1 > * {
-        width: 100%;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
     }
     
     /* Adjust padding for better mobile experience */
