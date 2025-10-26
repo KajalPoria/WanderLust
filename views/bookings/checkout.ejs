@@ -1,0 +1,126 @@
+<%- layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3 class="mb-4">Complete Your Booking</h3>
+
+        <div class="card mb-4">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="<%= listing.image.url %>" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="<%= listing.title %>">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= listing.title %></h4>
+                        <p class="card-text">
+                            <i class="fa-solid fa-location-dot"></i> <%= listing.location %>, <%= listing.country %>
+                        </p>
+                        <p class="card-text">
+                            <strong>&#8377; <%= listing.price.toLocaleString("en-IN") %></strong> / night
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Booking Information</h5>
+            </div>
+            <div class="card-body">
+                <form id="bookingForm" novalidate data-price="<%= listing.price %>">
+                    <input type="hidden" name="listingId" value="<%= listing._id %>">
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="checkIn" class="form-label">Check-in</label>
+                            <input type="date" class="form-control" id="checkIn" name="checkIn" required min="<%= new Date().toISOString().split('T')[0] %>">
+                            <div class="invalid-feedback">
+                                Please select check-in date.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="checkOut" class="form-label">Check-out</label>
+                            <input type="date" class="form-control" id="checkOut" name="checkOut" required>
+                            <div class="invalid-feedback">
+                                Please select check-out date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="guests" class="form-label">Guests</label>
+                        <input type="number" class="form-control" id="guests" name="guests" required min="1" max="20" value="1">
+                        <div class="invalid-feedback">
+                            Please enter number of guests (1-20).
+                        </div>
+                    </div>
+
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Price Details</h6>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>&#8377; <%= listing.price.toLocaleString("en-IN") %> x <span id="nightsCount">0</span> nights</span>
+                                <span id="subtotal">&#8377; 0</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <strong>Total Amount</strong>
+                                <strong id="totalPrice">&#8377; 0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger w-100" id="rzp-button">
+                        <i class="fa-solid fa-credit-card"></i> Proceed to Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="/listings/<%= listing._id %>" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Back to Listing
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    // Get price from form data attribute
+    let pricePerNight = parseInt(document.getElementById('bookingForm').dataset.price);
+
+    function updatePrice() {
+        let checkIn = document.getElementById('checkIn').value;
+        let checkOut = document.getElementById('checkOut').value;
+
+        if (checkIn && checkOut) {
+            let startDate = new Date(checkIn);
+            let endDate = new Date(checkOut);
+            let nights = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+            if (nights > 0) {
+                let total = pricePerNight * nights;
+                document.getElementById('nightsCount').textContent = nights;
+                document.getElementById('subtotal').textContent = '₹ ' + total.toLocaleString('en-IN');
+                document.getElementById('totalPrice').textContent = '₹ ' + total.toLocaleString('en-IN');
+            } else {
+                document.getElementById('nightsCount').textContent = '0';
+                document.getElementById('subtotal').textContent = '₹ 0';
+                document.getElementById('totalPrice').textContent = '₹ 0';
+            }
+        }
+    }
+
+    document.getElementById('checkIn').addEventListener('change', function() {
+        let checkInDate = new Date(this.value);
+        let minCheckOut = new Date(checkInDate);
+        minCheckOut.setDate(minCheckOut.getDate() + 1);
+        document.getElementById('checkOut').min = minCheckOut.toISOString().split('T')[0];
+        updatePrice();
+    });
+
+    document.getElementById('checkOut').addEventListener('change', updatePrice);
+</script>
+<script src="/js/payment.js"></script>
