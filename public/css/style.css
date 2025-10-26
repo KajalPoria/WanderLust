@@ -103,20 +103,45 @@ body {
 .listing-card{
     border:none !important;
     margin-bottom:2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bg-card);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-img-top {
-  border-radius: 1rem !important;
+  border-radius: 1rem 1rem 0 0 !important;
   width: 100% !important;
   object-fit: cover !important;
+  height: 280px;
 }
 
 .card-body {
-  padding: 0;
+  padding: 1.25rem;
+  background-color: var(--bg-card);
 }
 
 .card-text p{
     font-weight:400;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.card-text b {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.card-text small {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .listing-link{
@@ -393,53 +418,153 @@ body {
         flex: 0 0 100% !important;
     }
     
-    .navbar {
-        padding: 0.75rem 1rem;
-    }
-    
-    /* Single column layout for listings on mobile */
-    .row-cols-lg-3 > * {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    
+    /* Professional listing card styling */
     .listing-card {
         margin-bottom: 1.5rem !important;
-        width: 100% !important;
+        border-radius: 1rem !important;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     
     .card-img-top {
-        height: 250px !important;
+        height: 220px !important;
+        object-fit: cover;
     }
     
     .card-body {
         padding: 1rem !important;
     }
     
-    .show-img {
-        height: 250px !important;
+    .card-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
     
+    .card-text b {
+        font-size: 1.05rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Show page improvements */
+    .show-card {
+        margin: 0 !important;
+        border-radius: 1rem !important;
+        overflow: hidden;
+    }
+    
+    .show-img {
+        height: 250px !important;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    /* Listing details */
+    .show-card .card-body {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .show-card h3,
+    .show-card h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .show-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Buttons - professional spacing */
     .btns {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        width: 100%;
     }
     
     .btns .btn,
     .btns form {
         width: 100%;
+        margin: 0 !important;
+    }
+    
+    .btns .btn {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .btns form .btn {
+        width: 100%;
     }
     
     .btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
     }
     
-    /* Filter buttons */
+    /* Remove Bootstrap offset classes in mobile */
+    .btns .offset-3,
+    .btns .offset-5 {
+        margin-left: 0 !important;
+    }
+    
+    /* Review section */
+    .reviews-section {
+        margin-top: 2rem;
+    }
+    
+    .review-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        background-color: var(--bg-secondary);
+    }
+    
+    /* Rating stars */
+    .starability-result {
+        font-size: 1.2rem;
+    }
+    
+    /* Form styling */
+    .form-control,
+    .form-select {
+        font-size: 1rem;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+    }
+    
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    textarea.form-control {
+        min-height: 120px;
+    }
+    
+    /* Professional header spacing */
+    .navbar {
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Container padding */
+    .container {
+        padding: 1rem;
+    }
+    
+    /* Filter buttons - horizontal scroll */
     #filters {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
         padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        scrollbar-width: thin;
+        scrollbar-color: #fe424d transparent;
     }
     
     #filters::-webkit-scrollbar {
@@ -454,44 +579,102 @@ body {
     .filter {
         margin-right: 1rem !important;
         margin-top: 1rem !important;
-        min-width: 60px;
+        min-width: 70px;
     }
     
     .filter p {
-        font-size: 0.75rem !important;
+        font-size: 0.85rem !important;
     }
     
-    /* Forms */
-    .form-control {
-        font-size: 1rem;
-        padding: 0.75rem;
+    .filter i {
+        font-size: 1.5rem;
     }
     
-    .form-label {
-        font-size: 0.95rem;
-        font-weight: 600;
-    }
-    
-    /* Footer */
+    /* Professional footer */
     .f-info {
         height: auto;
-        padding: 1.5rem 1rem;
+        padding: 2rem 1rem;
     }
     
     .f-info-links {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.75rem;
+    }
+    
+    .f-info-links a {
+        padding: 0.5rem 0;
+    }
+    
+    .f-info-socials {
+        margin: 1rem 0;
+    }
+    
+    .f-info-socials i {
+        font-size: 1.5rem;
+        margin: 0 0.75rem;
+    }
+    
+    /* Headings */
+    h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Improved card hover effect */
+    .listing-card:active {
+        transform: scale(0.98);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Wishlist button on cards */
+    .wishlist-btn {
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+        width: 42px !important;
+        height: 42px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Price badge */
+    .card-text {
+        color: var(--text-primary);
+    }
+    
+    .card-text b {
+        color: var(--text-primary);
+        font-size: 1.1rem;
+    }
+    
+    /* Owner info */
+    .card-text small {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
     }
 }
 
 /* Small mobile devices */
 @media (max-width: 576px) {
     body {
-        font-size: 13px;
+        font-size: 14px;
     }
     
     .container {
-        padding: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    /* Navbar compact */
+    .navbar {
+        padding: 0.75rem;
     }
     
     .navbar-brand {
@@ -499,31 +682,175 @@ body {
     }
     
     .fa-compass {
-        font-size: 1.3rem;
-    }
-    
-    h1 {
-        font-size: 1.75rem;
-    }
-    
-    h2 {
         font-size: 1.5rem;
     }
     
+    /* Headings */
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
     h3 {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
+    }
+    
+    /* Compact listing cards */
+    .listing-card {
+        margin-bottom: 1.25rem !important;
+        border-radius: 0.75rem !important;
     }
     
     .card-img-top {
         height: 200px !important;
+        border-radius: 0.75rem 0.75rem 0 0 !important;
     }
     
-    .listing-card {
-        margin-bottom: 1rem !important;
+    .card-body {
+        padding: 0.875rem !important;
     }
     
     .card-text {
         font-size: 0.9rem;
+    }
+    
+    .card-text b {
+        font-size: 1rem;
+    }
+    
+    .card-text small {
+        font-size: 0.8rem;
+    }
+    
+    /* Show page */
+    .show-img {
+        height: 200px !important;
+        border-radius: 0.75rem !important;
+    }
+    
+    .show-card {
+        border-radius: 0.75rem !important;
+    }
+    
+    .show-card .card-body {
+        padding: 1.25rem 0.875rem !important;
+    }
+    
+    .show-card h3,
+    .show-card h4 {
+        font-size: 1.15rem;
+    }
+    
+    .show-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .btns {
+        gap: 0.65rem;
+        margin-top: 1.25rem;
+        width: 100%;
+    }
+    
+    .btns .btn,
+    .btns form,
+    .btns form .btn {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    /* Remove all Bootstrap offset classes */
+    .btns .offset-3,
+    .btns .offset-5,
+    .btns .col-1 {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Wishlist button */
+    .wishlist-btn {
+        width: 38px !important;
+        height: 38px !important;
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+    }
+    
+    .wishlist-btn i {
+        font-size: 1.1rem;
+    }
+    
+    /* Filters - more compact */
+    #filters {
+        padding: 0.5rem 0;
+    }
+    
+    .filter {
+        min-width: 65px;
+        margin-right: 0.75rem !important;
+    }
+    
+    .filter i {
+        font-size: 1.3rem;
+    }
+    
+    .filter p {
+        font-size: 0.8rem !important;
+    }
+    
+    /* Forms */
+    .form-control {
+        padding: 0.65rem;
+        font-size: 0.95rem;
+    }
+    
+    .form-label {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    textarea.form-control {
+        min-height: 100px;
+    }
+    
+    /* Footer compact */
+    .f-info {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .f-info-links a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+    }
+    
+    .f-info-socials i {
+        font-size: 1.3rem;
+        margin: 0 0.5rem;
+    }
+    
+    /* Review section */
+    .review-card {
+        padding: 0.875rem;
+        border-radius: 0.625rem;
+    }
+    
+    .starability-result {
+        font-size: 1.1rem;
+    }
+    
+    /* Tax toggle */
+    .tax-toggle {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+        height: auto;
     }
     
     /* Make cards full width single column on small mobile */
