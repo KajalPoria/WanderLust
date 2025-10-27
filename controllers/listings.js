@@ -51,15 +51,10 @@ module.exports.create = async(req,res,next)=>{
     
     // Get coordinates from location using geocoding
     try {
-        let geoData = await geocodingService
-            .forwardGeocode({
-                query: req.body.listing.location,
-                limit: 1,
-            })
-            .send();
+        let geoData = await geocodingService.forwardGeocode(req.body.listing.location);
         
-        if (geoData && geoData.body.features.length > 0) {
-            newListing.geometry = geoData.body.features[0].geometry;
+        if (geoData) {
+            newListing.geometry = geoData;
         }
     } catch (err) {
         console.log("Geocoding error:", err);
@@ -96,15 +91,10 @@ module.exports.update =async (req, res) => {
     // Update coordinates if location changed
     if (req.body.listing.location) {
         try {
-            let geoData = await geocodingService
-                .forwardGeocode({
-                    query: req.body.listing.location,
-                    limit: 1,
-                })
-                .send();
+            let geoData = await geocodingService.forwardGeocode(req.body.listing.location);
             
-            if (geoData && geoData.body.features.length > 0) {
-                listing.geometry = geoData.body.features[0].geometry;
+            if (geoData) {
+                listing.geometry = geoData;
                 await listing.save();
             }
         } catch (err) {
