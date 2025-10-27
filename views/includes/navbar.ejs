@@ -1,82 +1,655 @@
 <style>
-  .search-btn{
-    background-color: #fe424d;
-    color:#fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
+  /* Navbar Base */
+  .navbar {
+    padding: 0.75rem 1rem;
   }
-  .search-btn:hover{
-    background-color: #fe424d;
-    color:#fff;
+  
+  .navbar-brand i {
+    font-size: 2rem;
+    color: #fe424d;
   }
-  .search-btn i{
-    display:inline;
+  
+  /* Search Bar */
+  .search-form-main {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 992px) {
+    .search-form-main {
+      flex: 0 1 auto;
+      max-width: 300px;
+      margin: 0;
+      margin-right: auto;
+    }
+  }
+  
+  .search-inp {
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    width: 100%;
+  }
+  
+  .search-inp::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  
+  [data-theme="dark"] .search-inp {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  
+  [data-theme="dark"] .search-inp::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    font-weight: 500;
+  }
+  
+  .search-btn:hover {
+    background-color: #e63946;
+    color: #fff;
+  }
+  
+  .search-btn i {
     margin-right: 0.5rem;
   }
-  .search-inp{
-    border-radius:25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
+  
+  /* Hamburger Menu Button */
+  .navbar-toggler {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    border-radius: 50px;
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  
+  .navbar-toggler-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  /* Side Menu - Professional Slide from Right (Mobile Only) */
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 320px;
+      background-color: var(--bg-primary);
+      box-shadow: -2px 0 20px var(--shadow);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 9999;
+      overflow-y: auto;
+      padding: 0;
+    }
+    
+    .navbar-collapse.show {
+      right: 0;
+    }
+    
+    .navbar-collapse.collapsing {
+      right: -100%;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+  
+  /* Desktop navbar - normal horizontal layout */
+  @media (min-width: 992px) {
+    .navbar-collapse {
+      position: static;
+      height: auto;
+      width: auto;
+      background-color: transparent;
+      box-shadow: none;
+      transition: none;
+      z-index: auto;
+      overflow-y: visible;
+      padding: 0;
+      flex-grow: 0;
+    }
+    
+    .navbar-toggler {
+      display: none;
+    }
+  }
+  
+  /* Menu Overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  
+  .menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Menu Header (Mobile Only) */
+  @media (max-width: 991px) {
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .menu-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 0.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-close:hover {
+      background-color: var(--bg-secondary);
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .menu-header {
+      display: none;
+    }
+  }
+  
+  /* Menu Content */
+  @media (max-width: 991px) {
+    .menu-content {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .menu-content {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-left: auto;
+    }
+  }
+  
+  /* User Profile Section */
+  @media (max-width: 991px) {
+    .user-profile-section {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #fe424d, #ff6b6b);
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: white;
+    }
+    
+    .user-profile-section .user-avatar {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2rem;
+    }
+    
+    .user-profile-section .user-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .user-profile-section {
+      display: none;
+    }
+  }
+  
+  /* Menu Items */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    text-align: left;
     font-size: 1rem;
+  }
+  
+  @media (min-width: 992px) {
+    .menu-item {
+      padding: 0.5rem 1rem;
+      margin-bottom: 0;
+      width: auto;
+      white-space: nowrap;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      border-radius: 8px;
+    }
+    
+    .menu-item i {
+      font-size: 1rem;
+      width: auto;
+    }
+  }
+  
+  .menu-item:hover {
+    background-color: var(--bg-secondary);
+    transform: translateX(-5px);
+    color: var(--text-primary);
+  }
+  
+  @media (min-width: 992px) {
+    .menu-item:hover {
+      transform: none;
+      background-color: var(--bg-secondary);
+    }
+  }
+  
+  .menu-item i {
+    width: 24px;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+  
+  .menu-item.primary {
+    background: linear-gradient(135deg, #fe424d, #ff6b6b);
+    color: white;
+    font-weight: 500;
+  }
+  
+  @media (min-width: 992px) {
+    .menu-item.primary {
+      background: #fe424d;
+      border-radius: 50px;
+      padding: 0.5rem 1.25rem;
+    }
+  }
+  
+  .menu-item.primary:hover {
+    background: linear-gradient(135deg, #ff6b6b, #fe424d);
+    color: white;
+    transform: translateX(-5px);
+  }
+  
+  @media (min-width: 992px) {
+    .menu-item.primary:hover {
+      background: #e63946;
+      transform: none;
+    }
+  }
+  
+  .menu-item.primary i {
+    color: white;
+  }
+  
+  /* Menu Section Divider */
+  .menu-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 1rem 0;
+  }
+  
+  @media (min-width: 992px) {
+    .menu-divider {
+      display: none;
+    }
+  }
+  
+  /* Auth Links */
+  .auth-links {
+    padding: 1rem 0;
+  }
+  
+  @media (min-width: 992px) {
+    .auth-links {
+      padding: 0;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+  }
+  
+  .auth-links .menu-item {
+    font-weight: 500;
+  }
+  
+  /* Theme Toggle in Menu */
+  .theme-toggle-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background-color: var(--bg-secondary);
+    margin-top: 1rem;
+  }
+  
+  @media (min-width: 992px) {
+    .theme-toggle-item {
+      padding: 0.5rem 1rem;
+      margin-top: 0;
+      margin-left: 0;
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+  }
+  
+  .theme-toggle-item span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+  }
+  
+  @media (min-width: 992px) {
+    .theme-toggle-item span {
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+  }
+  
+  .theme-toggle-item i {
+    font-size: 1.25rem;
+    width: 24px;
+  }
+  
+  @media (min-width: 992px) {
+    .theme-toggle-item i {
+      font-size: 1rem;
+      width: auto;
+    }
+  }
+  
+  .theme-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+  }
+  
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .theme-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .theme-slider {
+    background-color: #fe424d;
+  }
+  
+  input:checked + .theme-slider:before {
+    transform: translateX(24px);
+  }
+  
+  /* Responsive */
+  @media (min-width: 992px) {
+    .navbar {
+      padding: 0.75rem 2rem;
+    }
+    
+    .search-form-main {
+      max-width: 280px;
+      margin: 0 2rem;
+    }
+    
+    .navbar .container-fluid {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-collapse {
+      width: 85%;
+      max-width: 320px;
+    }
+    
+    .search-form-main {
+      margin: 0 0.5rem;
+    }
+    
+    .search-inp {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .search-btn {
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .search-btn span {
+      display: none;
+    }
+    
+    .search-btn {
+      padding: 0.5rem 0.75rem;
+    }
   }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" style="background-color: #fff;">
+    <!-- Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+    
+    <!-- Search Bar - Always Visible -->
+    <form class="d-flex search-form-main" role="search">
+      <input class="form-control search-inp" type="search" placeholder="Search destinations" aria-label="Search">
+      <button class="btn search-btn" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span></span>
+      </button>
+    </form>
+    
+    <!-- Hamburger Menu Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sideMenu" aria-controls="sideMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+    
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- Side Menu -->
+    <div class="collapse navbar-collapse" id="sideMenu">
+      <!-- Menu Header -->
+      <div class="menu-header">
+        <h5 style="margin: 0; color: var(--text-primary);">Menu</h5>
+        <button class="menu-close" id="menuClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
-
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 search-inp"
-          type="search"
-          placeholder="Search destinations">
-          <button class="btn search-btn" type="sumbit">
-                <i class="fa-solid fa-magnifying-glass "></i>Search</button>
-        </form>
-      </div>
-
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
-        <% if(!currUser)  { %>
-        <a class="nav-link"  href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %>
+      
+      <!-- Menu Content -->
+      <div class="menu-content">
         <% if(currUser) { %>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
+          <!-- User Profile Section -->
+          <div class="user-profile-section">
+            <div class="user-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <p class="user-name">Hi, <%= currUser.username %>!</p>
+          </div>
+          
+          <!-- Main Actions -->
+          <a href="/listings/new" class="menu-item primary">
+            <i class="fa-solid fa-house"></i>
+            <span>Airbnb your home</span>
+          </a>
+          
+          <a href="/wishlist" class="menu-item">
+            <i class="fa-solid fa-heart"></i>
+            <span>My Wishlist</span>
+          </a>
+          
+          <a href="/recommendations" class="menu-item">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>For You</span>
+          </a>
+          
+          <div class="menu-divider"></div>
+          
+          <a href="/listings" class="menu-item">
+            <i class="fa-solid fa-compass"></i>
+            <span>Explore</span>
+          </a>
+          
+          <a href="/logout" class="menu-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Log out</span>
+          </a>
+          
+        <% } else { %>
+          <!-- Auth Links for Non-logged Users -->
+          <div class="auth-links">
+            <a href="/signup" class="menu-item primary">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Sign up</span>
+            </a>
+            
+            <a href="/login" class="menu-item">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span>Log in</span>
+            </a>
+          </div>
+          
+          <div class="menu-divider"></div>
+          
+          <a href="/listings/new" class="menu-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Airbnb your home</span>
+          </a>
+          
+          <a href="/listings" class="menu-item">
+            <i class="fa-solid fa-compass"></i>
+            <span>Explore</span>
+          </a>
         <% } %>
+        
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-item">
+          <span>
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            Dark Mode
+          </span>
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle-checkbox">
+            <span class="theme-slider"></span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
-
-  <button id="theme-toggle" class="btn btn-sm btn-outline-secondary">
-  🌞 Light
-</button>
+</nav>
 
 <script>
-  const toggleBtn = document.getElementById("theme-toggle");
-
-  // Load saved theme or default to light
-  const currentTheme = localStorage.getItem("theme") || "light";
-  document.documentElement.setAttribute("data-theme", currentTheme);
-  toggleBtn.textContent = currentTheme === "light" ? "🌞 Light" : "🌙 Dark";
-
-  // Toggle and save
-  toggleBtn.addEventListener("click", () => {
-    const newTheme =
-      document.documentElement.getAttribute("data-theme") === "light"
-        ? "dark"
-        : "light";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    toggleBtn.textContent = newTheme === "light" ? "🌞 Light" : "🌙 Dark";
+  // Handle menu overlay and close
+  const menuToggle = document.querySelector('.navbar-toggler');
+  const menuClose = document.getElementById('menuClose');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const sideMenu = document.getElementById('sideMenu');
+  
+  menuToggle.addEventListener('click', function() {
+    setTimeout(() => {
+      menuOverlay.classList.add('show');
+    }, 100);
+  });
+  
+  function closeMenu() {
+    sideMenu.classList.remove('show');
+    menuOverlay.classList.remove('show');
+  }
+  
+  menuClose.addEventListener('click', closeMenu);
+  menuOverlay.addEventListener('click', closeMenu);
+  
+  // Theme toggle with checkbox
+  const themeCheckbox = document.getElementById('theme-toggle-checkbox');
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  
+  // Set initial checkbox state
+  if (savedTheme === 'dark') {
+    themeCheckbox.checked = true;
+  }
+  
+  themeCheckbox.addEventListener('change', function() {
+    const newTheme = this.checked ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
   });
 </script>
-
-
-</nav>

@@ -11,7 +11,8 @@ const listingSchema = Joi.object({
             Joi.string().uri(), // Valid URL format
             Joi.string().allow("", null), // Empty string or null
             Joi.any().optional() // Fallback for any other case
-        ).default(null) // Default value if not provided
+        ).default(null), // Default value if not provided
+        category: Joi.string().allow("").optional() // Add category field
     }).required()
 });
 

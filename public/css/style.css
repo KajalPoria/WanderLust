@@ -1,25 +1,31 @@
-/* Default: Light Theme */
 :root {
-  --primary-color: #fe424d;
-  --background-color: #ffffff;
-  --text-color: #222222;
-  --nav-bg: #ffffff;
-  --footer-bg: #ebebeb;
-  --card-bg: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.175);
-  --overlay-bg: rgba(255, 255, 255, 0.2);
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #222222;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+    --navbar-bg: #ffffff;
+    --footer-bg: #ebebeb;
+    --accent-color: #fe424d;
 }
 
-/* Dark Theme Overrides */
 [data-theme="dark"] {
-  --primary-color: #e03842;
-  --background-color: #1a1a1a;
-  --text-color: #f0f0f0;
-  --nav-bg: #222222;
-  --footer-bg: #222222;
-  --card-bg: #2c2c2c;
-  --card-border: rgba(255, 255, 255, 0.1);
-  --overlay-bg: rgba(0, 0, 0, 0.2);
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-card: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --border-color: #404040;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+    --navbar-bg: #222222;
+    --footer-bg: #2d2d2d;
+    --accent-color: #fe424d;
 }
 
 
@@ -28,39 +34,36 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Use variables and add transitions */
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.container {
-  flex: 1;
+.container{
+    flex:1;
 }
 
-.navbar {
-  height: 5rem !important;
-  /* Use variables and add transitions */
-  background-color: var(--nav-bg) !important;
-  transition: background-color 0.3s;
+/* Navbar*/
+.navbar{
+    height:5rem !important;
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .fa-compass {
-  /* Use variable */
-  color: var(--primary-color);
+  color: var(--accent-color);
   font-size: 2rem;
 }
 
-.nav-link {
-  /* Use variable */
-  color: var(--text-color) !important;
-  transition: color 0.3s ease;
+.nav-link{
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease;
 }
 
 .f-info {
   text-align: center;
   height: 8rem;
-  /* Use variables and add transitions */
   background-color: var(--footer-bg);
   display: flex;
   flex-wrap: wrap;
@@ -71,8 +74,8 @@ body {
 
 .f-info-links a {
   text-decoration: none;
-  /* Use variable */
-  color: var(--text-color);
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .f-info-links a:hover {
@@ -83,7 +86,7 @@ body {
 .f-info-socials,
 .f-info-brand {
   width: 100%;
-  color: var(--text-color);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,31 +95,57 @@ body {
 .f-info-socials i {
   margin-right: 1rem;
   font-size: 1.2rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
-.listing-card {
-  border: 1px solid var(--card-border) !important; /* Changed from none to use var */
-  background-color: var(--card-bg);
-  margin-bottom: 2rem;
-  transition: background-color 0.3s, border-color 0.3s;
+/*Cards*/
+.listing-card{
+    border:none !important;
+    margin-bottom:2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bg-card);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-img-top {
-  border-radius: 1rem !important;
+  border-radius: 1rem 1rem 0 0 !important;
   width: 100% !important;
   object-fit: cover !important;
+  height: 280px;
 }
 
 .card-body {
-  padding: 0;
+  padding: 1.25rem;
+  background-color: var(--bg-card);
 }
 
-.card-text p {
-  font-weight: 400;
+.card-text p{
+    font-weight:400;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
 }
 
-.listing-link {
-  text-decoration: none;
+.card-text b {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.card-text small {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.listing-link{
+    text-decoration:none;
 }
 
 .card-img-overlay {
@@ -154,4 +183,768 @@ body {
   padding-right: 0;
   background-color: var(--card-bg); /* Added for dark mode */
   border: 1px solid var(--card-border); /* Added for dark mode */
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    transform: rotate(180deg);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+}
+
+/* Additional dark mode styles for forms and inputs */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+[data-theme="dark"] textarea.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+[data-theme="dark"] input.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .card-body {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .card-text {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card-text b {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card-text small {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .listing-link {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] input[type="file"] {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] input[type="file"]::file-selector-button {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] input[type="file"]::file-selector-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: var(--bg-card);
+}
+
+[data-theme="dark"] .form-check-label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] small {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .tax-info {
+    color: var(--text-muted);
+}
+
+/* Additional dark mode overrides for Bootstrap */
+[data-theme="dark"] .btn-outline-dark {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-outline-dark:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] small {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .border-bottom {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .navbar-toggler {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+
+/* Tablets and below */
+@media (max-width: 991px) {
+    .navbar {
+        height: auto !important;
+        padding: 1rem;
+    }
+    
+    .fa-compass {
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .row {
+        margin: 0 -0.5rem;
+    }
+    
+    .row > * {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    /* Force single column for listings */
+    .row-cols-lg-3,
+    .row-cols-md-2 {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .row-cols-lg-3 > *,
+    .row-cols-md-2 > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    
+    /* Professional listing card styling */
+    .listing-card {
+        margin-bottom: 1.5rem !important;
+        border-radius: 1rem !important;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-img-top {
+        height: 220px !important;
+        object-fit: cover;
+    }
+    
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    .card-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .card-text b {
+        font-size: 1.05rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Show page improvements */
+    .show-card {
+        margin: 0 !important;
+        border-radius: 1rem !important;
+        overflow: hidden;
+    }
+    
+    .show-img {
+        height: 250px !important;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    /* Listing details */
+    .show-card .card-body {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .show-card h3,
+    .show-card h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .show-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Buttons - professional spacing */
+    .btns {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+    
+    .btns .btn,
+    .btns form {
+        width: 100%;
+        margin: 0 !important;
+    }
+    
+    .btns .btn {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .btns form .btn {
+        width: 100%;
+    }
+    
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+    }
+    
+    /* Remove Bootstrap offset classes in mobile */
+    .btns .offset-3,
+    .btns .offset-5 {
+        margin-left: 0 !important;
+    }
+    
+    /* Review section */
+    .reviews-section {
+        margin-top: 2rem;
+    }
+    
+    .review-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        background-color: var(--bg-secondary);
+    }
+    
+    /* Rating stars */
+    .starability-result {
+        font-size: 1.2rem;
+    }
+    
+    /* Form styling */
+    .form-control,
+    .form-select {
+        font-size: 1rem;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+    }
+    
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    textarea.form-control {
+        min-height: 120px;
+    }
+    
+    /* Professional header spacing */
+    .navbar {
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Container padding */
+    .container {
+        padding: 1rem;
+    }
+    
+    /* Filter buttons - horizontal scroll */
+    #filters {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        scrollbar-width: thin;
+        scrollbar-color: #fe424d transparent;
+    }
+    
+    #filters::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    #filters::-webkit-scrollbar-thumb {
+        background: #fe424d;
+        border-radius: 4px;
+    }
+    
+    .filter {
+        margin-right: 1rem !important;
+        margin-top: 1rem !important;
+        min-width: 70px;
+    }
+    
+    .filter p {
+        font-size: 0.85rem !important;
+    }
+    
+    .filter i {
+        font-size: 1.5rem;
+    }
+    
+    /* Professional footer */
+    .f-info {
+        height: auto;
+        padding: 2rem 1rem;
+    }
+    
+    .f-info-links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .f-info-links a {
+        padding: 0.5rem 0;
+    }
+    
+    .f-info-socials {
+        margin: 1rem 0;
+    }
+    
+    .f-info-socials i {
+        font-size: 1.5rem;
+        margin: 0 0.75rem;
+    }
+    
+    /* Headings */
+    h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Improved card hover effect */
+    .listing-card:active {
+        transform: scale(0.98);
+        transition: transform 0.2s ease;
+    }
+    
+    /* Wishlist button on cards */
+    .wishlist-btn {
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+        width: 42px !important;
+        height: 42px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Price badge */
+    .card-text {
+        color: var(--text-primary);
+    }
+    
+    .card-text b {
+        color: var(--text-primary);
+        font-size: 1.1rem;
+    }
+    
+    /* Owner info */
+    .card-text small {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0.75rem;
+    }
+    
+    /* Navbar compact */
+    .navbar {
+        padding: 0.75rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .fa-compass {
+        font-size: 1.5rem;
+    }
+    
+    /* Headings */
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.15rem;
+    }
+    
+    /* Compact listing cards */
+    .listing-card {
+        margin-bottom: 1.25rem !important;
+        border-radius: 0.75rem !important;
+    }
+    
+    .card-img-top {
+        height: 200px !important;
+        border-radius: 0.75rem 0.75rem 0 0 !important;
+    }
+    
+    .card-body {
+        padding: 0.875rem !important;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    .card-text b {
+        font-size: 1rem;
+    }
+    
+    .card-text small {
+        font-size: 0.8rem;
+    }
+    
+    /* Show page */
+    .show-img {
+        height: 200px !important;
+        border-radius: 0.75rem !important;
+    }
+    
+    .show-card {
+        border-radius: 0.75rem !important;
+    }
+    
+    .show-card .card-body {
+        padding: 1.25rem 0.875rem !important;
+    }
+    
+    .show-card h3,
+    .show-card h4 {
+        font-size: 1.15rem;
+    }
+    
+    .show-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .btns {
+        gap: 0.65rem;
+        margin-top: 1.25rem;
+        width: 100%;
+    }
+    
+    .btns .btn,
+    .btns form,
+    .btns form .btn {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    /* Remove all Bootstrap offset classes */
+    .btns .offset-3,
+    .btns .offset-5,
+    .btns .col-1 {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Wishlist button */
+    .wishlist-btn {
+        width: 38px !important;
+        height: 38px !important;
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+    }
+    
+    .wishlist-btn i {
+        font-size: 1.1rem;
+    }
+    
+    /* Filters - more compact */
+    #filters {
+        padding: 0.5rem 0;
+    }
+    
+    .filter {
+        min-width: 65px;
+        margin-right: 0.75rem !important;
+    }
+    
+    .filter i {
+        font-size: 1.3rem;
+    }
+    
+    .filter p {
+        font-size: 0.8rem !important;
+    }
+    
+    /* Forms */
+    .form-control {
+        padding: 0.65rem;
+        font-size: 0.95rem;
+    }
+    
+    .form-label {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    textarea.form-control {
+        min-height: 100px;
+    }
+    
+    /* Footer compact */
+    .f-info {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .f-info-links a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+    }
+    
+    .f-info-socials i {
+        font-size: 1.3rem;
+        margin: 0 0.5rem;
+    }
+    
+    /* Review section */
+    .review-card {
+        padding: 0.875rem;
+        border-radius: 0.625rem;
+    }
+    
+    .starability-result {
+        font-size: 1.1rem;
+    }
+    
+    /* Tax toggle */
+    .tax-toggle {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+        height: auto;
+    }
+    
+    /* Make cards full width single column on small mobile */
+    .row-cols-lg-3 > *,
+    .row-cols-md-2 > *,
+    .row-cols-sm-1 > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    
+    /* Adjust padding for better mobile experience */
+    .offset-2,
+    .offset-3 {
+        margin-left: 0 !important;
+    }
+    
+    .col-6,
+    .col-8 {
+        width: 100% !important;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Forms */
+    .needs-validation {
+        padding: 1rem;
+    }
+    
+    .form-control,
+    textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+    
+    .container {
+        padding: 0.25rem;
+    }
+    
+    .listing-card {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .card-img-top {
+        height: 180px !important;
+    }
+    
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+/* Touch-friendly improvements for all mobile */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger tap targets for touch devices */
+    .btn,
+    .nav-link,
+    .filter,
+    .nav-icon-btn,
+    .theme-toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .card-img-overlay:hover {
+        opacity: 0;
+    }
+    
+    /* Improve scroll performance */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 991px) and (orientation: landscape) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    
+    .show-img,
+    .card-img-top {
+        height: 35vh !important;
+    }
 }

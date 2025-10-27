@@ -1,0 +1,162 @@
+<%- layout("/layouts/boilerplate") %>
+
+<style>
+    .wishlist-header {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .wishlist-header h1 {
+        font-weight: 700;
+        color: #fe424d;
+    }
+
+    .empty-wishlist {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .empty-wishlist i {
+        font-size: 5rem;
+        color: #ccc;
+        margin-bottom: 1rem;
+    }
+
+    .empty-wishlist h3 {
+        color: #666;
+        margin-bottom: 1rem;
+    }
+
+    .empty-wishlist p {
+        color: #999;
+        margin-bottom: 2rem;
+    }
+
+    .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .wishlist-card {
+        border: none;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .wishlist-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .wishlist-card img {
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .wishlist-card .card-body {
+        padding: 1rem;
+    }
+
+    .wishlist-card .card-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #222;
+    }
+
+    .wishlist-card .card-text {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .wishlist-card .price {
+        font-weight: 700;
+        color: #fe424d;
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
+
+    .remove-btn {
+        background-color: #fe424d;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .remove-btn:hover {
+        background-color: #e03841;
+    }
+
+    .view-btn {
+        background-color: #222;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .view-btn:hover {
+        background-color: #444;
+    }
+
+    @media (max-width: 768px) {
+        .wishlist-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="wishlist-header">
+        <h1><i class="fa-solid fa-heart"></i> My Wishlist</h1>
+        <p class="text-muted">Your saved favorite destinations</p>
+    </div>
+
+    <% if (wishlist && wishlist.length > 0) { %>
+        <div class="wishlist-grid">
+            <% for (let listing of wishlist) { %>
+                <div class="card wishlist-card">
+                    <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= listing.title %></h5>
+                        <p class="card-text">
+                            <i class="fa-solid fa-location-dot"></i> <%= listing.location %>, <%= listing.country %>
+                        </p>
+                        <p class="price">₹<%= listing.price.toLocaleString("en-IN") %> / night</p>
+                        <% if(listing.owner) { %>
+                            <p class="card-text"><small class="text-muted">Hosted by <%= listing.owner.username %></small></p>
+                        <% } %>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="/listings/<%= listing._id %>" class="view-btn">
+                                <i class="fa-solid fa-eye"></i> View Details
+                            </a>
+                            <form method="POST" action="/wishlist/<%= listing._id %>?_method=DELETE" class="d-inline">
+                                <button type="submit" class="remove-btn">
+                                    <i class="fa-solid fa-trash"></i> Remove
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="empty-wishlist">
+            <i class="fa-regular fa-heart"></i>
+            <h3>Your wishlist is empty</h3>
+            <p>Start adding your favorite destinations to plan your next adventure!</p>
+            <a href="/listings" class="btn btn-primary" style="background-color: #fe424d; border: none;">
+                <i class="fa-solid fa-search"></i> Explore Listings
+            </a>
+        </div>
+    <% } %>
+</div>
