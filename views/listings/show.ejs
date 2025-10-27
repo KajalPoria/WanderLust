@@ -163,19 +163,25 @@
     }
     
     // Initialize map for this listing
-    <% if (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length === 2) { %>
-        let listingCoordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
-        let listingLocation = "<%= listing.location %>";
-        console.log("Initializing map with coordinates:", listingCoordinates);
-        
-        // Wait for Leaflet to load
-        if (typeof L !== 'undefined') {
-            initListingMap(listingCoordinates, listingLocation);
-        } else {
-            console.error("Leaflet library not loaded");
-        }
-    <% } else { %>
-        console.log("No valid geometry data for this listing");
-        document.getElementById('property-map').innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;">Map not available for this location</p></div>';
-    <% } %>
+    window.addEventListener('load', function() {
+        <% if (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length === 2) { %>
+            let listingCoordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+            let listingLocation = "<%= listing.location %>";
+            console.log("Initializing map with coordinates:", listingCoordinates);
+            
+            // Check if Leaflet is loaded
+            if (typeof L !== 'undefined') {
+                console.log("Leaflet loaded, initializing map");
+                initListingMap(listingCoordinates, listingLocation);
+            } else {
+                console.error("Leaflet library not loaded");
+            }
+        <% } else { %>
+            console.log("No valid geometry data for this listing");
+            let mapElement = document.getElementById('property-map');
+            if (mapElement) {
+                mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;">Map not available for this location</p></div>';
+            }
+        <% } %>
+    });
 </script>

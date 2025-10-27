@@ -274,13 +274,16 @@
         }
         
         // Initialize cluster map with all listings
-        let allListingsData = <%- JSON.stringify(allListings) %>;
-        console.log("Listings data:", allListingsData.length, "listings");
-        
-        // Wait for Leaflet to load
-        if (typeof L !== 'undefined') {
-            initIndexMap(allListingsData);
-        } else {
-            console.error("Leaflet library not loaded");
-        }
+        window.addEventListener('load', function() {
+            let allListingsData = <%- JSON.stringify(allListings) %>;
+            console.log("Listings data:", allListingsData.length, "listings");
+            
+            // Check if Leaflet is loaded
+            if (typeof L !== 'undefined') {
+                console.log("Leaflet loaded, initializing map");
+                initIndexMap(allListingsData);
+            } else {
+                console.error("Leaflet library not loaded");
+            }
+        });
     </script>

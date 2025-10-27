@@ -101,15 +101,25 @@
     // Get price from form data attribute
     let pricePerNight = parseInt(document.getElementById('bookingForm').dataset.price);
     
-    // Initialize destination map
-    <% if (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length === 2) { %>
-        let destinationCoords = <%- JSON.stringify(listing.geometry.coordinates) %>;
-        let destinationName = "<%= listing.location %>";
-        initBookingMap(destinationCoords, destinationName);
-    <% } else { %>
-        console.log("No valid geometry data for destination map");
-        document.getElementById('destination-map').innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;">Map preview not available</p></div>';
-    <% } %>
+    // Initialize destination map after page loads
+    window.addEventListener('load', function() {
+        <% if (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length === 2) { %>
+            let destinationCoords = <%- JSON.stringify(listing.geometry.coordinates) %>;
+            let destinationName = "<%= listing.location %>";
+            
+            if (typeof L !== 'undefined') {
+                initBookingMap(destinationCoords, destinationName);
+            } else {
+                console.error("Leaflet library not loaded");
+            }
+        <% } else { %>
+            console.log("No valid geometry data for destination map");
+            let mapElement = document.getElementById('destination-map');
+            if (mapElement) {
+                mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;">Map preview not available</p></div>';
+            }
+        <% } %>
+    });
 
     function updatePrice() {
         let checkIn = document.getElementById('checkIn').value;
