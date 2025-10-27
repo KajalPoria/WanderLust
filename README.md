@@ -105,7 +105,7 @@ Create a `.env` file in the root directory and add the following variables:
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_KEY=your_cloud_key
 CLOUDINARY_SECRET=your_cloud_secret
-MONGO_URL=your_mongodb_connection_string
+ATLAS_URL=your_mongodb_connection_string
 SECRET=your_session_secret
 ```
 
