@@ -275,5 +275,12 @@
         
         // Initialize cluster map with all listings
         let allListingsData = <%- JSON.stringify(allListings) %>;
-        initIndexMap(allListingsData);
+        console.log("Listings data:", allListingsData.length, "listings");
+        
+        // Wait for Leaflet to load
+        if (typeof L !== 'undefined') {
+            initIndexMap(allListingsData);
+        } else {
+            console.error("Leaflet library not loaded");
+        }
     </script>

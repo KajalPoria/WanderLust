@@ -1,7 +1,14 @@
 // Initialize map for individual listing show page
 function initListingMap(coordinates, locationName) {
     if (!coordinates || coordinates.length !== 2) {
-        console.error("Invalid coordinates provided");
+        console.error("Invalid coordinates provided:", coordinates);
+        return;
+    }
+    
+    // Check if map element exists
+    let mapElement = document.getElementById('property-map');
+    if (!mapElement) {
+        console.log("Map container not found");
         return;
     }
 
@@ -36,6 +43,14 @@ function initListingMap(coordinates, locationName) {
 // Initialize cluster map for listings index page
 function initIndexMap(listingsData) {
     if (!listingsData || listingsData.length === 0) {
+        console.log("No listings data available");
+        return;
+    }
+    
+    // Check if cluster-map element exists
+    let mapElement = document.getElementById('cluster-map');
+    if (!mapElement) {
+        console.log("Map container not found");
         return;
     }
 
@@ -82,7 +97,14 @@ function initIndexMap(listingsData) {
 // Initialize map for booking checkout page
 function initBookingMap(coordinates, locationName) {
     if (!coordinates || coordinates.length !== 2) {
-        console.error("Invalid coordinates for booking map");
+        console.error("Invalid coordinates for booking map:", coordinates);
+        return;
+    }
+    
+    // Check if map element exists
+    let mapElement = document.getElementById('destination-map');
+    if (!mapElement) {
+        console.log("Destination map container not found");
         return;
     }
 
