@@ -107,6 +107,10 @@ CLOUDINARY_KEY=your_cloud_key
 CLOUDINARY_SECRET=your_cloud_secret
 ATLAS_URL=your_mongodb_connection_string
 SECRET=your_session_secret
+RAZORPAY_KEY_ID=rzp_test_XXXXXXXX
+RAZORPAY_KEY_SECRET=your_secret_key
+RAZORPAY_WEBHOOK_SECRET=your_webhook_secret_here
+
 ```
 
 ### 4. Start the Application
