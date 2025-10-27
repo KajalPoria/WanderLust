@@ -1,4 +1,5 @@
 const Listing = require("../models/listing");
+let geocodingService = require("../mapConfig");
 module.exports.index = async (req, res) => {
     const { category } = req.query;
     let filter = {};
@@ -48,6 +49,18 @@ module.exports.create = async(req,res,next)=>{
         };
     }
     
+    // Get coordinates from location using geocoding
+    try {
+        let geoData = await geocodingService.forwardGeocode(req.body.listing.location);
+        
+        if (geoData) {
+            newListing.geometry = geoData;
+        }
+    } catch (err) {
+        console.log("Geocoding error:", err);
+        // Continue with default coordinates if geocoding fails
+    }
+    
     await newListing.save();
     req.flash("success", "New Listing Created!");
     res.redirect("/listings");
@@ -74,6 +87,22 @@ module.exports.update =async (req, res) => {
     listing.image = { url, filename};
     await listing.save();
     }
+    
+    // Update coordinates if location changed
+    if (req.body.listing.location) {
+        try {
+            let geoData = await geocodingService.forwardGeocode(req.body.listing.location);
+            
+            if (geoData) {
+                listing.geometry = geoData;
+                await listing.save();
+            }
+        } catch (err) {
+            console.log("Geocoding error:", err);
+            // Continue without updating coordinates if geocoding fails
+        }
+    }
+    
     req.flash("success", "Listing Updated!");
     res.redirect(`/listings/${id}`);
 };

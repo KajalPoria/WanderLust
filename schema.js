@@ -23,4 +23,11 @@ const reviewSchema = Joi.object({
     }).required()
 });
 
-module.exports = { listingSchema, reviewSchema };
+const bookingSchema = Joi.object({
+    listingId: Joi.string().required(),
+    checkIn: Joi.date().required().min('now'),
+    checkOut: Joi.date().required().greater(Joi.ref('checkIn')),
+    guests: Joi.number().required().min(1).max(20),
+});
+
+module.exports = { listingSchema, reviewSchema, bookingSchema };
