@@ -28,6 +28,22 @@
     </p>
     </div>
 </div>
+
+<% if(currUser && (!listing.owner || !listing.owner._id.equals(currUser._id))) { %>
+<div class="col-6 offset-3 mb-3">
+    <a href="/bookings/new/<%= listing._id %>" class="btn btn-primary btn-lg w-100">
+        <i class="fas fa-calendar-check me-2"></i>Book Now
+    </a>
+</div>
+<% } %>
+
+<!-- Location Map Section -->
+<div class="col-8 offset-3 mb-4">
+    <h4 class="mb-3">Where You'll Be</h4>
+    <div id="property-map" style="height: 400px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
+    <p class="mt-2 text-muted"><i class="fas fa-map-marker-alt me-2"></i><%= listing.location %>, <%= listing.country %></p>
+</div>
+
 <% if(currUser && listing.owner && listing.owner._id.equals(currUser._id)) { %>
 <div class="btns">
     <a href="/listings/<%=listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn" style="width: 76.5px;">Edit</a>
@@ -145,4 +161,9 @@
             console.error('Error toggling wishlist:', error);
         }
     }
+    
+    // Initialize map for this listing
+    let listingCoordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    let listingLocation = "<%= listing.location %>";
+    initListingMap(listingCoordinates, listingLocation);
 </script>

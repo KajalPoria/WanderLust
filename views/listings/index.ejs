@@ -191,7 +191,11 @@
     </div>
     </div>
 
-
+    <!-- Cluster Map Section -->
+    <div class="container mt-4 mb-4">
+        <h4 class="mb-3">Explore Listings on Map</h4>
+        <div id="cluster-map" style="height: 500px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.15);"></div>
+    </div>
 
     <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1 mt-3">
         <% for(let listing of allListings){ %>
@@ -268,4 +272,8 @@
                 console.error('Error toggling wishlist:', error);
             }
         }
+        
+        // Initialize cluster map with all listings
+        let allListingsData = <%- JSON.stringify(allListings) %>;
+        initIndexMap(allListingsData);
     </script>
