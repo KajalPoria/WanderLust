@@ -6,7 +6,13 @@ const userSchema = new Schema({
     email: {
         type: String,
         required:true
-    }
+    },
+    wishlist: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Listing",
+        },
+    ],
 });
 
 userSchema.plugin(passportLocalMongoose);  // will auto add username , hashed function & salting

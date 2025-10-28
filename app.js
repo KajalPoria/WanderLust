@@ -20,6 +20,9 @@ const User = require("./models/user.js");
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const wishlistRouter = require("./routes/wishlist.js");
+const recommendationsRouter = require("./routes/recommendations.js");
+const bookingRouter = require("./routes/booking.js");
 
 const dbUrl = process.env.ATLAS_URL;
 
@@ -36,6 +39,7 @@ async function main() {
 app.set("view engine","ejs");
 app.set("views" , path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
+app.use(express.json()); // For parsing JSON payloads
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
@@ -65,6 +69,7 @@ const sessionOptions={
     },
 };
 
+app.use(express.static('public'));
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -85,19 +90,19 @@ app.use((req,res,next) => {
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
+app.use("/wishlist", wishlistRouter);
+app.use("/recommendations", recommendationsRouter);
 
 app.get("/", (req, res) => {
     res.redirect("/listings");
 });
-app.use("/", userRouter);
-
-app.all(/.*/, (req, res, next) => {
-        next(new ExpressError(404, "Page Not Found"));
-    });
 
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
+app.use("/wishlist", wishlistRouter);
+app.use("/recommendations", recommendationsRouter);
+app.use("/bookings", bookingRouter);
 
 
 app.all(/.*/, (req, res, next) => {
