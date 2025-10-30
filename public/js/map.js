@@ -37,6 +37,8 @@ function initListingMap(coordinates, locationName) {
         .bindPopup(`<div class="map-popup"><h6>${locationName}</h6><p>Exact location provided after booking</p></div>`)
         .openPopup();
 
+    // Store instance on element for later resizing
+    try { document.getElementById('property-map')._leafletMap = propertyMap; } catch (e) {}
     return propertyMap;
 }
 
@@ -91,6 +93,8 @@ function initIndexMap(listingsData) {
     });
 
     clusterMap.addLayer(markers);
+    // Store instance on element for later resizing
+    try { document.getElementById('cluster-map')._leafletMap = clusterMap; } catch (e) {}
     return clusterMap;
 }
 
@@ -131,5 +135,47 @@ function initBookingMap(coordinates, locationName) {
         .addTo(destinationMap)
         .bindPopup(`<div class="booking-popup"><h6>${locationName}</h6><p>Your destination</p></div>`);
 
+    // Store instance on element for later resizing
+    try { document.getElementById('destination-map')._leafletMap = destinationMap; } catch (e) {}
     return destinationMap;
 }
+
+// Generic handler for map expand/collapse toggle
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.map-toggle');
+    if (!btn) return;
+    const targetSel = btn.getAttribute('data-target');
+    const mapEl = targetSel ? document.querySelector(targetSel) : btn.parentElement.querySelector('.map-container');
+    const wrapper = btn.closest('.map-wrapper');
+    if (!mapEl || !wrapper) return;
+
+    // Toggle expanded class
+    wrapper.classList.toggle('expanded');
+    const expanded = wrapper.classList.contains('expanded');
+    btn.innerHTML = expanded ? '<i class="fa-solid fa-compress"></i> Shrink map' : '<i class="fa-solid fa-expand"></i> Expand map';
+
+    // Persist preference per map id
+    if (mapEl.id) {
+        localStorage.setItem('mapExpanded:' + mapEl.id, expanded ? '1' : '0');
+    }
+
+    // Invalidate size after transition frame
+    setTimeout(() => {
+        const mapInstance = mapEl._leafletMap;
+        if (mapInstance && typeof mapInstance.invalidateSize === 'function') {
+            mapInstance.invalidateSize();
+        }
+    }, 180);
+});
+
+// Restore persisted expand state on load
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.map-wrapper .map-container').forEach((mapEl) => {
+        if (!mapEl.id) return;
+        const expanded = localStorage.getItem('mapExpanded:' + mapEl.id) === '1';
+        if (expanded) {
+            const wrapper = mapEl.closest('.map-wrapper');
+            if (wrapper) wrapper.classList.add('expanded');
+        }
+    });
+});

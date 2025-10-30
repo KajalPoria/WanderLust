@@ -29,7 +29,10 @@
                 <h5 class="mb-0"><i class="fa-solid fa-map-location-dot me-2"></i>Your Destination</h5>
             </div>
             <div class="card-body p-0">
-                <div id="destination-map" style="height: 300px;"></div>
+                <div class="map-wrapper">
+                    <button class="map-toggle" data-target="#destination-map"><i class="fa-solid fa-expand"></i> Expand map</button>
+                    <div id="destination-map" class="map-container"></div>
+                </div>
             </div>
         </div>
 
