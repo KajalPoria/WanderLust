@@ -1,13 +1,48 @@
 const Listing = require("../models/listing");
 let geocodingService = require("../mapConfig");
 module.exports.index = async (req, res) => {
-    const { category } = req.query;
-    let filter = {};
+    // Extract all potential query params
+    const { q, category, minPrice, maxPrice, minRating } = req.query;
+
+    let query = {};
+
+    // 1. Category Filter
     if (category) {
-        filter = { category: category };
+        query.category = category;
     }
-    const allListings = await Listing.find(filter).populate("owner");
-    res.render("listings/index.ejs", { allListings });
+
+    // 2. Name/Location Search Filter (Case-insensitive)
+    if (q) {
+        query.$or = [
+            { title: { $regex: q, $options: 'i' } },
+            { location: { $regex: q, $options: 'i' } }
+        ];
+    }
+
+    // 3. Price Range Filter
+    if (minPrice || maxPrice) {
+        query.price = {};
+        if (minPrice) {
+            query.price.$gte = Number(minPrice);
+        }
+        if (maxPrice) {
+            query.price.$lte = Number(maxPrice);
+        }
+    }
+
+    // 4. Rating Filter (This requires the avgRating in your model)
+    if (minRating) {
+        query.avgRating = { $gte: Number(minRating) };
+    }
+
+    // Find all listings matching the combined query
+    const allListings = await Listing.find(query).populate("owner");
+    
+    // Pass the query params back to the template
+    res.render("listings/index.ejs", { 
+        allListings, 
+        queryParams: req.query // This sends all query params back to the EJS
+    });
 };
 
 module.exports.new =  (req,res) =>{
