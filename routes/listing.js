@@ -23,6 +23,11 @@ router
 .put(isLoggedIn,isOwner,upload.single("listing[image]"),validateListing,wrapAsync (listingController.update))  //for update route
 .delete(isLoggedIn,isOwner,wrapAsync (listingController.delete))     //for delete route
 
+// Show Weather Route
+router.get(
+    "/:id/weather", 
+    wrapAsync(listingController.getWeather)
+);
 
 //Edit Route
 router.get("/:id/edit" ,isLoggedIn, isOwner,wrapAsync(listingController.edit));

@@ -1,4 +1,6 @@
 const Listing = require("../models/listing");
+const axios = require("axios");
+
 let geocodingService = require("../mapConfig");
 module.exports.index = async (req, res) => {
     const { category } = req.query;
@@ -114,7 +116,22 @@ module.exports.delete=async(req,res)=>{
     res.redirect("/listings");
 };
 
+module.exports.getWeather = async (req, res) => {
+    // 1. THIS IS THE LINE YOU'RE LOOKING FOR
+    const API_KEY = process.env.WEATHER_API_KEY; 
+    
+    // 2. Now you get the listing and location
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    const location = listing.location; 
+    
+    // 3. And use the API_KEY variable to build the URL
+    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`;
 
+    // 4. Fetch and send the data
+    let result = await axios.get(API_URL);
+    res.json(result.data);
+};
 
 
 
