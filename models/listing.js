@@ -41,6 +41,10 @@ const listingSchema = new Schema({
             default: [0, 0]
         }
     },
+    avgRating: {
+        type: Number,
+        default: 0
+    },
 });
 
 listingSchema.post("findOneAndDelete", async(listing) =>{

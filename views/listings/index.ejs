@@ -1,128 +1,238 @@
 <%- layout("/layouts/boilerplate") %>
 
     <style>
-        #filters { display: contents; }
-        .filter { text-align: center; margin-right: 2rem; margin-top: 1rem; opacity: 0.85; }
-        .filter:hover { opacity: 1; cursor: pointer; }
-        .filter p { font-size: 0.8rem; }
+        #filters {
+            display: contents;
+        }
+
+        .filter {
+            text-align: center;
+            margin-right: 2rem;
+            margin-top: 1rem;
+            opacity: 0.85;
+        }
+
+        .filter:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .filter p {
+            font-size: 0.8rem;
+        }
+
         /* Tablet view - hide less important filters */
-        @media (max-width: 1024px) { #filters .filter:nth-child(7), #filters .filter:nth-child(8), #filters .filter:nth-child(9) { display: none; } }
+        @media (max-width: 1024px) {
+
+            #filters .filter:nth-child(7),
+            #filters .filter:nth-child(8),
+            #filters .filter:nth-child(9) {
+                display: none;
+            }
+        }
+
         /* Mobile view - keep only first few */
-        @media (max-width: 768px) { #filters .filter:nth-child(4), #filters .filter:nth-child(5), #filters .filter:nth-child(6), #filters .filter:nth-child(7) { display: none; } }
+        @media (max-width: 768px) {
+
+            #filters .filter:nth-child(4),
+            #filters .filter:nth-child(5),
+            #filters .filter:nth-child(6),
+            #filters .filter:nth-child(7) {
+                display: none;
+            }
+        }
+
         /* Very small screens - show only All */
-        @media (max-width: 480px) { #filters .filter:nth-child(n+2) { display: none; } }
-        .tax-info { display: none; }
-        .filter-link { text-decoration: none; color: var(--text-primary); }
-        .filter, .filter i, .filter p { color: var(--text-primary); }
-        .form-check-label { color: var(--text-primary); }
-        [data-theme="dark"] #filters { background-color: var(--bg-primary); }
+        @media (max-width: 480px) {
+            #filters .filter:nth-child(n+2) {
+                display: none;
+            }
+        }
+
+        .tax-info {
+            display: none;
+        }
+
+        .filter-link {
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .filter,
+        .filter i,
+        .filter p {
+            color: var(--text-primary);
+        }
+
+        .form-check-label {
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] #filters {
+            background-color: var(--bg-primary);
+        }
+        .filters-form-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+        }
+        .tax-toggle-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
     </style>
+
 
     <div class="filters-bar">
       <div class="filters-scroll" id="filters">
-        <a href="/listings" class="filter-link">
+        
+        <a href="/listings<%= queryParams && queryParams.q ? `?q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (!queryParams || !queryParams.category) ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-border-all"></i></div>
                 <p>All</p>
             </div>
         </a>
-
-        <a href="/listings?category=Trending" class="filter-link">
+        <a href="/listings?category=Trending<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Trending') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-fire"></i></div>
                 <p>Trending</p>
             </div>
         </a>
-        <a href="/listings?category=Rooms" class="filter-link">
+        <a href="/listings?category=Rooms<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Rooms') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-bed"></i></div>
                 <p>Rooms</p>
             </div>
         </a>
-        <a href="/listings?category=Iconic Cities" class="filter-link">
+        <a href="/listings?category=Iconic Cities<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Iconic Cities') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-mountain-city"></i></div>
                 <p>Iconic Cities</p>
             </div>
         </a>
-        <a href="/listings?category=Mountains" class="filter-link">
+        <a href="/listings?category=Mountains<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Mountains') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-mountain"></i></div>
                 <p>Mountains</p>
             </div>
         </a>
-        <a href="/listings?category=Castles" class="filter-link">
+        <a href="/listings?category=Castles<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Castles') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-brands fa-fort-awesome"></i></div>
                 <p>Castles</p>
             </div>
         </a>
-        <a href="/listings?category=Amazing Pools" class="filter-link">
+        <a href="/listings?category=Amazing Pools<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Amazing Pools') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-person-swimming"></i></div>
                 <p>Amazing Pools</p>
             </div>
         </a>
-        <a href="/listings?category=Camping" class="filter-link">
+        <a href="/listings?category=Camping<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Camping') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-campground"></i></div>
                 <p>Camping</p>
             </div>
         </a>
-        <a href="/listings?category=Farms" class="filter-link">
+        <a href="/listings?category=Farms<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Farms') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-tractor"></i></div>
                 <p>Farms</p>
             </div>
         </a>
-        <a href="/listings?category=Arctic" class="filter-link">
+        <a href="/listings?category=Arctic<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Arctic') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-regular fa-snowflake"></i></div>
                 <p>Arctic</p>
             </div>
         </a>
-        <a href="/listings?category=5 Star rated" class="filter-link">
+        <a href="/listings?category=5 Star rated<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === '5 Star rated') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-star"></i></div>
                 <p>5 Star rated</p>
             </div>
         </a>
-        <a href="/listings?category=Most loved" class="filter-link">
+        <a href="/listings?category=Most loved<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
+           class="filter-link <%= (queryParams && queryParams.category === 'Most loved') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-bookmark"></i></div>
                 <p>Most loved</p>
             </div>
         </a>
       </div>
+    </div>
 
-      <div class="filters-controls">
-        <select id="sortSelect" class="sort-select" aria-label="Sort listings">
-            <option value="">Sort: Recommended</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-        </select>
-        <button id="viewToggle" class="view-toggle" type="button"><i class="fa-solid fa-grip"></i> View</button>
-        <label class="m-0 d-flex align-items-center gap-2" style="font-size:0.9rem;">
-            <span>Max ₹</span>
-            <input type="range" id="priceFilter" min="0" max="100000" value="100000" step="5000" />
-            <span id="priceFilterValue">100000</span>
-        </label>
+    <div class="tax-toggle-wrapper">
         <div class="tax-toggle">
             <div class="form-check-reverse form-switch m-0">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
             </div>
         </div>
-      </div>
     </div>
 
-    <!-- Cluster Map Section -->
     <div class="container mt-4 mb-4">
         <h4 class="mb-3">Explore Listings on Map</h4>
         <div class="map-wrapper">
             <button class="map-toggle" data-target="#cluster-map"><i class="fa-solid fa-expand"></i> Expand map</button>
             <div id="cluster-map" class="map-container is-large"></div>
         </div>
+    </div>
+
+    <div class="filters-form-wrapper">
+      <form action="/listings" method="GET" class="filters-controls" style="flex-wrap: nowrap; gap: 0.5rem;">
+        
+        <% if (queryParams && queryParams.category) { %>
+            <input type="hidden" name="category" value="<%= queryParams.category %>">
+        <% } %>
+        
+        <% if (queryParams && queryParams.q) { %>
+            <input type="hidden" name="q" value="<%= queryParams.q %>">
+        <% } %>
+
+        <div class="form-group" style="min-width: 120px;">
+            <label for="minPrice" class="form-label mb-0" style="font-size: 0.8rem;">Min Price</label>
+            <input type="number" class="form-control form-control-sm" id="minPrice" name="minPrice" placeholder="Min" 
+                   value="<%= queryParams && queryParams.minPrice ? queryParams.minPrice : '' %>">
+        </div>
+
+        <div class="form-group" style="min-width: 120px;">
+            <label for="maxPrice" class="form-label mb-0" style="font-size: 0.8rem;">Max Price</label>
+            <input type="number" class="form-control form-control-sm" id="maxPrice" name="maxPrice" placeholder="Max" 
+                   value="<%= queryParams && queryParams.maxPrice ? queryParams.maxPrice : '' %>">
+        </div>
+
+        <div class="form-group" style="min-width: 120px;">
+            <label for="minRating" class="form-label mb-0" style="font-size: 0.8rem;">Min Rating</label>
+            <select class="form-select form-select-sm" id="minRating" name="minRating">
+                <option value="">Any</option>
+                <option value="4" <%= (queryParams && queryParams.minRating == '4') ? 'selected' : '' %>>4+ stars</option>
+                <option value="3" <%= (queryParams && queryParams.minRating == '3') ? 'selected' : '' %>>3+ stars</option>
+                <option value="2" <%= (queryParams && queryParams.minRating == '2') ? 'selected' : '' %>>2+ stars</option>
+                <option value="1" <%= (queryParams && queryParams.minRating == '1') ? 'selected' : '' %>>1+ star</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-sm btn-dark" style="align-self: flex-end;">Apply</button>
+        
+        </form>
     </div>
 
     <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1 mt-3">
@@ -135,20 +245,19 @@
                         <i class="fa-regular fa-heart" style="color: #fe424d; font-size: 1.2rem;"></i>
                     </button>
                 <% } %>
+  
                 <a href="/listings/<%= listing._id %>" class="listing-link">
                     <img src="<%= listing.image.url%>" class="card-img-top" alt="listing_image" style="height:20rem">
                     <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
                     <div class="card-img-overlay"></div>
                     <div class="card-body">
                         <p class="card-text">
-                            <b>
-                                <%= listing.title %><br>
-                            </b>
-                            &#8377;<%=listing.price.toLocaleString("en-IN")%> / night <i class="tax-info">&nbsp;+18%
-                                    GST</i><br>
-                                <% if(listing.owner) { %>
-                                    <small>Owner: <%= listing.owner.username %></small>
-                                    <% } %>
+                            <b><%= listing.title %><br></b>
+                            &#8377;<%=listing.price.toLocaleString("en-IN")%> / night 
+                            <i class="tax-info">&nbsp;+18% GST</i><br>
+                            <% if(listing.owner) { %>
+                                <small>Owner: <%= listing.owner.username %></small>
+                            <% } %>
                         </p>
                     </div>
                 </a>
@@ -174,10 +283,10 @@
         async function toggleWishlist(event, listingId) {
             event.preventDefault();
             event.stopPropagation();
-            
+
             const button = event.currentTarget;
             const icon = button.querySelector('i');
-            
+
             try {
                 const response = await fetch(`/wishlist/${listingId}/toggle`, {
                     method: 'PUT',
@@ -185,9 +294,9 @@
                         'Content-Type': 'application/json',
                     }
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     if (data.inWishlist) {
                         icon.classList.remove('fa-regular');
@@ -201,12 +310,12 @@
                 console.error('Error toggling wishlist:', error);
             }
         }
-        
+
         // Initialize cluster map with all listings
-        window.addEventListener('load', function() {
-            let allListingsData = <%- JSON.stringify(allListings) %>;
+        window.addEventListener('load', function () {
+            let allListingsData = <% - JSON.stringify(allListings) %> ;
             console.log("Listings data:", allListingsData.length, "listings");
-            
+
             // Check if Leaflet is loaded
             if (typeof L !== 'undefined') {
                 console.log("Leaflet loaded, initializing map");
@@ -216,57 +325,5 @@
             }
         });
 
-        // Client-side sort by price
-        (function(){
-            const sortSelect = document.getElementById('sortSelect');
-            const cardsRow = document.querySelector('.row.row-cols-lg-3');
-            if (!sortSelect || !cardsRow) return;
-            const getCards = () => Array.from(cardsRow.querySelectorAll('.listing-card'));
-            sortSelect.addEventListener('change', () => {
-                const val = sortSelect.value;
-                if (!val) return; // recommended
-                const cards = getCards();
-                cards.sort((a,b)=>{
-                    const pa = parseInt(a.getAttribute('data-price')||'0',10);
-                    const pb = parseInt(b.getAttribute('data-price')||'0',10);
-                    return val === 'price-asc' ? pa - pb : pb - pa;
-                });
-                cards.forEach(card=>cardsRow.appendChild(card));
-            });
-        })();
 
-        // Toggle grid/list view
-        (function(){
-            const btn = document.getElementById('viewToggle');
-            const grid = document.querySelector('.row.row-cols-lg-3');
-            if (!btn || !grid) return;
-            btn.addEventListener('click', ()=>{
-                grid.classList.toggle('cards-list-view');
-                btn.innerHTML = grid.classList.contains('cards-list-view') ? '<i class="fa-solid fa-list"></i> List' : '<i class="fa-solid fa-grip"></i> View';
-            });
-        })();
-
-        // Price range filter (client-side)
-        (function(){
-            const slider = document.getElementById('priceFilter');
-            const label = document.getElementById('priceFilterValue');
-            const cardsRow = document.querySelector('.row.row-cols-lg-3');
-            if (!slider || !label || !cardsRow) return;
-            const cards = Array.from(cardsRow.querySelectorAll('.listing-card'));
-            // Determine max price from DOM
-            const prices = cards.map(c=>parseInt(c.getAttribute('data-price')||'0',10));
-            const max = Math.max(1000, ...prices);
-            slider.max = String(max);
-            slider.value = String(max);
-            label.textContent = max.toLocaleString('en-IN');
-            const apply = ()=>{
-                const cap = parseInt(slider.value,10);
-                label.textContent = cap.toLocaleString('en-IN');
-                cards.forEach(card=>{
-                    const p = parseInt(card.getAttribute('data-price')||'0',10);
-                    card.style.display = p <= cap ? '' : 'none';
-                });
-            };
-            slider.addEventListener('input', apply);
-        })();
     </script>
