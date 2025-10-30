@@ -38,6 +38,11 @@
 </div>
 <% } %>
 
+<h3>Weather in <%= listing.location %></h3>
+<div id="weather-info">
+    <p>Loading weather...</p>
+</div>
+
 <!-- Location Map Section -->
 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 mb-4">
     <h4 class="mb-3">Where You'll Be</h4>
@@ -168,7 +173,39 @@
             console.error('Error toggling wishlist:', error);
         }
     }
-    
+    document.addEventListener("DOMContentLoaded", async () => {
+        const weatherBox = document.getElementById("weather-info");
+
+        try {
+            // This gets the ID from the EJS object
+            const listingId = "<%= listing._id %>"; 
+
+            // 1. Calls your new backend route
+            const response = await fetch(`/listings/${listingId}/weather`);
+            if (!response.ok) {
+                throw new Error("Weather data not available.");
+            }
+
+            const weatherData = await response.json();
+
+            // 2. Gets the data you need
+            const temp = weatherData.main.temp;
+            const description = weatherData.weather[0].description;
+            const icon = weatherData.weather[0].icon;
+            const iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
+
+            // 3. Displays the data
+            weatherBox.innerHTML = `
+                <img src="${iconUrl}" alt="${description}">
+                <p><strong>${temp}°C</strong></p>
+                <p><em>${description}</em></p>
+            `;
+
+        } catch (e) {
+            weatherBox.innerHTML = "<p>Could not load weather information.</p>";
+            console.error(e);
+        }
+
     // Initialize map for this listing
     window.addEventListener('load', function() {
         <% if (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length === 2) { %>
