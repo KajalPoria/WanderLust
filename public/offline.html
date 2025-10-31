@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - WanderLust</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #222222;
+            --text-secondary: #666666;
+            --accent-color: #fe424d;
+            --border-color: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #404040;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .offline-container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--text-secondary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .retry-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(254, 66, 77, 0.3);
+        }
+
+        .retry-btn:active {
+            transform: translateY(0);
+        }
+
+        .offline-tips {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .offline-tips h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .offline-tips ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .offline-tips li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .offline-tips li::before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .connection-status {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff4444;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-indicator.online {
+            background: #44ff44;
+            animation: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .offline-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .offline-tips {
+                text-align: center;
+            }
+
+            .offline-tips ul {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="connection-status">
+        <span class="status-indicator" id="statusIndicator"></span>
+        <span id="statusText">Offline</span>
+    </div>
+
+    <div class="offline-container">
+        <div class="offline-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"></path>
+            </svg>
+        </div>
+
+        <h1>You're Offline</h1>
+        <p>
+            It looks like you've lost your internet connection. Some features may not be available right now, 
+            but don't worry – we've saved some content for you to browse offline.
+        </p>
+
+        <button class="retry-btn" onclick="location.reload()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 4v6h6M23 20v-6h-6"></path>
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+            </svg>
+            Try Again
+        </button>
+
+        <div class="offline-tips">
+            <h3>What You Can Do</h3>
+            <ul>
+                <li>Previously viewed listings are available offline</li>
+                <li>Cached images and details are still accessible</li>
+                <li>Your wishlist is saved locally</li>
+                <li>Once online, everything will sync automatically</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Apply saved theme
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+
+        // Monitor connection status
+        function updateConnectionStatus() {
+            const isOnline = navigator.onLine;
+            const indicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            
+            if (isOnline) {
+                indicator.classList.add('online');
+                statusText.textContent = 'Back Online!';
+                
+                // Auto-redirect after 2 seconds when back online
+                setTimeout(() => {
+                    window.location.href = '/listings';
+                }, 2000);
+            } else {
+                indicator.classList.remove('online');
+                statusText.textContent = 'Offline';
+            }
+        }
+
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+        updateConnectionStatus();
+
+        // Check connection every 5 seconds
+        setInterval(updateConnectionStatus, 5000);
+    </script>
+</body>
+</html>

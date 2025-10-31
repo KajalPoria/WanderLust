@@ -33,6 +33,10 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - Role-based access control
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
+- **🔌 Offline Access Support** - Browse previously viewed listings without internet
+- **📱 PWA (Progressive Web App)** - Install as a native app on mobile and desktop
+- **💾 Smart Caching** - Automatic content caching for faster load times
+- **🔄 Auto-Sync** - Seamless synchronization when connection is restored
 
 ---
 
@@ -45,6 +49,8 @@ This project demonstrates the power of full-stack JavaScript development and clo
 | **Database** | MongoDB, Mongoose |
 | **Authentication** | Passport.js, bcrypt |
 | **Cloud Storage** | Cloudinary |
+| **Offline Support** | Service Workers, IndexedDB, PWA |
+| **Maps** | Leaflet.js, OpenStreetMap |
 | **Deployment** | Render |
 
 ---
@@ -72,7 +78,14 @@ WanderLust/
 ├── public/
 │   ├── css/
 │   ├── js/
-│   └── images/
+│   │   ├── map.js
+│   │   ├── offline-storage.js
+│   │   └── script.js
+│   ├── icons/
+│   ├── images/
+│   ├── service-worker.js
+│   ├── manifest.json
+│   └── offline.html
 ├── utils/
 │   ├── wrapAsync.js
 │   └── ExpressError.js
@@ -126,6 +139,13 @@ Open your browser and navigate to:
 http://localhost:8080
 ```
 
+### 6. Test Offline Features
+1. Browse some listings while online
+2. Open DevTools (F12) → Application tab → Service Workers
+3. Check "Offline" to simulate no connectivity
+4. Refresh and browse cached content
+5. See [OFFLINE_FEATURES.md](./OFFLINE_FEATURES.md) for detailed testing guide
+
 ---
 
 ## 🧩 API and Routing Overview
@@ -159,12 +179,15 @@ http://localhost:8080
 ## 📈 Future Roadmap
 
 ### 🚀 Planned Enhancements
-- 🌐 Add Map integration in WanderLust
-- 📱 Add progressive web app (PWA) features for mobile
+- ~~🌐 Add Map integration in WanderLust~~ ✅ **COMPLETED**
+- ~~📱 Add progressive web app (PWA) features for mobile~~ ✅ **COMPLETED**
+- ~~🔌 Add offline access support~~ ✅ **COMPLETED**
 - 🔔 Enable real-time updates using Socket.io
 - 💳 Integrate payment gateway for online booking
 - 📊 Build an Admin Dashboard for analytics
 - 🌍 Add multilingual support and smart filters
+- 🔔 Push notifications for booking updates
+- 🗺️ Offline map tile pre-caching
 
 ---
 
