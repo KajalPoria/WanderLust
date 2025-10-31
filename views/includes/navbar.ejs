@@ -522,8 +522,8 @@
     </a>
     
     <!-- Search Bar - Always Visible -->
-    <form class="d-flex search-form-main" role="search">
-      <input class="form-control search-inp" type="search" placeholder="Search destinations" aria-label="Search">
+    <form class="d-flex search-form-main" role="search" action="/listings" method="GET">
+      <input class="form-control search-inp" type="search" placeholder="Search destinations" aria-label="Search" name="q" value="<%= typeof queryParams !== 'undefined' ? queryParams.q || '' : '' %>">
       <button class="btn search-btn" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span></span>
