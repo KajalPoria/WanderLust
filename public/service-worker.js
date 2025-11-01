@@ -152,8 +152,9 @@ self.addEventListener('fetch', event => {
                         if (response) {
                             return response;
                         }
-                        // If no cache, show offline page
-                        if (request.headers.get('accept').includes('text/html')) {
+                        // If no cache and it's an HTML request, show offline page with cached listings
+                        if (request.headers.get('accept')?.includes('text/html')) {
+                            console.log('[SW] Serving offline page for:', request.url);
                             return caches.match('/offline.html');
                         }
                     });

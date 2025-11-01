@@ -266,15 +266,23 @@ window.fetch = async function(...args) {
     // Clone response for caching
     const clonedResponse = response.clone();
     
+    // Get the URL
+    const url = typeof args[0] === 'string' ? args[0] : args[0].url;
+    
     // Cache listings data
-    if (args[0].includes('/listings') && response.ok) {
+    if (url.includes('/listings') && response.ok && response.headers.get('content-type')?.includes('application/json')) {
         try {
             const data = await clonedResponse.json();
             if (Array.isArray(data)) {
+                console.log('[OfflineStorage] Saving', data.length, 'listings to IndexedDB');
                 await offlineStorage.saveListings(data);
+            } else if (data._id) {
+                // Single listing
+                console.log('[OfflineStorage] Saving single listing to IndexedDB');
+                await offlineStorage.saveListing(data);
             }
         } catch (err) {
-            // Not JSON or error parsing, ignore
+            console.error('[OfflineStorage] Error saving listings:', err);
         }
     }
     

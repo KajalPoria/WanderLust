@@ -139,12 +139,33 @@ Open your browser and navigate to:
 http://localhost:8080
 ```
 
-### 6. Test Offline Features
-1. Browse some listings while online
-2. Open DevTools (F12) → Application tab → Service Workers
-3. Check "Offline" to simulate no connectivity
-4. Refresh and browse cached content
-5. See [OFFLINE_FEATURES.md](./OFFLINE_FEATURES.md) for detailed testing guide
+### 6. Test Offline Features (New!)
+The application now supports offline browsing of cached listings:
+
+**How to Test:**
+1. **While Online:** Browse some listings at `http://localhost:8080/listings`
+   - Listings are automatically cached to IndexedDB
+   - Check console: `[OfflineStorage] Saved X listings for offline access`
+
+2. **Go Offline:**
+   - **Chrome DevTools:** Press F12 → Network tab → Change "No throttling" to "Offline"
+   - **Or:** Enable Airplane Mode on your device
+
+3. **Browse Offline:**
+   - Refresh the page or navigate to `/listings`
+   - You'll see all previously cached listings with:
+     - Images (from cache)
+     - Titles, locations, and prices
+     - Category tags
+     - "OFFLINE" badge indicator
+
+4. **Go Back Online:**
+   - The app auto-detects connectivity and redirects to live listings
+
+**Debugging:**
+- Open DevTools → Application → IndexedDB → Check "WanderLustDB" for cached data
+- Application → Service Workers → Should show "activated and running"
+- See [OFFLINE_FEATURES.md](./OFFLINE_FEATURES.md) for detailed guide
 
 ---
 
@@ -167,7 +188,50 @@ http://localhost:8080
 
 ---
 
-## 🔐 Authentication System
+## � Offline Feature Implementation
+
+WanderLust now supports full offline functionality, allowing users to browse previously viewed listings without internet connectivity.
+
+### How It Works
+
+1. **Service Worker Registration**
+   - Automatically registers on page load
+   - Caches static assets (CSS, JS, images)
+   - Implements smart caching strategies
+
+2. **IndexedDB Storage**
+   - Stores listing data locally in browser
+   - Automatic saving when listings are viewed
+   - Configurable data expiration (default: 7 days)
+
+3. **Offline Page**
+   - Custom offline interface at `/offline.html`
+   - Fetches and displays cached listings from IndexedDB
+   - Shows listing cards with images, prices, and details
+   - Provides connection status indicator
+
+4. **Auto-Sync**
+   - Detects when connection is restored
+   - Automatically syncs queued actions
+   - Redirects to live content when online
+
+### Files Modified/Added
+- `public/service-worker.js` - Service worker with caching strategies
+- `public/offline.html` - Offline page with listing display
+- `public/js/offline-storage.js` - IndexedDB wrapper and sync logic
+- `views/listings/index.ejs` - Auto-save listings to IndexedDB
+- `views/layouts/boilerplate.ejs` - Service worker registration
+- `public/manifest.json` - PWA configuration
+
+### Technical Details
+- **Cache Strategy:** Network-first with cache fallback
+- **Storage:** IndexedDB for structured data, Cache API for assets
+- **Max Cache Size:** 50 dynamic items, 100 images
+- **Browser Support:** Chrome, Firefox, Safari, Edge (modern versions)
+
+---
+
+## �🔐 Authentication System
 
 - Uses **Passport.js** for local authentication
 - Passwords are hashed using **bcrypt**

@@ -184,6 +184,81 @@
             .offline-tips ul {
                 text-align: left;
             }
+
+            #listingsGrid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Listing Card Styles */
+        .listing-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .listing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .listing-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .listing-card-body {
+            padding: 1rem;
+        }
+
+        .listing-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .listing-location {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .listing-price {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .listing-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .offline-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #ff9800;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
     </style>
 </head>
@@ -193,7 +268,7 @@
         <span id="statusText">Offline</span>
     </div>
 
-    <div class="offline-container">
+    <div class="offline-container" id="offlineMessage">
         <div class="offline-icon">
             <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"></path>
@@ -202,8 +277,7 @@
 
         <h1>You're Offline</h1>
         <p>
-            It looks like you've lost your internet connection. Some features may not be available right now, 
-            but don't worry – we've saved some content for you to browse offline.
+            It looks like you've lost your internet connection. Don't worry – we're loading your cached listings below.
         </p>
 
         <button class="retry-btn" onclick="location.reload()">
@@ -213,24 +287,119 @@
             </svg>
             Try Again
         </button>
+    </div>
 
-        <div class="offline-tips">
-            <h3>What You Can Do</h3>
-            <ul>
-                <li>Previously viewed listings are available offline</li>
-                <li>Cached images and details are still accessible</li>
-                <li>Your wishlist is saved locally</li>
-                <li>Once online, everything will sync automatically</li>
-            </ul>
+    <!-- Offline Listings Container -->
+    <div id="offlineListingsContainer" style="display: none; max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 style="color: var(--text-primary); margin-bottom: 0.5rem;">Cached Listings</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Browse previously loaded listings</p>
+        </div>
+        <div id="listingsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+            <!-- Listings will be loaded here -->
+        </div>
+        <div id="noListings" style="display: none; text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <p>No cached listings available. Please connect to the internet to load listings.</p>
         </div>
     </div>
 
     <script>
+        // IndexedDB helper for offline storage
+        class OfflineStorage {
+            constructor() {
+                this.dbName = 'WanderLustDB';
+                this.version = 1;
+                this.db = null;
+            }
+
+            async init() {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open(this.dbName, this.version);
+
+                    request.onerror = () => reject(request.error);
+                    request.onsuccess = () => {
+                        this.db = request.result;
+                        resolve(this.db);
+                    };
+
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        if (!db.objectStoreNames.contains('listings')) {
+                            const listingStore = db.createObjectStore('listings', { keyPath: '_id' });
+                            listingStore.createIndex('category', 'category', { unique: false });
+                            listingStore.createIndex('price', 'price', { unique: false });
+                            listingStore.createIndex('timestamp', 'timestamp', { unique: false });
+                        }
+                    };
+                });
+            }
+
+            async getListings() {
+                if (!this.db) await this.init();
+                
+                return new Promise((resolve, reject) => {
+                    const transaction = this.db.transaction(['listings'], 'readonly');
+                    const store = transaction.objectStore('listings');
+                    const request = store.getAll();
+                    
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+        }
+
         // Apply saved theme
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
+
+        // Load cached listings on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const storage = new OfflineStorage();
+                await storage.init();
+                const listings = await storage.getListings();
+
+                if (listings && listings.length > 0) {
+                    // Hide offline message, show listings
+                    document.getElementById('offlineMessage').style.display = 'none';
+                    document.getElementById('offlineListingsContainer').style.display = 'block';
+                    
+                    const listingsGrid = document.getElementById('listingsGrid');
+                    listingsGrid.innerHTML = listings.map(listing => `
+                        <div class="listing-card" onclick="viewListing('${listing._id}')">
+                            <img src="${listing.image?.url || '/icons/icon-192x192.png'}" 
+                                 alt="${listing.title}"
+                                 onerror="this.src='/icons/icon-192x192.png'">
+                            <div class="listing-card-body">
+                                <div class="listing-title">${listing.title}</div>
+                                <div class="listing-location">📍 ${listing.location || 'Location N/A'}</div>
+                                <div class="listing-price">
+                                    ₹${(listing.price || 0).toLocaleString('en-IN')} / night
+                                    <span class="offline-badge">OFFLINE</span>
+                                </div>
+                                ${listing.category ? `<span class="listing-category">${listing.category}</span>` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    // Show no listings message
+                    document.getElementById('offlineMessage').style.display = 'none';
+                    document.getElementById('offlineListingsContainer').style.display = 'block';
+                    document.getElementById('listingsGrid').style.display = 'none';
+                    document.getElementById('noListings').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading cached listings:', error);
+                // Keep showing offline message if there's an error
+            }
+        });
+
+        function viewListing(id) {
+            // Try to navigate to listing detail
+            window.location.href = `/listings/${id}`;
+        }
 
         // Monitor connection status
         function updateConnectionStatus() {
