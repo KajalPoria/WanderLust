@@ -27,4 +27,7 @@ router
 //Edit Route
 router.get("/:id/edit" ,isLoggedIn, isOwner,wrapAsync(listingController.edit));
 
+// API route for listings
+router.get("/api", wrapAsync(listingController.apiIndex));
+
 module.exports= router;

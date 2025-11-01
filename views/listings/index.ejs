@@ -88,6 +88,10 @@
         }
     </style>
 
+    <!-- Offline indicator -->
+    <div id="offline-indicator" style="display: none; position: fixed; top: 0; width: 100%; background: #dc3545; color: white; text-align: center; padding: 10px; z-index: 1000; font-weight: bold;">
+        You are currently offline. Showing cached listings.
+    </div>
 
     <div class="filters-bar">
       <div class="filters-scroll" id="filters">
@@ -313,7 +317,7 @@
 
         // Initialize cluster map with all listings
         window.addEventListener('load', function () {
-            let allListingsData = <% - JSON.stringify(allListings) %> ;
+            let allListingsData = <%- JSON.stringify(allListings) %>;
             console.log("Listings data:", allListingsData.length, "listings");
 
             // Check if Leaflet is loaded
@@ -325,5 +329,26 @@
             }
         });
 
+        // Cache listings in localStorage for offline access
+        const listings = <%- JSON.stringify(allListings) %>;
+        localStorage.setItem('listings', JSON.stringify(listings));
+        localStorage.setItem('listings_timestamp', Date.now());
+
+        // Offline detection
+        window.addEventListener('online', () => {
+            const indicator = document.getElementById('offline-indicator');
+            if (indicator) indicator.style.display = 'none';
+        });
+
+        window.addEventListener('offline', () => {
+            const indicator = document.getElementById('offline-indicator');
+            if (indicator) indicator.style.display = 'block';
+        });
+
+        // Check initial online status
+        if (!navigator.onLine) {
+            const indicator = document.getElementById('offline-indicator');
+            if (indicator) indicator.style.display = 'block';
+        }
 
     </script>

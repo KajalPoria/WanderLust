@@ -45,6 +45,47 @@ module.exports.index = async (req, res) => {
     });
 };
 
+module.exports.apiIndex = async (req, res) => {
+    // Extract all potential query params
+    const { q, category, minPrice, maxPrice, minRating } = req.query;
+
+    let query = {};
+
+    // 1. Category Filter
+    if (category) {
+        query.category = category;
+    }
+
+    // 2. Name/Location Search Filter (Case-insensitive)
+    if (q) {
+        query.$or = [
+            { title: { $regex: q, $options: 'i' } },
+            { location: { $regex: q, $options: 'i' } }
+        ];
+    }
+
+    // 3. Price Range Filter
+    if (minPrice || maxPrice) {
+        query.price = {};
+        if (minPrice) {
+            query.price.$gte = Number(minPrice);
+        }
+        if (maxPrice) {
+            query.price.$lte = Number(maxPrice);
+        }
+    }
+
+    // 4. Rating Filter (This requires the avgRating in your model)
+    if (minRating) {
+        query.avgRating = { $gte: Number(minRating) };
+    }
+
+    // Find all listings matching the combined query
+    const allListings = await Listing.find(query).populate("owner");
+    
+    res.json(allListings);
+};
+
 module.exports.new =  (req,res) =>{
     res.render("listings/new.ejs");
 };
