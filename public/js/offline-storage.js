@@ -55,15 +55,24 @@ class OfflineStorage {
     async saveListings(listings) {
         if (!this.db) await this.init();
         
-        const transaction = this.db.transaction(['listings'], 'readwrite');
-        const store = transaction.objectStore('listings');
-        
-        const timestamp = Date.now();
-        for (const listing of listings) {
-            store.put({ ...listing, timestamp });
-        }
-        
-        return transaction.complete;
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['listings'], 'readwrite');
+            const store = transaction.objectStore('listings');
+
+            const timestamp = Date.now();
+            for (const listing of listings) {
+                try {
+                    store.put({ ...listing, timestamp });
+                } catch (e) {
+                    // Ignore malformed records to avoid aborting the whole transaction
+                    console.warn('[OfflineStorage] Skipping invalid listing record', e);
+                }
+            }
+
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+            transaction.onabort = () => reject(transaction.error);
+        });
     }
 
     async getListings(filter = {}) {
@@ -90,14 +99,21 @@ class OfflineStorage {
 
     async saveListing(listing) {
         if (!this.db) await this.init();
-        
-        const transaction = this.db.transaction(['listings'], 'readwrite');
-        const store = transaction.objectStore('listings');
-        
-        listing.timestamp = Date.now();
-        store.put(listing);
-        
-        return transaction.complete;
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['listings'], 'readwrite');
+            const store = transaction.objectStore('listings');
+
+            try {
+                listing.timestamp = Date.now();
+                store.put(listing);
+            } catch (e) {
+                console.warn('[OfflineStorage] Failed to save listing', e);
+            }
+
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+            transaction.onabort = () => reject(transaction.error);
+        });
     }
 
     async getListing(id) {
@@ -115,19 +131,22 @@ class OfflineStorage {
 
     async saveWishlist(wishlistItems) {
         if (!this.db) await this.init();
-        
-        const transaction = this.db.transaction(['wishlist'], 'readwrite');
-        const store = transaction.objectStore('wishlist');
-        
-        // Clear existing
-        store.clear();
-        
-        // Add all items
-        for (const item of wishlistItems) {
-            store.put(item);
-        }
-        
-        return transaction.complete;
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['wishlist'], 'readwrite');
+            const store = transaction.objectStore('wishlist');
+
+            // Clear existing
+            store.clear();
+
+            // Add all items
+            for (const item of wishlistItems) {
+                try { store.put(item); } catch (e) { console.warn('[OfflineStorage] Skipping wishlist item', e); }
+            }
+
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+            transaction.onabort = () => reject(transaction.error);
+        });
     }
 
     async getWishlist() {
@@ -176,42 +195,48 @@ class OfflineStorage {
 
     async markSynced(id) {
         if (!this.db) await this.init();
-        
-        const transaction = this.db.transaction(['syncQueue'], 'readwrite');
-        const store = transaction.objectStore('syncQueue');
-        
-        const request = store.get(id);
-        request.onsuccess = () => {
-            const item = request.result;
-            if (item) {
-                item.synced = true;
-                store.put(item);
-            }
-        };
-        
-        return transaction.complete;
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['syncQueue'], 'readwrite');
+            const store = transaction.objectStore('syncQueue');
+
+            const request = store.get(id);
+            request.onsuccess = () => {
+                const item = request.result;
+                if (item) {
+                    item.synced = true;
+                    store.put(item);
+                }
+            };
+
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+            transaction.onabort = () => reject(transaction.error);
+        });
     }
 
     async clearOldData(daysOld = 7) {
         if (!this.db) await this.init();
-        
-        const cutoffTime = Date.now() - (daysOld * 24 * 60 * 60 * 1000);
-        
-        const transaction = this.db.transaction(['listings'], 'readwrite');
-        const store = transaction.objectStore('listings');
-        const index = store.index('timestamp');
-        const range = IDBKeyRange.upperBound(cutoffTime);
-        
-        const request = index.openCursor(range);
-        request.onsuccess = (event) => {
-            const cursor = event.target.result;
-            if (cursor) {
-                cursor.delete();
-                cursor.continue();
-            }
-        };
-        
-        return transaction.complete;
+        return new Promise((resolve, reject) => {
+            const cutoffTime = Date.now() - (daysOld * 24 * 60 * 60 * 1000);
+
+            const transaction = this.db.transaction(['listings'], 'readwrite');
+            const store = transaction.objectStore('listings');
+            const index = store.index('timestamp');
+            const range = IDBKeyRange.upperBound(cutoffTime);
+
+            const request = index.openCursor(range);
+            request.onsuccess = (event) => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    cursor.delete();
+                    cursor.continue();
+                }
+            };
+
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+            transaction.onabort = () => reject(transaction.error);
+        });
     }
 }
 

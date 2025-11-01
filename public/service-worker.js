@@ -182,7 +182,8 @@ self.addEventListener('fetch', event => {
                     if (response) {
                         return response;
                     }
-                    if (request.headers.get('accept').includes('text/html')) {
+                    const acceptHeader = request.headers.get('accept');
+                    if (acceptHeader && acceptHeader.includes('text/html')) {
                         return caches.match('/offline.html');
                     }
                 });
