@@ -15,6 +15,16 @@ module.exports.getRecommendations = async (req, res) => {
             .populate('_id')
             .exec();
 
+        if (req.user.consentForRecommendations !== 'accepted') {
+            // User has declined or is still pending
+            return res.render("users/recommendations.ejs", { 
+                recommendations: [],
+                wishlistCount: user.wishlist.length, // Still show stats
+                reviewCount: userReviews.length,     // Still show stats
+                consentDeclined: true // Add a flag for the EJS file
+            });
+        }
+
         // Get categories from wishlist
         const wishlistCategories = user.wishlist.map(listing => listing.category);
         const wishlistCountries = user.wishlist.map(listing => listing.country);

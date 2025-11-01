@@ -190,7 +190,13 @@
         </div>
     </div>
 
-    <% if (recommendations && recommendations.length > 0) { %>
+    <% if (typeof consentDeclined !== 'undefined' && consentDeclined) { %>
+        <div class="no-recommendations" style="padding-top: 1rem;">
+            <i class="fa-solid fa-user-shield" style="font-size: 4rem; color: #fe424d;"></i>
+            <h3 style="color: var(--text-primary);">Recommendations Disabled</h3>
+            <p class="text-secondary">You have opted out of personalized recommendations.</p>
+        </div>
+    <% } else if (recommendations && recommendations.length > 0) { %>
         <div class="recommendations-grid">
             <% for (let listing of recommendations) { %>
                 <div class="recommendation-card">

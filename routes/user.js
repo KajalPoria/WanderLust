@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
-const { saveRedirectUrl } = require("../middleware.js");
+const { saveRedirectUrl , isLoggedIn} = require("../middleware.js");
 
 const userController = require("../controllers/user.js");
 
@@ -21,6 +21,8 @@ router.route("/login")
         failureFlash: true,
     }),userController.login);
 
+router.get("/consent", isLoggedIn, userController.renderConsentForm);
+router.post("/consent", isLoggedIn, wrapAsync(userController.handleConsent));
 
 // LOGOUT
 router.get("/logout",userController.logout);

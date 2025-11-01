@@ -21,6 +21,24 @@ module.exports.saveRedirectUrl = (req,res,next) => {
     next();
 };
 
+// ADDED: Middleware to check consent status on every request
+module.exports.checkConsent = (req, res, next) => {
+    // Check if user is logged in AND their consent is pending
+    if (req.isAuthenticated() && req.user.consentForRecommendations === 'pending') {
+        
+        // Allow access to the consent page, the POST to it, and logout
+        if (req.path === '/consent' || req.path === '/logout') {
+            return next();
+        }
+        
+        // For all other pages, redirect to consent
+        req.flash("info", "Please review our recommendation policy to continue.");
+        return res.redirect("/consent");
+    }
+    // If user is not logged in, or consent is 'accepted'/'declined', continue
+    next();
+};
+
 module.exports.isOwner = async(req,res,next)=>{
     let {id} = req.params;
     let listing = await Listing.findById(id);

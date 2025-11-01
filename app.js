@@ -88,6 +88,9 @@ app.use((req,res,next) => {
     next();
 });
 
+const { checkConsent } = require("./middleware.js");
+app.use(checkConsent);
+
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/wishlist", wishlistRouter);
