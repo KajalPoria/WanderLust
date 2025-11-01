@@ -313,8 +313,19 @@
 
         // Initialize cluster map with all listings
         window.addEventListener('load', function () {
-            let allListingsData = <% - JSON.stringify(allListings) %> ;
+            let allListingsData = <%- JSON.stringify(allListings) %>;
             console.log("Listings data:", allListingsData.length, "listings");
+
+            // Save listings to IndexedDB for offline access
+            if (typeof offlineStorage !== 'undefined' && allListingsData.length > 0) {
+                offlineStorage.saveListings(allListingsData)
+                    .then(() => {
+                        console.log('[OfflineStorage] Saved', allListingsData.length, 'listings for offline access');
+                    })
+                    .catch(err => {
+                        console.error('[OfflineStorage] Error saving listings:', err);
+                    });
+            }
 
             // Check if Leaflet is loaded
             if (typeof L !== 'undefined') {

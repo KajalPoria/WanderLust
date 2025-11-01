@@ -33,6 +33,10 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - Role-based access control
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
+- **🔌 Offline Access Support** - Browse previously viewed listings without internet
+- **📱 PWA (Progressive Web App)** - Install as a native app on mobile and desktop
+- **💾 Smart Caching** - Automatic content caching for faster load times
+- **🔄 Auto-Sync** - Seamless synchronization when connection is restored
 
 ---
 
@@ -45,6 +49,8 @@ This project demonstrates the power of full-stack JavaScript development and clo
 | **Database** | MongoDB, Mongoose |
 | **Authentication** | Passport.js, bcrypt |
 | **Cloud Storage** | Cloudinary |
+| **Offline Support** | Service Workers, IndexedDB, PWA |
+| **Maps** | Leaflet.js, OpenStreetMap |
 | **Deployment** | Render |
 
 ---
@@ -72,7 +78,14 @@ WanderLust/
 ├── public/
 │   ├── css/
 │   ├── js/
-│   └── images/
+│   │   ├── map.js
+│   │   ├── offline-storage.js
+│   │   └── script.js
+│   ├── icons/
+│   ├── images/
+│   ├── service-worker.js
+│   ├── manifest.json
+│   └── offline.html
 ├── utils/
 │   ├── wrapAsync.js
 │   └── ExpressError.js
@@ -126,6 +139,34 @@ Open your browser and navigate to:
 http://localhost:8080
 ```
 
+### 6. Test Offline Features (New!)
+The application now supports offline browsing of cached listings:
+
+**How to Test:**
+1. **While Online:** Browse some listings at `http://localhost:8080/listings`
+   - Listings are automatically cached to IndexedDB
+   - Check console: `[OfflineStorage] Saved X listings for offline access`
+
+2. **Go Offline:**
+   - **Chrome DevTools:** Press F12 → Network tab → Change "No throttling" to "Offline"
+   - **Or:** Enable Airplane Mode on your device
+
+3. **Browse Offline:**
+   - Refresh the page or navigate to `/listings`
+   - You'll see all previously cached listings with:
+     - Images (from cache)
+     - Titles, locations, and prices
+     - Category tags
+     - "OFFLINE" badge indicator
+
+4. **Go Back Online:**
+   - The app auto-detects connectivity and redirects to live listings
+
+**Debugging:**
+- Open DevTools → Application → IndexedDB → Check "WanderLustDB" for cached data
+- Application → Service Workers → Should show "activated and running"
+- See [OFFLINE_FEATURES.md](./OFFLINE_FEATURES.md) for detailed guide
+
 ---
 
 ## 🧩 API and Routing Overview
@@ -147,7 +188,50 @@ http://localhost:8080
 
 ---
 
-## 🔐 Authentication System
+## � Offline Feature Implementation
+
+WanderLust now supports full offline functionality, allowing users to browse previously viewed listings without internet connectivity.
+
+### How It Works
+
+1. **Service Worker Registration**
+   - Automatically registers on page load
+   - Caches static assets (CSS, JS, images)
+   - Implements smart caching strategies
+
+2. **IndexedDB Storage**
+   - Stores listing data locally in browser
+   - Automatic saving when listings are viewed
+   - Configurable data expiration (default: 7 days)
+
+3. **Offline Page**
+   - Custom offline interface at `/offline.html`
+   - Fetches and displays cached listings from IndexedDB
+   - Shows listing cards with images, prices, and details
+   - Provides connection status indicator
+
+4. **Auto-Sync**
+   - Detects when connection is restored
+   - Automatically syncs queued actions
+   - Redirects to live content when online
+
+### Files Modified/Added
+- `public/service-worker.js` - Service worker with caching strategies
+- `public/offline.html` - Offline page with listing display
+- `public/js/offline-storage.js` - IndexedDB wrapper and sync logic
+- `views/listings/index.ejs` - Auto-save listings to IndexedDB
+- `views/layouts/boilerplate.ejs` - Service worker registration
+- `public/manifest.json` - PWA configuration
+
+### Technical Details
+- **Cache Strategy:** Network-first with cache fallback
+- **Storage:** IndexedDB for structured data, Cache API for assets
+- **Max Cache Size:** 50 dynamic items, 100 images
+- **Browser Support:** Chrome, Firefox, Safari, Edge (modern versions)
+
+---
+
+## �🔐 Authentication System
 
 - Uses **Passport.js** for local authentication
 - Passwords are hashed using **bcrypt**
@@ -159,12 +243,15 @@ http://localhost:8080
 ## 📈 Future Roadmap
 
 ### 🚀 Planned Enhancements
-- 🌐 Add Map integration in WanderLust
-- 📱 Add progressive web app (PWA) features for mobile
+- ~~🌐 Add Map integration in WanderLust~~ ✅ **COMPLETED**
+- ~~📱 Add progressive web app (PWA) features for mobile~~ ✅ **COMPLETED**
+- ~~🔌 Add offline access support~~ ✅ **COMPLETED**
 - 🔔 Enable real-time updates using Socket.io
 - 💳 Integrate payment gateway for online booking
 - 📊 Build an Admin Dashboard for analytics
 - 🌍 Add multilingual support and smart filters
+- 🔔 Push notifications for booking updates
+- 🗺️ Offline map tile pre-caching
 
 ---
 

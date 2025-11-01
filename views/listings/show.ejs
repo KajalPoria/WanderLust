@@ -171,6 +171,25 @@
     
     // Initialize map for this listing
     window.addEventListener('load', function() {
+        // Save this listing for offline access
+        try {
+            if (typeof offlineStorage !== 'undefined') {
+                const listingData = <%- JSON.stringify({
+                    _id: String(listing._id),
+                    title: listing.title,
+                    price: listing.price,
+                    location: listing.location,
+                    country: listing.country,
+                    category: listing.category || null,
+                    image: { url: (listing.image && listing.image.url) ? listing.image.url : null },
+                    geometry: listing.geometry || null,
+                }) %>;
+                offlineStorage.saveListing(listingData).catch(e => console.warn('[OfflineStorage] saveListing failed', e));
+            }
+        } catch (e) {
+            console.warn('[OfflineStorage] Unable to save listing', e);
+        }
+
         <% if (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length === 2) { %>
             let listingCoordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
             let listingLocation = "<%= listing.location %>";

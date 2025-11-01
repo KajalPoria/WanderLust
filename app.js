@@ -69,7 +69,7 @@ const sessionOptions={
     },
 };
 
-app.use(express.static('public'));
+// Serve static assets from /public (already configured above)
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -88,16 +88,11 @@ app.use((req,res,next) => {
     next();
 });
 
-app.use("/listings", listingsRouter);
-app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/wishlist", wishlistRouter);
-app.use("/recommendations", recommendationsRouter);
-
 app.get("/", (req, res) => {
     res.redirect("/listings");
 });
 
-app.use("/listings",listingsRouter);
+app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 app.use("/wishlist", wishlistRouter);

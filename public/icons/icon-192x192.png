@@ -1,0 +1,6 @@
+<svg width="192" height="192" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" fill="#fe424d" rx="24"/>
+  <circle cx="96" cy="75" r="30" fill="white" opacity="0.9"/>
+  <path d="M 96 52 L 82 75 L 56 79 L 76 98 L 71 124 L 96 111 L 121 124 L 116 98 L 136 79 L 110 75 Z" fill="white" opacity="0.9"/>
+  <text x="96" y="157" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="white">WL</text>
+</svg>

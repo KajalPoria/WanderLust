@@ -3,11 +3,17 @@ const Listing = require("../models/listing");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-// Initialize Razorpay with keys from environment
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+// Initialize Razorpay with keys from environment (optional for offline feature testing)
+let razorpay = null;
+if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+    razorpay = new Razorpay({
+        key_id: process.env.RAZORPAY_KEY_ID,
+        key_secret: process.env.RAZORPAY_KEY_SECRET,
+    });
+    console.log("✓ Razorpay initialized successfully");
+} else {
+    console.warn("⚠ Razorpay credentials not found. Payment features will be disabled.");
+}
 
 // Render booking checkout page
 module.exports.showBookingForm = async (req, res) => {
@@ -23,6 +29,14 @@ module.exports.showBookingForm = async (req, res) => {
 // Create order for payment processing
 module.exports.createOrder = async (req, res) => {
     try {
+        // Check if Razorpay is configured
+        if (!razorpay) {
+            return res.status(503).json({ 
+                success: false, 
+                message: "Payment service is not configured. Please contact administrator." 
+            });
+        }
+
         let { listingId, checkIn, checkOut, guests } = req.body;
 
         const listing = await Listing.findById(listingId);
@@ -80,6 +94,14 @@ module.exports.createOrder = async (req, res) => {
 // Verify payment signature
 module.exports.verifyPayment = async (req, res) => {
     try {
+        // Check if Razorpay is configured
+        if (!razorpay) {
+            return res.status(503).json({ 
+                success: false, 
+                message: "Payment service is not configured." 
+            });
+        }
+
         let { razorpay_order_id, razorpay_payment_id, razorpay_signature, bookingId } = req.body;
 
         // Generate expected signature for verification
