@@ -1,0 +1,71 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    .consent-card {
+        max-width: 600px;
+        margin: 4rem auto;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px var(--shadow);
+        background-color: var(--bg-card);
+    }
+    .consent-header {
+        background: linear-gradient(135deg, #fe424d, #ff6b6b);
+        color: white;
+        padding: 2rem;
+        border-radius: 1rem 1rem 0 0;
+        text-align: center;
+    }
+    .consent-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .consent-body {
+        padding: 2.5rem;
+    }
+    .consent-body p {
+        font-size: 1.05rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+    .consent-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    .consent-actions .btn {
+        flex: 1;
+        padding: 0.75rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="consent-card">
+            <div class="consent-header">
+                <i class="fa-solid fa-user-shield"></i>
+                <h2>Your Privacy, Your Choice</h2>
+            </div>
+            <div class="consent-body">
+                <p>To enhance your experience, WanderLust can offer personalized recommendations based on your activity, such as your wishlist and reviews.</p>
+                <p>Do you agree to let us use this data to suggest destinations tailored just for you?</p>
+
+                <form action="/consent" method="POST">
+                    <div class="consent-actions">
+                        <button type="submit" name="consentDecision" value="declined" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-xmark"></i> Decline
+                        </button>
+                        <button type="submit" name="consentDecision" value="accepted" class="btn btn-primary" style="background-color: #fe424d; border-color: #fe424d;">
+                            <i class="fa-solid fa-check"></i> Accept
+                        </button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/logout" class="text-muted" style="font-size: 0.9rem;">I'll decide later (Logout)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

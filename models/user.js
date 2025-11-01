@@ -13,6 +13,11 @@ const userSchema = new Schema({
             ref: "Listing",
         },
     ],
+    consentForRecommendations: {
+        type: String,
+        enum: ['pending', 'accepted', 'declined'],
+        default: 'pending',
+    },
 });
 
 userSchema.plugin(passportLocalMongoose);  // will auto add username , hashed function & salting
