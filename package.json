@@ -24,6 +24,7 @@
     "express-session": "^1.18.2",
     "joi": "^18.0.0",
     "method-override": "^3.0.0",
+    "mongodb": "^6.20.0",
     "mongoose": "^8.17.1",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
