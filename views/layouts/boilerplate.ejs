@@ -3,6 +3,7 @@
 	<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="/manifest.json">
 	<title>WanderLust</title>
 	
 	<!-- Dark mode script BEFORE any content loads -->
@@ -44,5 +45,20 @@
 	<script src="/js/map.js"></script>
 	
 	<script src="/js/script.js"></script>
+	
+	<!-- Service Worker Registration -->
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('/js/sw.js')
+					.then(registration => {
+						console.log('Service Worker registered successfully:', registration.scope);
+					})
+					.catch(error => {
+						console.log('Service Worker registration failed:', error);
+					});
+			});
+		}
+	</script>
     </body>
 	</html>
