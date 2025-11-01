@@ -1,7 +1,6 @@
 const CACHE_NAME = 'wanderlust-v1';
 const urlsToCache = [
   '/',
-  '/listings',
   '/css/style.css',
   '/css/rating.css',
   '/js/script.js',

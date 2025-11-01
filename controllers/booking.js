@@ -1,16 +1,13 @@
 const Booking = require("../models/booking");
 const Listing = require("../models/listing");
+const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-// Initialize Razorpay only if keys are available
-let razorpay = null;
-if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
-    const Razorpay = require("razorpay");
-    razorpay = new Razorpay({
-        key_id: process.env.RAZORPAY_KEY_ID,
-        key_secret: process.env.RAZORPAY_KEY_SECRET,
-    });
-}
+// Initialize Razorpay with keys from environment
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 // Render booking checkout page
 module.exports.showBookingForm = async (req, res) => {
@@ -51,15 +48,6 @@ module.exports.createOrder = async (req, res) => {
         });
         await booking.save();
 
-        // Check if Razorpay is configured
-        if (!razorpay) {
-            // If no payment gateway, mark as cash payment
-            booking.paymentStatus = "cash";
-            await booking.save();
-            req.flash("success", "Booking created successfully! Payment can be made on arrival.");
-            return res.redirect(`/bookings/${booking._id}`);
-        }
-
         // Create payment order
         let options = {
             amount: totalPrice * 100, // convert to paise
@@ -93,18 +81,6 @@ module.exports.createOrder = async (req, res) => {
 module.exports.verifyPayment = async (req, res) => {
     try {
         let { razorpay_order_id, razorpay_payment_id, razorpay_signature, bookingId } = req.body;
-
-        // If Razorpay is not configured, just mark as completed
-        if (!razorpay) {
-            let booking = await Booking.findById(bookingId);
-            if (booking) {
-                booking.paymentStatus = "completed";
-                await booking.save();
-                req.flash("success", "Booking confirmed!");
-                return res.json({ success: true, redirectUrl: `/bookings/${bookingId}` });
-            }
-            return res.status(404).json({ success: false, message: "Booking not found" });
-        }
 
         // Generate expected signature for verification
         let sign = razorpay_order_id + "|" + razorpay_payment_id;
