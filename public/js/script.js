@@ -59,3 +59,16 @@ function updateThemeIcon(theme) {
         }
     }
 }
+
+// Register Service Worker for offline support
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(function(reg) {
+                console.log('Service Worker registered with scope:', reg.scope);
+            })
+            .catch(function(err) {
+                console.warn('Service Worker registration failed:', err);
+            });
+    });
+}
