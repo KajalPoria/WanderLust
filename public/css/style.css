@@ -92,6 +92,29 @@ body {
   justify-content: center;
 }
 
+.f-info-socials a {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.f-info-socials a:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+
+.f-info-socials a:hover i.fa-square-facebook {
+  color: #1877f2;
+}
+
+.f-info-socials a:hover i.fa-square-instagram {
+  color: #e4405f;
+}
+
+.f-info-socials a:hover i.fa-linkedin {
+  color: #0077b5;
+}
+
 .f-info-socials i {
   margin-right: 1rem;
   font-size: 1.2rem;
