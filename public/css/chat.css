@@ -1,0 +1,193 @@
+:root {
+    --chat-accent: #fe424d;
+    --chat-bg: var(--bg-primary);
+    --chat-text: var(--text-primary);
+    --chat-header-bg: linear-gradient(135deg, #fe424d, #ff6b6b);
+    --chat-bubble-user: #f0f0f0;
+    --chat-bubble-bot: var(--chat-accent);
+    --chat-bubble-bot-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --chat-bubble-user: var(--bg-secondary);
+}
+
+.chat-toggle-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: var(--chat-header-bg);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-toggle-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.chat-widget {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    max-width: 90vw;
+    height: 500px;
+    max-height: 70vh;
+    background: var(--chat-bg);
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: bottom right;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-widget.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-header {
+    background: var(--chat-header-bg);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.chat-header h5 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.chat-message {
+    display: flex;
+    max-width: 80%;
+}
+
+.chat-message p {
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    margin: 0;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.chat-message.user {
+    align-self: flex-end;
+}
+
+.chat-message.user p {
+    background: var(--chat-bubble-user);
+    color: var(--chat-text);
+    border-bottom-right-radius: 0.25rem;
+}
+
+.chat-message.bot {
+    align-self: flex-start;
+}
+
+.chat-message.bot p {
+    background: var(--chat-bubble-bot);
+    color: var(--chat-bubble-bot-text);
+    border-bottom-left-radius: 0.25rem;
+}
+
+.chat-message.bot.loading p {
+    display: flex;
+    gap: 5px;
+}
+
+.chat-message.bot.loading .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--chat-bubble-bot-text);
+    opacity: 0.5;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.chat-message.bot.loading .dot:nth-child(2) { animation-delay: 0.2s; }
+.chat-message.bot.loading .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+
+.chat-footer {
+    padding: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-footer form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-footer input {
+    flex: 1;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--chat-text);
+    border-radius: 2rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+.chat-footer input:focus {
+    outline: none;
+    border-color: var(--chat-accent);
+    box-shadow: 0 0 0 2px rgba(254, 66, 77, 0.2);
+}
+
+.chat-footer button {
+    border: none;
+    background: var(--chat-accent);
+    color: white;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-footer button:hover {
+    background-color: #e63946;
+}
+
+.chat-footer button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

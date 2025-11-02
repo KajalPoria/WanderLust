@@ -18,6 +18,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
 	<link  rel="stylesheet" href="/css/rating.css">
+	<link rel="stylesheet" href="/css/chat.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -34,6 +35,30 @@
 		<%- include("../includes/flash.ejs") %>
 		<%- body %></div>
 
+		<button class="chat-toggle-button" id="chat-toggle" aria-label="Toggle chat">
+		<i class="fa-solid fa-comment-dots"></i>
+	</button>
+
+	<div class="chat-widget" id="chat-widget">
+		<div class="chat-header">
+			<i class="fa-solid fa-robot"></i>
+			<h5>WanderLust Assistant</h5>
+		</div>
+		<div class="chat-body" id="chat-body">
+			<div class="chat-message bot">
+				<p>Hello! I'm your WanderLust travel assistant. Ask me about destinations or our listings!</p>
+			</div>
+		</div>
+		<div class="chat-footer">
+			<form id="chat-form">
+				<input type="text" id="chat-message" placeholder="Ask a question..." autocomplete="off" required>
+				<button type="submit" id="chat-send" aria-label="Send message">
+					<i class="fa-solid fa-paper-plane"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+
 	<%- include("../includes/footer.ejs") %>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
@@ -44,5 +69,6 @@
 	<script src="/js/map.js"></script>
 	
 	<script src="/js/script.js"></script>
+	<script src="/js/chat.js"></script> </body>
     </body>
 	</html>
