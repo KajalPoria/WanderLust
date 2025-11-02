@@ -110,15 +110,14 @@ SECRET=your_session_secret
 RAZORPAY_KEY_ID=rzp_test_XXXXXXXX
 RAZORPAY_KEY_SECRET=your_secret_key
 RAZORPAY_WEBHOOK_SECRET=your_webhook_secret_here
-
 ```
 
 ### 4. Start the Application
 ```bash
 nodemon app.js
-
-and then mavigate to the browser
 ```
+
+Then navigate to the browser.
 
 ### 5. Access the Application
 Open your browser and navigate to:
@@ -168,7 +167,6 @@ http://localhost:8080
 
 ---
 
-
 ## 📌 Real-World Insights
 
 The WanderLust project demonstrates:
@@ -203,6 +201,3 @@ For contributions, queries, or collaborations related to open-source initiatives
 - **Bootstrap**
 - **Cloudinary**
 - **Passport.js**
-
----
-
