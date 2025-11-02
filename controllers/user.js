@@ -66,3 +66,12 @@ module.exports.handleConsent = async (req, res) => {
     req.flash("success", "Your preference has been saved!");
     res.redirect("/listings");
 };
+
+// Privacy and Terms controllers
+module.exports.renderPrivacy = (req, res) => {
+    res.render("users/privacy.ejs");
+};
+
+module.exports.renderTerms = (req, res) => {
+    res.render("users/terms.ejs");
+};

@@ -27,4 +27,8 @@ router.post("/consent", isLoggedIn, wrapAsync(userController.handleConsent));
 // LOGOUT
 router.get("/logout",userController.logout);
 
+// Privacy and Terms routes
+router.get("/privacy", userController.renderPrivacy);
+router.get("/terms", userController.renderTerms);
+
 module.exports = router;
