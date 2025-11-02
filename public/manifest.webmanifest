@@ -1,0 +1,11 @@
+{
+  "name": "WanderLust",
+  "short_name": "WanderLust",
+  "description": "Find and book amazing stays around the world.",
+  "start_url": "/listings",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#fe424d",
+  "icons": []
+}
