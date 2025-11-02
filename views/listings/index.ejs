@@ -313,7 +313,7 @@
 
         // Initialize cluster map with all listings
         window.addEventListener('load', function () {
-            let allListingsData = <% - JSON.stringify(allListings) %> ;
+            let allListingsData = <%- JSON.stringify(allListings) %>;
             console.log("Listings data:", allListingsData.length, "listings");
 
             // Check if Leaflet is loaded
