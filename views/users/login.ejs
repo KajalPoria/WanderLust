@@ -1,20 +1,20 @@
 <% layout("/layouts/boilerplate") %>
-<h1 class="col-6 offset-2">Login</h1>
+<h1 class="col-6 offset-2"><%= __('users.login.title') %></h1>
 <div class="row mt-5">
     <div class="col-6 offset-2">
         <form action ="/login" method="POST" class="needs-validation" novalidate>
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label"><%= __('users.login.username') %></label>
                 <input
                 name="username"
                 id="username"
                 type="text"
                 class="form-control"
                 required>
-                <div class="valid-feedback">Looks Good!</div>
+                <div class="valid-feedback"><%= __('generic.looksGood') %></div>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label"><%= __('users.login.password') %></label>
                 <input
                 name="password"
                 id="password"
@@ -22,7 +22,7 @@
                 class="form-control"
                 required>
             </div>
-            <button class="btn btn-success">Login</button>
+            <button class="btn btn-success"><%= __('users.login.submit') %></button>
         </form>
     </div>
 </div>

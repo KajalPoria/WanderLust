@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "WanderLust"
+  },
+  "navbar": {
+    "menu": "मेनू",
+    "searchPlaceholder": "गंतव्यों की खोज करें",
+    "hiUser": "नमस्ते, %{username}!",
+    "airbnbHome": "अपना घर सूचीबद्ध करें",
+    "myBookings": "मेरी बुकिंग्स",
+    "myWishlist": "मेरी विशलिस्ट",
+    "forYou": "आपके लिए",
+    "explore": "खोजें",
+    "logout": "लॉग आउट",
+    "signUp": "साइन अप",
+    "logIn": "लॉग इन",
+    "darkMode": "डार्क मोड",
+    "language": "भाषा"
+  },
+  "footer": {
+    "brand": "© वांडरलस्ट प्राइवेट लिमिटेड",
+    "privacy": "गोपनीयता",
+    "terms": "नियम"
+  },
+  "chat": {
+    "title": "वांडरलस्ट सहायक",
+    "greeting": "नमस्ते! मैं आपका वांडरलस्ट ट्रैवल असिस्टेंट हूँ। गंतव्यों या हमारी लिस्टिंग्स के बारे में पूछें!",
+    "placeholder": "एक प्रश्न पूछें..."
+  },
+  "users": {
+    "login": {
+      "title": "लॉगइन",
+      "username": "उपयोगकर्ता नाम",
+      "password": "पासवर्ड",
+      "submit": "लॉगइन"
+    },
+    "signup": {
+      "title": "वांडरलस्ट पर साइनअप",
+      "username": "उपयोगकर्ता नाम",
+      "email": "ईमेल",
+      "password": "पासवर्ड",
+      "submit": "साइनअप"
+    }
+  },
+  "generic": {
+    "looksGood": "अच्छा लग रहा है!"
+  }
+}

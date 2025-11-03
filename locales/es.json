@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "WanderLust"
+  },
+  "navbar": {
+    "menu": "Menú",
+    "searchPlaceholder": "Buscar destinos",
+    "hiUser": "Hola, %{username}!",
+    "airbnbHome": "Anuncia tu alojamiento",
+    "myBookings": "Mis reservas",
+    "myWishlist": "Mi lista de deseos",
+    "forYou": "Para ti",
+    "explore": "Explorar",
+    "logout": "Cerrar sesión",
+    "signUp": "Regístrate",
+    "logIn": "Iniciar sesión",
+    "darkMode": "Modo oscuro",
+    "language": "Idioma"
+  },
+  "footer": {
+    "brand": "© WanderLust Sociedad Privada",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  },
+  "chat": {
+    "title": "Asistente de WanderLust",
+    "greeting": "¡Hola! Soy tu asistente de viajes de WanderLust. ¡Pregúntame sobre destinos o nuestros anuncios!",
+    "placeholder": "Haz una pregunta..."
+  },
+  "users": {
+    "login": {
+      "title": "Iniciar sesión",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión"
+    },
+    "signup": {
+      "title": "Regístrate en WanderLust",
+      "username": "Nombre de usuario",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Regístrate"
+    }
+  },
+  "generic": {
+    "looksGood": "¡Se ve bien!"
+  }
+}

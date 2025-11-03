@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "WanderLust"
+  },
+  "navbar": {
+    "menu": "Menu",
+    "searchPlaceholder": "Search destinations",
+    "hiUser": "Hi, %{username}!",
+    "airbnbHome": "Airbnb your home",
+    "myBookings": "My Bookings",
+    "myWishlist": "My Wishlist",
+    "forYou": "For You",
+    "explore": "Explore",
+    "logout": "Log out",
+    "signUp": "Sign up",
+    "logIn": "Log in",
+    "darkMode": "Dark Mode",
+    "language": "Language"
+  },
+  "footer": {
+    "brand": "© WanderLust Private Limited",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "chat": {
+    "title": "WanderLust Assistant",
+    "greeting": "Hello! I'm your WanderLust travel assistant. Ask me about destinations or our listings!",
+    "placeholder": "Ask a question..."
+  },
+  "users": {
+    "login": {
+      "title": "Login",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Login"
+    },
+    "signup": {
+      "title": "SignUp on WanderLust",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "submit": "SignUp"
+    }
+  },
+  "generic": {
+    "looksGood": "Looks Good!"
+  }
+}

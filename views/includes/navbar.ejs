@@ -523,7 +523,7 @@
     
     <!-- Search Bar - Always Visible -->
     <form class="d-flex search-form-main" role="search" action="/listings" method="GET">
-      <input class="form-control search-inp" type="search" placeholder="Search destinations" aria-label="Search" name="q" value="<%= typeof queryParams !== 'undefined' ? queryParams.q || '' : '' %>">
+      <input class="form-control search-inp" type="search" placeholder="<%= __("navbar.searchPlaceholder") %>" aria-label="Search" name="q" value="<%= typeof queryParams !== 'undefined' ? queryParams.q || '' : '' %>">
       <button class="btn search-btn" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span></span>
@@ -542,7 +542,7 @@
     <div class="collapse navbar-collapse" id="sideMenu">
       <!-- Menu Header -->
       <div class="menu-header">
-        <h5 style="margin: 0; color: var(--text-primary);">Menu</h5>
+        <h5 style="margin: 0; color: var(--text-primary);"><%= __('navbar.menu') %></h5>
         <button class="menu-close" id="menuClose" aria-label="Close menu">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -556,40 +556,40 @@
             <div class="user-avatar">
               <i class="fa-solid fa-user"></i>
             </div>
-            <p class="user-name">Hi, <%= currUser.username %>!</p>
+            <p class="user-name"><%= __('navbar.hiUser', { username: currUser.username }) %></p>
           </div>
           
           <!-- Main Actions -->
           <a href="/listings/new" class="menu-item primary">
             <i class="fa-solid fa-house"></i>
-            <span>Airbnb your home</span>
+            <span><%= __('navbar.airbnbHome') %></span>
           </a>
           
           <a href="/bookings" class="menu-item">
             <i class="fa-solid fa-calendar-check"></i>
-            <span>My Bookings</span>
+            <span><%= __('navbar.myBookings') %></span>
           </a>
           
           <a href="/wishlist" class="menu-item">
             <i class="fa-solid fa-heart"></i>
-            <span>My Wishlist</span>
+            <span><%= __('navbar.myWishlist') %></span>
           </a>
           
           <a href="/recommendations" class="menu-item">
             <i class="fa-solid fa-sparkles"></i>
-            <span>For You</span>
+            <span><%= __('navbar.forYou') %></span>
           </a>
           
           <div class="menu-divider"></div>
           
           <a href="/listings" class="menu-item">
             <i class="fa-solid fa-compass"></i>
-            <span>Explore</span>
+            <span><%= __('navbar.explore') %></span>
           </a>
           
           <a href="/logout" class="menu-item">
             <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Log out</span>
+            <span><%= __('navbar.logout') %></span>
           </a>
           
         <% } else { %>
@@ -597,12 +597,12 @@
           <div class="auth-links">
             <a href="/signup" class="menu-item primary">
               <i class="fa-solid fa-user-plus"></i>
-              <span>Sign up</span>
+              <span><%= __('navbar.signUp') %></span>
             </a>
             
             <a href="/login" class="menu-item">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <span>Log in</span>
+              <span><%= __('navbar.logIn') %></span>
             </a>
           </div>
           
@@ -610,20 +610,34 @@
           
           <a href="/listings/new" class="menu-item">
             <i class="fa-solid fa-house"></i>
-            <span>Airbnb your home</span>
+            <span><%= __('navbar.airbnbHome') %></span>
           </a>
           
           <a href="/listings" class="menu-item">
             <i class="fa-solid fa-compass"></i>
-            <span>Explore</span>
+            <span><%= __('navbar.explore') %></span>
           </a>
         <% } %>
+        
+        <!-- Language Switcher -->
+        <div class="dropdown" style="margin-left: 0.5rem;">
+          <button class="menu-item" style="display:flex; align-items:center; gap:0.5rem;" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-globe"></i>
+            <span><%= __('navbar.language') %></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="<%= langUrl('en') %>">English</a></li>
+            <li><a class="dropdown-item" href="<%= langUrl('hi') %>">हिंदी</a></li>
+            <li><a class="dropdown-item" href="<%= langUrl('fr') %>">Français</a></li>
+            <li><a class="dropdown-item" href="<%= langUrl('es') %>">Español</a></li>
+          </ul>
+        </div>
         
         <!-- Theme Toggle -->
         <div class="theme-toggle-item">
           <span>
             <i class="fa-solid fa-circle-half-stroke"></i>
-            Dark Mode
+            <%= __('navbar.darkMode') %>
           </span>
           <label class="theme-switch">
             <input type="checkbox" id="theme-toggle-checkbox">
