@@ -117,7 +117,7 @@
 
 <div class="container">
     <div class="wishlist-header">
-        <h1><i class="fa-solid fa-heart"></i> My Wishlist</h1>
+        <h1><i class="fa-solid fa-heart"></i> <%= __('wishlist.title') %></h1>
         <p class="text-muted">Your saved favorite destinations</p>
     </div>
 
@@ -131,17 +131,17 @@
                         <p class="card-text">
                             <i class="fa-solid fa-location-dot"></i> <%= listing.location %>, <%= listing.country %>
                         </p>
-                        <p class="price">₹<%= listing.price.toLocaleString("en-IN") %> / night</p>
+                        <p class="price">₹<%= listing.price.toLocaleString("en-IN") %> / <%= __('listings.perNight') %></p>
                         <% if(listing.owner) { %>
-                            <p class="card-text"><small class="text-muted">Hosted by <%= listing.owner.username %></small></p>
+                            <p class="card-text"><small class="text-muted"><%= __('listing.hostedBy') %> <%= listing.owner.username %></small></p>
                         <% } %>
                         <div class="d-flex justify-content-between mt-3">
                             <a href="/listings/<%= listing._id %>" class="view-btn">
-                                <i class="fa-solid fa-eye"></i> View Details
+                                <i class="fa-solid fa-eye"></i> <%= __('listings.viewDetails') %>
                             </a>
                             <form method="POST" action="/wishlist/<%= listing._id %>?_method=DELETE" class="d-inline">
                                 <button type="submit" class="remove-btn">
-                                    <i class="fa-solid fa-trash"></i> Remove
+                                    <i class="fa-solid fa-trash"></i> <%= __('wishlist.remove') %>
                                 </button>
                             </form>
                         </div>
@@ -152,10 +152,10 @@
     <% } else { %>
         <div class="empty-wishlist">
             <i class="fa-regular fa-heart"></i>
-            <h3>Your wishlist is empty</h3>
-            <p>Start adding your favorite destinations to plan your next adventure!</p>
+            <h3><%= __('wishlist.noItems') %></h3>
+            <p><%= __('wishlist.addSome') %></p>
             <a href="/listings" class="btn btn-primary" style="background-color: #fe424d; border: none;">
-                <i class="fa-solid fa-search"></i> Explore Listings
+                <i class="fa-solid fa-search"></i> <%= __('bookings.exploreListings') %>
             </a>
         </div>
     <% } %>

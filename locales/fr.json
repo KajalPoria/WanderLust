@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "brand": "WanderLust",
+    "search": "Rechercher des destinations...",
+    "explore": "Explorer",
+    "addListing": "Louez votre maison",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "logout": "Déconnexion",
+    "myBookings": "Mes réservations",
+    "myWishlist": "Ma liste de souhaits",
+    "recommendations": "Recommandations",
+    "profile": "Profil"
+  },
+  "home": {
+    "welcome": "Bienvenue sur WanderLust",
+    "subtitle": "Découvrez des endroits incroyables pour séjourner dans le monde entier"
+  },
+  "listings": {
+    "title": "Toutes les annonces",
+    "filters": {
+      "all": "Tous",
+      "trending": "Tendances",
+      "rooms": "Chambres",
+      "iconicCities": "Villes emblématiques",
+      "mountains": "Montagnes",
+      "castles": "Châteaux",
+      "pools": "Piscines incroyables",
+      "camping": "Camping",
+      "farms": "Fermes",
+      "arctic": "Arctique",
+      "beach": "Plage",
+      "desert": "Désert"
+    },
+    "taxToggle": "Afficher le total avant taxes",
+    "new": "Nouveau",
+    "viewDetails": "Voir les détails",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "addToWishlist": "Ajouter à la liste de souhaits",
+    "removeFromWishlist": "Retirer de la liste de souhaits",
+    "noListings": "Aucune annonce trouvée",
+    "createListing": "Créer une nouvelle annonce",
+    "price": "Prix",
+    "perNight": "/ nuit",
+    "location": "Emplacement",
+    "country": "Pays",
+    "description": "Description",
+    "image": "Image"
+  },
+  "listing": {
+    "details": "Détails de l'annonce",
+    "hostedBy": "Hébergé par",
+    "bookNow": "Réserver maintenant",
+    "reviews": "Avis",
+    "leaveReview": "Laisser un avis",
+    "rating": "Note",
+    "comment": "Commentaire",
+    "submit": "Soumettre",
+    "edit": "Modifier l'annonce",
+    "delete": "Supprimer l'annonce",
+    "noReviews": "Pas encore d'avis. Soyez le premier à laisser un avis!",
+    "writeReview": "Écrire un avis"
+  },
+  "bookings": {
+    "title": "Mes réservations",
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "guests": "Invités",
+    "totalPrice": "Prix total",
+    "status": "Statut",
+    "viewDetails": "Voir les détails",
+    "cancel": "Annuler la réservation",
+    "noBookings": "Vous n'avez pas encore de réservations",
+    "exploreListings": "Explorer les annonces",
+    "checkout": "Paiement",
+    "confirmBooking": "Confirmer la réservation",
+    "bookingDetails": "Détails de la réservation",
+    "paymentMethod": "Mode de paiement",
+    "proceedToPayment": "Procéder au paiement"
+  },
+  "wishlist": {
+    "title": "Ma liste de souhaits",
+    "noItems": "Votre liste de souhaits est vide",
+    "addSome": "Commencez à ajouter vos endroits préférés!",
+    "remove": "Retirer",
+    "viewListing": "Voir l'annonce"
+  },
+  "recommendations": {
+    "title": "Recommandé pour vous",
+    "basedOn": "Basé sur vos préférences et votre historique de navigation",
+    "noRecommendations": "Aucune recommandation disponible pour le moment"
+  },
+  "auth": {
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "logout": "Déconnexion",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "forgotPassword": "Mot de passe oublié?",
+    "rememberMe": "Se souvenir de moi",
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+    "dontHaveAccount": "Vous n'avez pas de compte?",
+    "signUpHere": "Inscrivez-vous ici",
+    "loginHere": "Connectez-vous ici",
+    "signupOn": "S'inscrire sur WanderLust",
+    "looksGood": "Ça a l'air bien!"
+  },
+  "forms": {
+    "title": "Titre",
+    "description": "Description",
+    "price": "Prix",
+    "location": "Emplacement",
+    "country": "Pays",
+    "image": "Image",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "update": "Mettre à jour",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "upload": "Télécharger",
+    "required": "Ce champ est requis",
+    "chooseFile": "Choisir un fichier"
+  },
+  "messages": {
+    "success": "Succès!",
+    "error": "Erreur!",
+    "listingCreated": "Annonce créée avec succès",
+    "listingUpdated": "Annonce mise à jour avec succès",
+    "listingDeleted": "Annonce supprimée avec succès",
+    "reviewPosted": "Avis publié avec succès",
+    "reviewDeleted": "Avis supprimé avec succès",
+    "addedToWishlist": "Ajouté à la liste de souhaits",
+    "removedFromWishlist": "Retiré de la liste de souhaits",
+    "bookingCreated": "Réservation créée avec succès",
+    "bookingCancelled": "Réservation annulée avec succès",
+    "loginSuccess": "Bon retour!",
+    "logoutSuccess": "Vous avez été déconnecté",
+    "signupSuccess": "Bienvenue sur WanderLust!"
+  },
+  "errors": {
+    "pageNotFound": "Page non trouvée",
+    "somethingWentWrong": "Quelque chose s'est mal passé!",
+    "unauthorized": "Vous n'êtes pas autorisé à faire cela",
+    "notFound": "Non trouvé",
+    "invalidCredentials": "Nom d'utilisateur ou mot de passe invalide",
+    "serverError": "Erreur interne du serveur"
+  },
+  "footer": {
+    "about": "À propos de nous",
+    "contact": "Contact",
+    "terms": "Conditions générales",
+    "privacy": "Politique de confidentialité",
+    "copyright": "© 2024 WanderLust. Tous droits réservés.",
+    "followUs": "Suivez-nous"
+  },
+  "chatbot": {
+    "title": "Assistant WanderLust",
+    "greeting": "Bonjour! Je suis votre assistant de voyage WanderLust. Posez-moi des questions sur les destinations ou nos annonces!",
+    "placeholder": "Tapez votre message...",
+    "send": "Envoyer"
+  },
+  "consent": {
+    "title": "Confidentialité et conditions",
+    "message": "Veuillez consulter et accepter notre politique de confidentialité et nos conditions de service pour continuer",
+    "accept": "Accepter et continuer",
+    "decline": "Refuser",
+    "decideLater": "Je déciderai plus tard (Déconnexion)"
+  }
+}

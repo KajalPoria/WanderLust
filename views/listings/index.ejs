@@ -96,70 +96,70 @@
            class="filter-link <%= (!queryParams || !queryParams.category) ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-border-all"></i></div>
-                <p>All</p>
+                <p><%= __('listings.filters.all') %></p>
             </div>
         </a>
         <a href="/listings?category=Trending<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Trending') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-fire"></i></div>
-                <p>Trending</p>
+                <p><%= __('listings.filters.trending') %></p>
             </div>
         </a>
         <a href="/listings?category=Rooms<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Rooms') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-bed"></i></div>
-                <p>Rooms</p>
+                <p><%= __('listings.filters.rooms') %></p>
             </div>
         </a>
         <a href="/listings?category=Iconic Cities<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Iconic Cities') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-mountain-city"></i></div>
-                <p>Iconic Cities</p>
+                <p><%= __('listings.filters.iconicCities') %></p>
             </div>
         </a>
         <a href="/listings?category=Mountains<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Mountains') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-mountain"></i></div>
-                <p>Mountains</p>
+                <p><%= __('listings.filters.mountains') %></p>
             </div>
         </a>
         <a href="/listings?category=Castles<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Castles') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-brands fa-fort-awesome"></i></div>
-                <p>Castles</p>
+                <p><%= __('listings.filters.castles') %></p>
             </div>
         </a>
         <a href="/listings?category=Amazing Pools<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Amazing Pools') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-person-swimming"></i></div>
-                <p>Amazing Pools</p>
+                <p><%= __('listings.filters.pools') %></p>
             </div>
         </a>
         <a href="/listings?category=Camping<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Camping') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-campground"></i></div>
-                <p>Camping</p>
+                <p><%= __('listings.filters.camping') %></p>
             </div>
         </a>
         <a href="/listings?category=Farms<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Farms') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-tractor"></i></div>
-                <p>Farms</p>
+                <p><%= __('listings.filters.farms') %></p>
             </div>
         </a>
         <a href="/listings?category=Arctic<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Arctic') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-regular fa-snowflake"></i></div>
-                <p>Arctic</p>
+                <p><%= __('listings.filters.arctic') %></p>
             </div>
         </a>
         <a href="/listings?category=5 Star rated<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
@@ -183,7 +183,7 @@
         <div class="tax-toggle">
             <div class="form-check-reverse form-switch m-0">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+                <label class="form-check-label" for="flexSwitchCheckDefault"><%= __('listings.taxToggle') %></label>
             </div>
         </div>
     </div>

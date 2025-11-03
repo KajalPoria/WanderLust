@@ -2,13 +2,13 @@
 
 <div class="row mt-3">
     <div class="col-10 offset-1">
-        <h3>My Bookings</h3>
+        <h3><%= __('bookings.title') %></h3>
         <hr />
 
         <% if(bookings.length === 0) { %>
             <div class="alert alert-info" role="alert">
-                <i class="fa-solid fa-circle-info"></i> You don't have any bookings yet. 
-                <a href="/listings" class="alert-link">Start exploring listings</a> to make your first booking!
+                <i class="fa-solid fa-circle-info"></i> <%= __('bookings.noBookings') %>. 
+                <a href="/listings" class="alert-link"><%= __('bookings.exploreListings') %></a> to make your first booking!
             </div>
         <% } else { %>
             <div class="row">
@@ -33,10 +33,10 @@
                                             <%= new Date(booking.checkOut).toLocaleDateString('en-IN') %>
                                         </p>
                                         <p class="card-text">
-                                            <i class="fa-solid fa-users"></i> <%= booking.guests %> guest<%= booking.guests > 1 ? 's' : '' %>
+                                            <i class="fa-solid fa-users"></i> <%= booking.guests %> <%= __('bookings.guests').toLowerCase() %><%= booking.guests > 1 ? 's' : '' %>
                                         </p>
                                         <p class="card-text">
-                                            <strong>Total: &#8377; <%= booking.totalPrice.toLocaleString("en-IN") %></strong>
+                                            <strong><%= __('bookings.totalPrice') %>: &#8377; <%= booking.totalPrice.toLocaleString("en-IN") %></strong>
                                         </p>
                                         <p class="card-text">
                                             <span class="badge <%= booking.paymentStatus === 'completed' ? 'bg-success' : booking.paymentStatus === 'pending' ? 'bg-warning text-dark' : 'bg-danger' %>">
@@ -45,7 +45,7 @@
                                         </p>
                                     </div>
                                     <div class="card-footer bg-transparent">
-                                        <a href="/bookings/<%= booking._id %>" class="btn btn-sm btn-primary">View Details</a>
+                                        <a href="/bookings/<%= booking._id %>" class="btn btn-sm btn-primary"><%= __('bookings.viewDetails') %></a>
                                         <% if(booking.paymentStatus === 'pending') { %>
                                             <form method="POST" action="/bookings/<%= booking._id %>?_method=DELETE" class="d-inline">
                                                 <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to cancel this booking?')">

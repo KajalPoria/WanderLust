@@ -465,6 +465,85 @@
     background-color: #e63946;
   }
   
+  /* Language Selector */
+  .language-selector-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background-color: var(--bg-secondary);
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 992px) {
+    .language-selector-item {
+      padding: 0.5rem 1rem;
+      margin-top: 0;
+      margin-left: 0;
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      gap: 0.75rem;
+    }
+  }
+  
+  .language-selector-item span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+  }
+  
+  @media (min-width: 992px) {
+    .language-selector-item span {
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+  }
+  
+  .language-selector-item i {
+    font-size: 1.25rem;
+    width: 24px;
+  }
+  
+  @media (min-width: 992px) {
+    .language-selector-item i {
+      font-size: 1rem;
+      width: auto;
+    }
+  }
+  
+  .language-select {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .language-select:hover {
+    border-color: #fe424d;
+  }
+  
+  .language-select:focus {
+    border-color: #fe424d;
+    box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.25);
+  }
+  
+  @media (min-width: 992px) {
+    .language-select {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+    }
+  }
+  
   /* Responsive */
   @media (min-width: 992px) {
     .navbar {
@@ -523,7 +602,7 @@
     
     <!-- Search Bar - Always Visible -->
     <form class="d-flex search-form-main" role="search" action="/listings" method="GET">
-      <input class="form-control search-inp" type="search" placeholder="Search destinations" aria-label="Search" name="q" value="<%= typeof queryParams !== 'undefined' ? queryParams.q || '' : '' %>">
+      <input class="form-control search-inp" type="search" placeholder="<%= __('nav.search') %>" aria-label="Search" name="q" value="<%= typeof queryParams !== 'undefined' ? queryParams.q || '' : '' %>">
       <button class="btn search-btn" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span></span>
@@ -562,34 +641,34 @@
           <!-- Main Actions -->
           <a href="/listings/new" class="menu-item primary">
             <i class="fa-solid fa-house"></i>
-            <span>Airbnb your home</span>
+            <span><%= __('nav.addListing') %></span>
           </a>
           
           <a href="/bookings" class="menu-item">
             <i class="fa-solid fa-calendar-check"></i>
-            <span>My Bookings</span>
+            <span><%= __('nav.myBookings') %></span>
           </a>
           
           <a href="/wishlist" class="menu-item">
             <i class="fa-solid fa-heart"></i>
-            <span>My Wishlist</span>
+            <span><%= __('nav.myWishlist') %></span>
           </a>
           
           <a href="/recommendations" class="menu-item">
             <i class="fa-solid fa-sparkles"></i>
-            <span>For You</span>
+            <span><%= __('nav.recommendations') %></span>
           </a>
           
           <div class="menu-divider"></div>
           
           <a href="/listings" class="menu-item">
             <i class="fa-solid fa-compass"></i>
-            <span>Explore</span>
+            <span><%= __('nav.explore') %></span>
           </a>
           
           <a href="/logout" class="menu-item">
             <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Log out</span>
+            <span><%= __('nav.logout') %></span>
           </a>
           
         <% } else { %>
@@ -597,12 +676,12 @@
           <div class="auth-links">
             <a href="/signup" class="menu-item primary">
               <i class="fa-solid fa-user-plus"></i>
-              <span>Sign up</span>
+              <span><%= __('nav.signup') %></span>
             </a>
             
             <a href="/login" class="menu-item">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <span>Log in</span>
+              <span><%= __('nav.login') %></span>
             </a>
           </div>
           
@@ -610,14 +689,28 @@
           
           <a href="/listings/new" class="menu-item">
             <i class="fa-solid fa-house"></i>
-            <span>Airbnb your home</span>
+            <span><%= __('nav.addListing') %></span>
           </a>
           
           <a href="/listings" class="menu-item">
             <i class="fa-solid fa-compass"></i>
-            <span>Explore</span>
+            <span><%= __('nav.explore') %></span>
           </a>
         <% } %>
+        
+        <!-- Language Selector -->
+        <div class="language-selector-item">
+          <span>
+            <i class="fa-solid fa-language"></i>
+            Language
+          </span>
+          <select id="language-selector" class="language-select" onchange="changeLanguage(this.value)">
+            <option value="en" <%= locale === 'en' ? 'selected' : '' %>>English</option>
+            <option value="hi" <%= locale === 'hi' ? 'selected' : '' %>>हिन्दी</option>
+            <option value="fr" <%= locale === 'fr' ? 'selected' : '' %>>Français</option>
+            <option value="es" <%= locale === 'es' ? 'selected' : '' %>>Español</option>
+          </select>
+        </div>
         
         <!-- Theme Toggle -->
         <div class="theme-toggle-item">
@@ -670,4 +763,9 @@
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
   });
+  
+  // Language change function
+  function changeLanguage(lang) {
+    window.location.href = '/language/' + lang;
+  }
 </script>
