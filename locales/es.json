@@ -44,5 +44,92 @@
   },
   "generic": {
     "looksGood": "¡Se ve bien!"
+  },
+  "listings": {
+    "index": {
+      "filters": {
+        "all": "Todas",
+        "trending": "Tendencia",
+        "rooms": "Habitaciones",
+        "iconicCities": "Ciudades icónicas",
+        "mountains": "Montañas",
+        "castles": "Castillos",
+        "amazingPools": "Piscinas increíbles",
+        "camping": "Campamentos",
+        "farms": "Granjas",
+        "arctic": "Ártico",
+        "fiveStarRated": "5 estrellas",
+        "mostLoved": "Más queridas"
+      },
+      "tax": {"display": "Mostrar total después de impuestos"},
+      "map": {"title": "Explorar anuncios en el mapa", "expand": "Ampliar mapa"},
+      "controls": {
+        "minPrice": "Precio mín",
+        "maxPrice": "Precio máx",
+        "minRating": "Valoración mín",
+        "any": "Cualquiera",
+        "fourPlus": "4+ estrellas",
+        "threePlus": "3+ estrellas",
+        "twoPlus": "2+ estrellas",
+        "onePlus": "1+ estrella",
+        "apply": "Aplicar"
+      },
+      "card": {
+        "owner": "Propietario:",
+        "perNight": "/ noche",
+        "gst": "con 18% de impuestos"
+      }
+    },
+    "show": {
+      "ownedBy": "Propiedad de:",
+      "perNight": "por noche",
+      "bookNow": "Reservar ahora",
+      "where": "Dónde estarás",
+      "map": {"expand": "Ampliar mapa", "unavailable": "Mapa no disponible para esta ubicación"},
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "reviews": {
+        "leave": "Dejar una reseña",
+        "rating": "Valoración",
+        "legend": "Primera valoración:",
+        "terrible": "Terrible",
+        "notGood": "No es bueno",
+        "average": "Promedio",
+        "veryGood": "Muy bueno",
+        "amazing": "Asombroso",
+        "star": "estrella",
+        "stars": "estrellas",
+        "comments": "Comentarios",
+        "invalidComment": "Por favor añade comentarios para la reseña.",
+        "submit": "Enviar",
+        "all": "Todas las reseñas",
+        "delete": "Eliminar"
+      }
+    },
+    "new": {
+      "title": "Crear un nuevo anuncio",
+      "fields": {
+        "title": {"label": "Título", "placeholder": "Introduce un título llamativo", "valid": "¡El título se ve bien!"},
+        "description": {"label": "Descripción", "invalid": "Por favor introduce una breve descripción"},
+        "image": {"label": "Subir imagen del anuncio"},
+        "price": {"label": "Precio", "placeholder": "1200", "invalid": "El precio debe ser válido"},
+        "country": {"label": "País", "placeholder": "India", "invalid": "El nombre del país debe ser válido"},
+        "location": {"label": "Ubicación", "placeholder": "Goa", "invalid": "La ubicación debe ser válida"}
+      },
+      "addButton": "Agregar"
+    },
+    "edit": {
+      "title": "Editar tu anuncio",
+      "originalImage": "Imagen original del anuncio",
+      "uploadNewImage": "Subir nueva imagen",
+      "fields": {
+        "title": {"label": "Título", "valid": "¡El título se ve bien!"},
+        "description": {"label": "Descripción", "invalid": "Por favor introduce una breve descripción"},
+        "price": {"label": "Precio", "invalid": "El precio debe ser válido"},
+        "country": {"label": "País", "invalid": "El nombre del país debe ser válido"},
+        "location": {"label": "Ubicación", "invalid": "La ubicación debe ser válida"}
+      },
+      "editButton": "Editar"
+    }
   }
 }

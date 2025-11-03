@@ -96,84 +96,84 @@
            class="filter-link <%= (!queryParams || !queryParams.category) ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-border-all"></i></div>
-                <p>All</p>
+                <p><%= __('listings.index.filters.all') %></p>
             </div>
         </a>
         <a href="/listings?category=Trending<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Trending') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-fire"></i></div>
-                <p>Trending</p>
+                <p><%= __('listings.index.filters.trending') %></p>
             </div>
         </a>
         <a href="/listings?category=Rooms<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Rooms') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-bed"></i></div>
-                <p>Rooms</p>
+                <p><%= __('listings.index.filters.rooms') %></p>
             </div>
         </a>
         <a href="/listings?category=Iconic Cities<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Iconic Cities') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-mountain-city"></i></div>
-                <p>Iconic Cities</p>
+                <p><%= __('listings.index.filters.iconicCities') %></p>
             </div>
         </a>
         <a href="/listings?category=Mountains<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Mountains') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-mountain"></i></div>
-                <p>Mountains</p>
+                <p><%= __('listings.index.filters.mountains') %></p>
             </div>
         </a>
         <a href="/listings?category=Castles<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Castles') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-brands fa-fort-awesome"></i></div>
-                <p>Castles</p>
+                <p><%= __('listings.index.filters.castles') %></p>
             </div>
         </a>
         <a href="/listings?category=Amazing Pools<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Amazing Pools') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-person-swimming"></i></div>
-                <p>Amazing Pools</p>
+                <p><%= __('listings.index.filters.amazingPools') %></p>
             </div>
         </a>
         <a href="/listings?category=Camping<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Camping') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-campground"></i></div>
-                <p>Camping</p>
+                <p><%= __('listings.index.filters.camping') %></p>
             </div>
         </a>
         <a href="/listings?category=Farms<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Farms') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-tractor"></i></div>
-                <p>Farms</p>
+                <p><%= __('listings.index.filters.farms') %></p>
             </div>
         </a>
         <a href="/listings?category=Arctic<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Arctic') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-regular fa-snowflake"></i></div>
-                <p>Arctic</p>
+                <p><%= __('listings.index.filters.arctic') %></p>
             </div>
         </a>
         <a href="/listings?category=5 Star rated<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === '5 Star rated') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-star"></i></div>
-                <p>5 Star rated</p>
+                <p><%= __('listings.index.filters.fiveStarRated') %></p>
             </div>
         </a>
         <a href="/listings?category=Most loved<%= queryParams && queryParams.q ? `&q=${queryParams.q}` : '' %>" 
            class="filter-link <%= (queryParams && queryParams.category === 'Most loved') ? 'active' : '' %>">
             <div class="filter">
                 <div><i class="fa-solid fa-bookmark"></i></div>
-                <p>Most loved</p>
+                <p><%= __('listings.index.filters.mostLoved') %></p>
             </div>
         </a>
       </div>
@@ -183,15 +183,15 @@
         <div class="tax-toggle">
             <div class="form-check-reverse form-switch m-0">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+                <label class="form-check-label" for="flexSwitchCheckDefault"><%= __('listings.index.tax.display') %></label>
             </div>
         </div>
     </div>
 
     <div class="container mt-4 mb-4">
-        <h4 class="mb-3">Explore Listings on Map</h4>
+    <h4 class="mb-3"><%= __('listings.index.map.title') %></h4>
         <div class="map-wrapper">
-            <button class="map-toggle" data-target="#cluster-map"><i class="fa-solid fa-expand"></i> Expand map</button>
+            <button class="map-toggle" data-target="#cluster-map"><i class="fa-solid fa-expand"></i> <%= __('listings.index.map.expand') %></button>
             <div id="cluster-map" class="map-container is-large"></div>
         </div>
     </div>
@@ -208,29 +208,29 @@
         <% } %>
 
         <div class="form-group" style="min-width: 120px;">
-            <label for="minPrice" class="form-label mb-0" style="font-size: 0.8rem;">Min Price</label>
+            <label for="minPrice" class="form-label mb-0" style="font-size: 0.8rem;"><%= __('listings.index.controls.minPrice') %></label>
             <input type="number" class="form-control form-control-sm" id="minPrice" name="minPrice" placeholder="Min" 
                    value="<%= queryParams && queryParams.minPrice ? queryParams.minPrice : '' %>">
         </div>
 
         <div class="form-group" style="min-width: 120px;">
-            <label for="maxPrice" class="form-label mb-0" style="font-size: 0.8rem;">Max Price</label>
+            <label for="maxPrice" class="form-label mb-0" style="font-size: 0.8rem;"><%= __('listings.index.controls.maxPrice') %></label>
             <input type="number" class="form-control form-control-sm" id="maxPrice" name="maxPrice" placeholder="Max" 
                    value="<%= queryParams && queryParams.maxPrice ? queryParams.maxPrice : '' %>">
         </div>
 
         <div class="form-group" style="min-width: 120px;">
-            <label for="minRating" class="form-label mb-0" style="font-size: 0.8rem;">Min Rating</label>
+            <label for="minRating" class="form-label mb-0" style="font-size: 0.8rem;"><%= __('listings.index.controls.minRating') %></label>
             <select class="form-select form-select-sm" id="minRating" name="minRating">
-                <option value="">Any</option>
-                <option value="4" <%= (queryParams && queryParams.minRating == '4') ? 'selected' : '' %>>4+ stars</option>
-                <option value="3" <%= (queryParams && queryParams.minRating == '3') ? 'selected' : '' %>>3+ stars</option>
-                <option value="2" <%= (queryParams && queryParams.minRating == '2') ? 'selected' : '' %>>2+ stars</option>
-                <option value="1" <%= (queryParams && queryParams.minRating == '1') ? 'selected' : '' %>>1+ star</option>
+                <option value=""><%= __('listings.index.controls.any') %></option>
+                <option value="4" <%= (queryParams && queryParams.minRating == '4') ? 'selected' : '' %>><%= __('listings.index.controls.fourPlus') %></option>
+                <option value="3" <%= (queryParams && queryParams.minRating == '3') ? 'selected' : '' %>><%= __('listings.index.controls.threePlus') %></option>
+                <option value="2" <%= (queryParams && queryParams.minRating == '2') ? 'selected' : '' %>><%= __('listings.index.controls.twoPlus') %></option>
+                <option value="1" <%= (queryParams && queryParams.minRating == '1') ? 'selected' : '' %>><%= __('listings.index.controls.onePlus') %></option>
             </select>
         </div>
 
-        <button type="submit" class="btn btn-sm btn-dark" style="align-self: flex-end;">Apply</button>
+        <button type="submit" class="btn btn-sm btn-dark" style="align-self: flex-end;"><%= __('listings.index.controls.apply') %></button>
         
         </form>
     </div>
@@ -256,11 +256,11 @@
                             
                             <span class="price-display" data-base-price="<%= listing.price %>">
                                 &#8377;<%= listing.price.toLocaleString("en-IN") %>
-                            </span> / night 
-                            <i class="tax-info" style="display: none;">&nbsp;with 18% GST</i><br>
+                            </span> <%= __('listings.index.card.perNight') %>
+                            <i class="tax-info" style="display: none;">&nbsp;<%= __('listings.index.card.gst') %></i><br>
 
                             <% if(listing.owner) { %>
-                                <small>Owner: <%= listing.owner.username %></small>
+                                <small><%= __('listings.index.card.owner') %> <%= listing.owner.username %></small>
                             <% } %>
                         </p>
                     </div>

@@ -2,45 +2,45 @@
 <div class="row">
     <div class="col-8 offset-2">
         <br>
-    <h3>Create a New Listing</h3>
+    <h3><%= __('listings.new.title') %></h3>
     <form method="POST"
     action="/listings"
     novalidate class="needs-validation"
     enctype="multipart/form-data">
 
         <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input name="listing[title]" placeholder="Enter some catchy title" type="text" class="form-control" required>
-        <div class="valid-feedback">Title looks good!</div>
+    <label for="title" class="form-label"><%= __('listings.new.fields.title.label') %></label>
+    <input name="listing[title]" placeholder="<%= __('listings.new.fields.title.placeholder') %>" type="text" class="form-control" required>
+    <div class="valid-feedback"><%= __('listings.new.fields.title.valid') %></div>
         </div>
         <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+    <label for="description" class="form-label"><%= __('listings.new.fields.description.label') %></label>
         <textarea name="listing[description]" class="form-control" required></textarea>
-        <div class="invalid-feedback">Please enter a short description</div>
+    <div class="invalid-feedback"><%= __('listings.new.fields.description.invalid') %></div>
     </div>
         <div class="mb-3">
-        <label for="image" class="form-label">Upload Listing Image</label>
+    <label for="image" class="form-label"><%= __('listings.new.fields.image.label') %></label>
         <input name="listing[image]" type="file" class="form-control">
         </div>
         <div class="row">
         <div class="mb-3 col-md-4">
-        <label for="price" class="form-label">Price</label>
-        <input name="listing[price]" placeholder="1200" type="number" class="form-control" required>
-        <div class="invalid-feedback">Price should be valid</div>
+    <label for="price" class="form-label"><%= __('listings.new.fields.price.label') %></label>
+    <input name="listing[price]" placeholder="<%= __('listings.new.fields.price.placeholder') %>" type="number" class="form-control" required>
+    <div class="invalid-feedback"><%= __('listings.new.fields.price.invalid') %></div>
         </div>
         <div class="mb-3 col-md-8">
-        <label for="country" class="form-label">Country</label>
-        <input name="listing[country]" placeholder="India" type="text" class="form-control" required>
-        <div class="invalid-feedback">Country name should be valid</div>
+    <label for="country" class="form-label"><%= __('listings.new.fields.country.label') %></label>
+    <input name="listing[country]" placeholder="<%= __('listings.new.fields.country.placeholder') %>" type="text" class="form-control" required>
+    <div class="invalid-feedback"><%= __('listings.new.fields.country.invalid') %></div>
         </div>
         </div>
         <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
-        <input name="listing[location]" placeholder="Goa" type="text" class="form-control" required>
-        <div class="invalid-feedback">Location should be valid</div>
+    <label for="location" class="form-label"><%= __('listings.new.fields.location.label') %></label>
+    <input name="listing[location]" placeholder="<%= __('listings.new.fields.location.placeholder') %>" type="text" class="form-control" required>
+    <div class="invalid-feedback"><%= __('listings.new.fields.location.invalid') %></div>
         </div>
         <br>
-        <button class="btn btn-dark add-btn">Add</button>
+    <button class="btn btn-dark add-btn"><%= __('listings.new.addButton') %></button>
         <br><br><br>
     </form>
     <script src="/public/js/script.js"></script>
