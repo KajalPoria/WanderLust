@@ -42,17 +42,17 @@
 	<div class="chat-widget" id="chat-widget">
 		<div class="chat-header">
 			<i class="fa-solid fa-robot"></i>
-			<h5>WanderLust Assistant</h5>
+			<h5><%= __('chatbot.title') %></h5>
 		</div>
 		<div class="chat-body" id="chat-body">
 			<div class="chat-message bot">
-				<p>Hello! I'm your WanderLust travel assistant. Ask me about destinations or our listings!</p>
+				<p><%= __('chatbot.greeting') %></p>
 			</div>
 		</div>
 		<div class="chat-footer">
 			<form id="chat-form">
-				<input type="text" id="chat-message" placeholder="Ask a question..." autocomplete="off" required>
-				<button type="submit" id="chat-send" aria-label="Send message">
+				<input type="text" id="chat-message" placeholder="<%= __('chatbot.placeholder') %>" autocomplete="off" required>
+				<button type="submit" id="chat-send" aria-label="<%= __('chatbot.send') %>">
 					<i class="fa-solid fa-paper-plane"></i>
 				</button>
 			</form>

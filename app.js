@@ -15,6 +15,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const i18n = require("i18n");
 
 
 const listingsRouter = require("./routes/listing.js");
@@ -44,6 +45,18 @@ app.use(express.json()); // For parsing JSON payloads
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+
+// Configure i18n
+i18n.configure({
+    locales: ['en', 'hi', 'fr', 'es'], // English, Hindi, French, Spanish
+    defaultLocale: 'en',
+    directory: path.join(__dirname, 'locales'),
+    queryParameter: 'lang',
+    cookie: 'lang',
+    autoReload: true,
+    syncFiles: true,
+    updateFiles: false
+});
 
 
 const store = MongoStore.create({
@@ -75,6 +88,17 @@ app.use(express.static('public'));
 app.use(session(sessionOptions));
 app.use(flash());
 
+// Initialize i18n
+app.use(i18n.init);
+
+// Set language preference from session or cookie
+app.use((req, res, next) => {
+    if (req.session && req.session.locale) {
+        req.setLocale(req.session.locale);
+    }
+    next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -89,6 +113,8 @@ app.use((req,res,next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
+    res.locals.__ = res.__;  // Make i18n translation function available in views
+    res.locals.locale = req.getLocale();  // Make current locale available in views
     next();
 });
 
@@ -99,6 +125,22 @@ app.use(checkConsent);
 // ROUTES
 app.get("/", (req, res) => {
     res.redirect("/listings");
+});
+
+// Language switching route
+app.get("/language/:lang", (req, res) => {
+    const lang = req.params.lang;
+    const supportedLocales = ['en', 'hi', 'fr', 'es'];
+    
+    if (supportedLocales.includes(lang)) {
+        req.session.locale = lang;
+        res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000 }); // 1 year
+        req.setLocale(lang);
+    }
+    
+    // Redirect back to the previous page or home
+    const redirectUrl = req.get('Referrer') || '/listings';
+    res.redirect(redirectUrl);
 });
 
 app.use("/", userRouter); // Handles /signup, /login, /logout, /consent

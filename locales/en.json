@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "brand": "WanderLust",
+    "search": "Search destinations...",
+    "explore": "Explore",
+    "addListing": "Airbnb your home",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "myBookings": "My Bookings",
+    "myWishlist": "My Wishlist",
+    "recommendations": "Recommendations",
+    "profile": "Profile"
+  },
+  "home": {
+    "welcome": "Welcome to WanderLust",
+    "subtitle": "Discover amazing places to stay around the world"
+  },
+  "listings": {
+    "title": "All Listings",
+    "filters": {
+      "all": "All",
+      "trending": "Trending",
+      "rooms": "Rooms",
+      "iconicCities": "Iconic Cities",
+      "mountains": "Mountains",
+      "castles": "Castles",
+      "pools": "Amazing Pools",
+      "camping": "Camping",
+      "farms": "Farms",
+      "arctic": "Arctic",
+      "beach": "Beach",
+      "desert": "Desert"
+    },
+    "taxToggle": "Display total before taxes",
+    "new": "New",
+    "viewDetails": "View Details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "noListings": "No listings found",
+    "createListing": "Create New Listing",
+    "price": "Price",
+    "perNight": "/ night",
+    "location": "Location",
+    "country": "Country",
+    "description": "Description",
+    "image": "Image"
+  },
+  "listing": {
+    "details": "Listing Details",
+    "hostedBy": "Hosted by",
+    "bookNow": "Book Now",
+    "reviews": "Reviews",
+    "leaveReview": "Leave a Review",
+    "rating": "Rating",
+    "comment": "Comment",
+    "submit": "Submit",
+    "edit": "Edit Listing",
+    "delete": "Delete Listing",
+    "noReviews": "No reviews yet. Be the first to review!",
+    "writeReview": "Write a Review"
+  },
+  "bookings": {
+    "title": "My Bookings",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "totalPrice": "Total Price",
+    "status": "Status",
+    "viewDetails": "View Details",
+    "cancel": "Cancel Booking",
+    "noBookings": "You have no bookings yet",
+    "exploreListings": "Explore Listings",
+    "checkout": "Checkout",
+    "confirmBooking": "Confirm Booking",
+    "bookingDetails": "Booking Details",
+    "paymentMethod": "Payment Method",
+    "proceedToPayment": "Proceed to Payment"
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "noItems": "Your wishlist is empty",
+    "addSome": "Start adding your favorite places!",
+    "remove": "Remove",
+    "viewListing": "View Listing"
+  },
+  "recommendations": {
+    "title": "Recommended For You",
+    "basedOn": "Based on your preferences and browsing history",
+    "noRecommendations": "No recommendations available yet"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember Me",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signUpHere": "Sign up here",
+    "loginHere": "Login here",
+    "signupOn": "SignUp on WanderLust",
+    "looksGood": "Looks Good!"
+  },
+  "forms": {
+    "title": "Title",
+    "description": "Description",
+    "price": "Price",
+    "location": "Location",
+    "country": "Country",
+    "image": "Image",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "update": "Update",
+    "delete": "Delete",
+    "edit": "Edit",
+    "upload": "Upload",
+    "required": "This field is required",
+    "chooseFile": "Choose File"
+  },
+  "messages": {
+    "success": "Success!",
+    "error": "Error!",
+    "listingCreated": "Listing created successfully",
+    "listingUpdated": "Listing updated successfully",
+    "listingDeleted": "Listing deleted successfully",
+    "reviewPosted": "Review posted successfully",
+    "reviewDeleted": "Review deleted successfully",
+    "addedToWishlist": "Added to wishlist",
+    "removedFromWishlist": "Removed from wishlist",
+    "bookingCreated": "Booking created successfully",
+    "bookingCancelled": "Booking cancelled successfully",
+    "loginSuccess": "Welcome back!",
+    "logoutSuccess": "You have been logged out",
+    "signupSuccess": "Welcome to WanderLust!"
+  },
+  "errors": {
+    "pageNotFound": "Page Not Found",
+    "somethingWentWrong": "Something went wrong!",
+    "unauthorized": "You are not authorized to do that",
+    "notFound": "Not found",
+    "invalidCredentials": "Invalid username or password",
+    "serverError": "Internal server error"
+  },
+  "footer": {
+    "about": "About Us",
+    "contact": "Contact",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "copyright": "© 2024 WanderLust. All rights reserved.",
+    "followUs": "Follow Us"
+  },
+  "chatbot": {
+    "title": "WanderLust Assistant",
+    "greeting": "Hello! I'm your WanderLust travel assistant. Ask me about destinations or our listings!",
+    "placeholder": "Type your message...",
+    "send": "Send"
+  },
+  "consent": {
+    "title": "Privacy & Terms",
+    "message": "Please review and accept our Privacy Policy and Terms of Service to continue",
+    "accept": "Accept & Continue",
+    "decline": "Decline",
+    "decideLater": "I'll decide later (Logout)"
+  }
+}

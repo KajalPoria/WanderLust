@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "brand": "WanderLust",
+    "search": "गंतव्य खोजें...",
+    "explore": "एक्सप्लोर करें",
+    "addListing": "अपना घर किराए पर दें",
+    "login": "लॉगिन",
+    "signup": "साइन अप",
+    "logout": "लॉगआउट",
+    "myBookings": "मेरी बुकिंग",
+    "myWishlist": "मेरी विशलिस्ट",
+    "recommendations": "सुझाव",
+    "profile": "प्रोफाइल"
+  },
+  "home": {
+    "welcome": "WanderLust में आपका स्वागत है",
+    "subtitle": "दुनिया भर में रहने के लिए अद्भुत स्थान खोजें"
+  },
+  "listings": {
+    "title": "सभी लिस्टिंग",
+    "filters": {
+      "all": "सभी",
+      "trending": "ट्रेंडिंग",
+      "rooms": "कमरे",
+      "iconicCities": "प्रतिष्ठित शहर",
+      "mountains": "पहाड़",
+      "castles": "महल",
+      "pools": "अद्भुत पूल",
+      "camping": "कैंपिंग",
+      "farms": "फार्म",
+      "arctic": "आर्कटिक",
+      "beach": "समुद्र तट",
+      "desert": "रेगिस्तान"
+    },
+    "taxToggle": "कर से पहले कुल राशि दिखाएं",
+    "new": "नया",
+    "viewDetails": "विवरण देखें",
+    "edit": "संपादित करें",
+    "delete": "हटाएं",
+    "addToWishlist": "विशलिस्ट में जोड़ें",
+    "removeFromWishlist": "विशलिस्ट से हटाएं",
+    "noListings": "कोई लिस्टिंग नहीं मिली",
+    "createListing": "नई लिस्टिंग बनाएं",
+    "price": "कीमत",
+    "perNight": "/ रात",
+    "location": "स्थान",
+    "country": "देश",
+    "description": "विवरण",
+    "image": "छवि"
+  },
+  "listing": {
+    "details": "लिस्टिंग विवरण",
+    "hostedBy": "द्वारा होस्ट किया गया",
+    "bookNow": "अभी बुक करें",
+    "reviews": "समीक्षाएं",
+    "leaveReview": "समीक्षा छोड़ें",
+    "rating": "रेटिंग",
+    "comment": "टिप्पणी",
+    "submit": "जमा करें",
+    "edit": "लिस्टिंग संपादित करें",
+    "delete": "लिस्टिंग हटाएं",
+    "noReviews": "अभी तक कोई समीक्षा नहीं। पहले समीक्षा करें!",
+    "writeReview": "समीक्षा लिखें"
+  },
+  "bookings": {
+    "title": "मेरी बुकिंग",
+    "checkIn": "चेक-इन",
+    "checkOut": "चेक-आउट",
+    "guests": "मेहमान",
+    "totalPrice": "कुल कीमत",
+    "status": "स्थिति",
+    "viewDetails": "विवरण देखें",
+    "cancel": "बुकिंग रद्द करें",
+    "noBookings": "आपके पास अभी तक कोई बुकिंग नहीं है",
+    "exploreListings": "लिस्टिंग देखें",
+    "checkout": "चेकआउट",
+    "confirmBooking": "बुकिंग की पुष्टि करें",
+    "bookingDetails": "बुकिंग विवरण",
+    "paymentMethod": "भुगतान विधि",
+    "proceedToPayment": "भुगतान के लिए आगे बढ़ें"
+  },
+  "wishlist": {
+    "title": "मेरी विशलिस्ट",
+    "noItems": "आपकी विशलिस्ट खाली है",
+    "addSome": "अपने पसंदीदा स्थान जोड़ना शुरू करें!",
+    "remove": "हटाएं",
+    "viewListing": "लिस्टिंग देखें"
+  },
+  "recommendations": {
+    "title": "आपके लिए अनुशंसित",
+    "basedOn": "आपकी प्राथमिकताओं और ब्राउज़िंग इतिहास के आधार पर",
+    "noRecommendations": "अभी तक कोई सुझाव उपलब्ध नहीं है"
+  },
+  "auth": {
+    "login": "लॉगिन",
+    "signup": "साइन अप",
+    "logout": "लॉगआउट",
+    "username": "उपयोगकर्ता नाम",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "rememberMe": "मुझे याद रखें",
+    "alreadyHaveAccount": "पहले से खाता है?",
+    "dontHaveAccount": "खाता नहीं है?",
+    "signUpHere": "यहाँ साइन अप करें",
+    "loginHere": "यहाँ लॉगिन करें",
+    "signupOn": "WanderLust पर साइन अप करें",
+    "looksGood": "अच्छा लग रहा है!"
+  },
+  "forms": {
+    "title": "शीर्षक",
+    "description": "विवरण",
+    "price": "कीमत",
+    "location": "स्थान",
+    "country": "देश",
+    "image": "छवि",
+    "submit": "जमा करें",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "update": "अपडेट करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "upload": "अपलोड करें",
+    "required": "यह फ़ील्ड आवश्यक है",
+    "chooseFile": "फ़ाइल चुनें"
+  },
+  "messages": {
+    "success": "सफलता!",
+    "error": "त्रुटि!",
+    "listingCreated": "लिस्टिंग सफलतापूर्वक बनाई गई",
+    "listingUpdated": "लिस्टिंग सफलतापूर्वक अपडेट की गई",
+    "listingDeleted": "लिस्टिंग सफलतापूर्वक हटाई गई",
+    "reviewPosted": "समीक्षा सफलतापूर्वक पोस्ट की गई",
+    "reviewDeleted": "समीक्षा सफलतापूर्वक हटाई गई",
+    "addedToWishlist": "विशलिस्ट में जोड़ा गया",
+    "removedFromWishlist": "विशलिस्ट से हटाया गया",
+    "bookingCreated": "बुकिंग सफलतापूर्वक बनाई गई",
+    "bookingCancelled": "बुकिंग रद्द कर दी गई",
+    "loginSuccess": "वापसी पर स्वागत है!",
+    "logoutSuccess": "आप लॉग आउट हो गए हैं",
+    "signupSuccess": "WanderLust में आपका स्वागत है!"
+  },
+  "errors": {
+    "pageNotFound": "पृष्ठ नहीं मिला",
+    "somethingWentWrong": "कुछ गलत हो गया!",
+    "unauthorized": "आप यह करने के लिए अधिकृत नहीं हैं",
+    "notFound": "नहीं मिला",
+    "invalidCredentials": "अमान्य उपयोगकर्ता नाम या पासवर्ड",
+    "serverError": "आंतरिक सर्वर त्रुटि"
+  },
+  "footer": {
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें",
+    "terms": "नियम और शर्तें",
+    "privacy": "गोपनीयता नीति",
+    "copyright": "© 2024 WanderLust। सर्वाधिकार सुरक्षित।",
+    "followUs": "हमें फॉलो करें"
+  },
+  "chatbot": {
+    "title": "WanderLust सहायक",
+    "greeting": "नमस्ते! मैं आपका WanderLust यात्रा सहायक हूं। मुझसे गंतव्यों या हमारी लिस्टिंग के बारे में पूछें!",
+    "placeholder": "अपना संदेश टाइप करें...",
+    "send": "भेजें"
+  },
+  "consent": {
+    "title": "गोपनीयता और नियम",
+    "message": "जारी रखने के लिए कृपया हमारी गोपनीयता नीति और सेवा की शर्तों की समीक्षा करें और स्वीकार करें",
+    "accept": "स्वीकार करें और जारी रखें",
+    "decline": "अस्वीकार करें",
+    "decideLater": "मैं बाद में तय करूंगा (लॉगआउट)"
+  }
+}
