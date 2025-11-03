@@ -23,8 +23,9 @@ const userRouter = require("./routes/user.js");
 const wishlistRouter = require("./routes/wishlist.js");
 const recommendationsRouter = require("./routes/recommendations.js");
 const bookingRouter = require("./routes/booking.js");
+const chatbotRouter = require("./routes/chatbot.js");
 
-const dbUrl = process.env.ATLAS_URL;
+const dbUrl = process.env.MONGO_URL;
 
 main().then(()=>{
     console.log("connected to db");
@@ -81,6 +82,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// ... (Your file content from line 1 to 85)
+
+// MIDDLEWARE
 app.use((req,res,next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -91,35 +95,44 @@ app.use((req,res,next) => {
 const { checkConsent } = require("./middleware.js");
 app.use(checkConsent);
 
-app.use("/listings", listingsRouter);
-app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/wishlist", wishlistRouter);
-app.use("/recommendations", recommendationsRouter);
 
+// ROUTES
 app.get("/", (req, res) => {
     res.redirect("/listings");
 });
 
-app.use("/listings",listingsRouter);
-app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/", userRouter);
+app.use("/", userRouter); // Handles /signup, /login, /logout, /consent
+app.use("/listings", listingsRouter); // Handles /listings, /listings/:id, etc.
+app.use("/listings/:id/reviews", reviewsRouter); // Handles /listings/:id/reviews
 app.use("/wishlist", wishlistRouter);
 app.use("/recommendations", recommendationsRouter);
 app.use("/bookings", bookingRouter);
+app.use("/api/chatbot", chatbotRouter); // ADDED: The new chatbot API route
 
 
+// 404 CATCH-ALL HANDLER
+// This must be AFTER all other valid routes
 app.all(/.*/, (req, res, next) => {
         next(new ExpressError(404, "Page Not Found"));
     });
 
-app.use((err,req,res,next)=>{
-    let {statusCode=500, message="something went wrong!"} = err;
+// FINAL ERROR HANDLER
+// This must be at the very end
+app.use((err, req, res, next) => {
+    let { statusCode = 500, message = "Something went wrong!" } = err;
+
+    // Check if the request was for an API route
+    if (req.originalUrl && req.originalUrl.startsWith("/api/")) {
+        // Send JSON error for API routes
+        return res.status(statusCode).json({ error: message });
+    }
+
+    // Render HTML error page for all other routes
     res.status(statusCode).render("error.ejs", {
         message,
-        // Pass all variables from res.locals that the layout expects
         currUser: res.locals.currUser,
         success: res.locals.success,
-        error: res.locals.error
+        error: res.locals.error,
     });
 });
 
