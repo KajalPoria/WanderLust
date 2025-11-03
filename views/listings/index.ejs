@@ -253,8 +253,12 @@
                     <div class="card-body">
                         <p class="card-text">
                             <b><%= listing.title %><br></b>
-                            &#8377;<%=listing.price.toLocaleString("en-IN")%> / night 
-                            <i class="tax-info">&nbsp;+18% GST</i><br>
+                            
+                            <span class="price-display" data-base-price="<%= listing.price %>">
+                                &#8377;<%= listing.price.toLocaleString("en-IN") %>
+                            </span> / night 
+                            <i class="tax-info" style="display: none;">&nbsp;with 18% GST</i><br>
+
                             <% if(listing.owner) { %>
                                 <small>Owner: <%= listing.owner.username %></small>
                             <% } %>
@@ -269,12 +273,29 @@
     <script>
         let taxSwitch = document.getElementById("flexSwitchCheckDefault");
         taxSwitch.addEventListener("click", () => {
-            let taxInfo = document.getElementsByClassName("tax-info");
-            for (info of taxInfo) {
-                if (info.style.display != "inline") {
-                    info.style.display = "inline";
+            let priceDisplays = document.querySelectorAll(".price-display");
+
+            for (let priceDisplay of priceDisplays) {
+                let basePrice = parseFloat(priceDisplay.dataset.basePrice);
+                let taxInfo = priceDisplay.nextElementSibling; // Get the <i> tag right after
+
+                if (taxSwitch.checked) {
+                    // Calculate and display price with 18% tax
+                    let totalPrice = (basePrice * 1.18);
+                    priceDisplay.innerHTML = "&#8377;" + totalPrice.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    
+                    // Show the "+18% GST" text
+                    if(taxInfo && taxInfo.classList.contains("tax-info")) {
+                        taxInfo.style.display = "inline";
+                    }
                 } else {
-                    info.style.display = "none";
+                    // Display base price
+                    priceDisplay.innerHTML = "&#8377;" + basePrice.toLocaleString("en-IN");
+                    
+                    // Hide the "+18% GST" text
+                    if(taxInfo && taxInfo.classList.contains("tax-info")) {
+                        taxInfo.style.display = "none";
+                    }
                 }
             }
         });
