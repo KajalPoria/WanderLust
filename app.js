@@ -24,7 +24,7 @@ const wishlistRouter = require("./routes/wishlist.js");
 const recommendationsRouter = require("./routes/recommendations.js");
 const bookingRouter = require("./routes/booking.js");
 
-const dbUrl = process.env.ATLAS_URL;
+const dbUrl = process.env.MONGO_URL;
 
 main().then(()=>{
     console.log("connected to db");
