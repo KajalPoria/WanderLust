@@ -121,6 +121,19 @@ app.use((req,res,next) => {
     res.locals.__ = res.__.bind(res);
     res.locals.__n = res.__n?.bind(res) || (() => {});
     res.locals.locale = req.getLocale();
+    // helper to pick localized content objects (Map or plain object)
+    res.locals.pickLocale = (multi) => {
+        if (!multi) return undefined;
+        const code = req.getLocale();
+        try {
+            if (typeof multi.get === 'function') {
+                return multi.get(code) || multi.get('en');
+            }
+            return multi[code] || multi['en'];
+        } catch(e) {
+            return undefined;
+        }
+    };
     // current path and a helper to build language-specific URLs
     const baseUrl = req.originalUrl.split("?")[0];
     res.locals.currentUrl = baseUrl;

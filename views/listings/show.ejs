@@ -2,7 +2,7 @@
 
 <div class="row mt-3">
 <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <h3 class="text-center mb-4"><%= listing.title %></h3>
+    <h3 class="text-center mb-4"><%= pickLocale(listing.title_i18n) || listing.title %></h3>
 </div>
 <div class="card col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mb-3 show-card listing-card" style="position: relative;">
     <% if(currUser) { %>
@@ -22,7 +22,7 @@
         <% if(listing.owner) { %>
     <p class="card-text"><i><%= __('listings.show.ownedBy') %> <%= listing.owner.username %></i></p>
 <% } %>
-    <p class="card-text"><%= listing.description %><br /></p>
+    <p class="card-text"><%= pickLocale(listing.description_i18n) || listing.description %><br /></p>
         <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %> <%= __('listings.show.perNight') %><br /></p>
     <p class="card-text"><%= listing.location %></p>
     <p class="card-text"><%= listing.country %></p>
@@ -187,7 +187,9 @@
             console.log("No valid geometry data for this listing");
             let mapElement = document.getElementById('property-map');
             if (mapElement) {
-                mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;"><%= __('listings.show.map.unavailable') %></p></div>';
+                const msg = <%- JSON.stringify(__('listings.show.map.unavailable')) %>;
+                mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;"></p></div>';
+                mapElement.querySelector('p').textContent = msg;
             }
         <% } %>
     });

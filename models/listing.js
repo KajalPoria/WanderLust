@@ -7,7 +7,21 @@ const listingSchema = new Schema({
         type: String,
         required: true,
     },
+    // Optional per-locale titles, e.g. { en: '...', hi: '...', fr: '...', es: '...' }
+    title_i18n: {
+        type: Map,
+        of: String,
+        required: false,
+        default: undefined,
+    },
     description: String,
+    // Optional per-locale descriptions
+    description_i18n: {
+        type: Map,
+        of: String,
+        required: false,
+        default: undefined,
+    },
     image: {
         url:String,
         filename:String,

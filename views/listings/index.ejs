@@ -252,7 +252,7 @@
                     <div class="card-img-overlay"></div>
                     <div class="card-body">
                         <p class="card-text">
-                            <b><%= listing.title %><br></b>
+                            <b><%= pickLocale(listing.title_i18n) || listing.title %><br></b>
                             
                             <span class="price-display" data-base-price="<%= listing.price %>">
                                 &#8377;<%= listing.price.toLocaleString("en-IN") %>
