@@ -1,0 +1,135 @@
+{
+  "app": {
+    "title": "WanderLust"
+  },
+  "navbar": {
+    "menu": "Menu",
+    "searchPlaceholder": "Search destinations",
+    "hiUser": "Hi, %{username}!",
+    "airbnbHome": "Airbnb your home",
+    "myBookings": "My Bookings",
+    "myWishlist": "My Wishlist",
+    "forYou": "For You",
+    "explore": "Explore",
+    "logout": "Log out",
+    "signUp": "Sign up",
+    "logIn": "Log in",
+    "darkMode": "Dark Mode",
+    "language": "Language"
+  },
+  "footer": {
+    "brand": "© WanderLust Private Limited",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "chat": {
+    "title": "WanderLust Assistant",
+    "greeting": "Hello! I'm your WanderLust travel assistant. Ask me about destinations or our listings!",
+    "placeholder": "Ask a question..."
+  },
+  "users": {
+    "login": {
+      "title": "Login",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Login"
+    },
+    "signup": {
+      "title": "SignUp on WanderLust",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "submit": "SignUp"
+    }
+  },
+  "generic": {
+    "looksGood": "Looks Good!"
+  },
+  "listings": {
+    "index": {
+      "filters": {
+        "all": "All",
+        "trending": "Trending",
+        "rooms": "Rooms",
+        "iconicCities": "Iconic Cities",
+        "mountains": "Mountains",
+        "castles": "Castles",
+        "amazingPools": "Amazing Pools",
+        "camping": "Camping",
+        "farms": "Farms",
+        "arctic": "Arctic",
+        "fiveStarRated": "5 Star rated",
+        "mostLoved": "Most loved"
+      },
+      "tax": {"display": "Display total after taxes"},
+      "map": {"title": "Explore Listings on Map", "expand": "Expand map"},
+      "controls": {
+        "minPrice": "Min Price",
+        "maxPrice": "Max Price",
+        "minRating": "Min Rating",
+        "any": "Any",
+        "fourPlus": "4+ stars",
+        "threePlus": "3+ stars",
+        "twoPlus": "2+ stars",
+        "onePlus": "1+ star",
+        "apply": "Apply"
+      },
+      "card": {
+        "owner": "Owner:",
+        "perNight": "/ night",
+        "gst": "with 18% GST"
+      }
+    },
+    "show": {
+      "ownedBy": "Owned by:",
+      "perNight": "per night",
+      "bookNow": "Book Now",
+      "where": "Where You'll Be",
+      "map": {"expand": "Expand map", "unavailable": "Map not available for this location"},
+      "edit": "Edit",
+      "delete": "Delete",
+      "reviews": {
+        "leave": "Leave a Review",
+        "rating": "Rating",
+        "legend": "First rating:",
+        "terrible": "Terrible",
+        "notGood": "Not good",
+        "average": "Average",
+        "veryGood": "Very good",
+        "amazing": "Amazing",
+        "star": "star",
+        "stars": "stars",
+        "comments": "Comments",
+        "invalidComment": "Please add some comments for review.",
+        "submit": "Submit",
+        "all": "All reviews",
+        "delete": "Delete"
+      }
+    },
+    "new": {
+      "title": "Create a New Listing",
+      "fields": {
+        "title": {"label": "Title", "placeholder": "Enter some catchy title", "valid": "Title looks good!"},
+        "description": {"label": "Description", "invalid": "Please enter a short description"},
+        "image": {"label": "Upload Listing Image"},
+        "price": {"label": "Price", "placeholder": "1200", "invalid": "Price should be valid"},
+        "country": {"label": "Country", "placeholder": "India", "invalid": "Country name should be valid"},
+        "location": {"label": "Location", "placeholder": "Goa", "invalid": "Location should be valid"}
+      },
+      "addButton": "Add"
+    },
+    "edit": {
+      "title": "Edit your Listing",
+      "originalImage": "Original listing image",
+      "uploadNewImage": "Upload New Image",
+      "fields": {
+        "title": {"label": "Title", "valid": "Title looks good!"},
+        "description": {"label": "Description", "invalid": "Please enter a short description"},
+        "price": {"label": "Price", "invalid": "Price should be valid"},
+        "country": {"label": "Country", "invalid": "Country name should be valid"},
+        "location": {"label": "Location", "invalid": "Location should be valid"}
+      },
+      "editButton": "Edit"
+    }
+  }
+}

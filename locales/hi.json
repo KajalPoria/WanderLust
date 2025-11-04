@@ -1,0 +1,135 @@
+{
+  "app": {
+    "title": "WanderLust"
+  },
+  "navbar": {
+    "menu": "मेनू",
+    "searchPlaceholder": "गंतव्यों की खोज करें",
+    "hiUser": "नमस्ते, %{username}!",
+    "airbnbHome": "अपना घर सूचीबद्ध करें",
+    "myBookings": "मेरी बुकिंग्स",
+    "myWishlist": "मेरी विशलिस्ट",
+    "forYou": "आपके लिए",
+    "explore": "खोजें",
+    "logout": "लॉग आउट",
+    "signUp": "साइन अप",
+    "logIn": "लॉग इन",
+    "darkMode": "डार्क मोड",
+    "language": "भाषा"
+  },
+  "footer": {
+    "brand": "© वांडरलस्ट प्राइवेट लिमिटेड",
+    "privacy": "गोपनीयता",
+    "terms": "नियम"
+  },
+  "chat": {
+    "title": "वांडरलस्ट सहायक",
+    "greeting": "नमस्ते! मैं आपका वांडरलस्ट ट्रैवल असिस्टेंट हूँ। गंतव्यों या हमारी लिस्टिंग्स के बारे में पूछें!",
+    "placeholder": "एक प्रश्न पूछें..."
+  },
+  "users": {
+    "login": {
+      "title": "लॉगइन",
+      "username": "उपयोगकर्ता नाम",
+      "password": "पासवर्ड",
+      "submit": "लॉगइन"
+    },
+    "signup": {
+      "title": "वांडरलस्ट पर साइनअप",
+      "username": "उपयोगकर्ता नाम",
+      "email": "ईमेल",
+      "password": "पासवर्ड",
+      "submit": "साइनअप"
+    }
+  },
+  "generic": {
+    "looksGood": "अच्छा लग रहा है!"
+  },
+  "listings": {
+    "index": {
+      "filters": {
+        "all": "सभी",
+        "trending": "ट्रेंडिंग",
+        "rooms": "कमरे",
+        "iconicCities": "प्रसिद्ध शहर",
+        "mountains": "पहाड़",
+        "castles": "किले",
+        "amazingPools": "शानदार पूल",
+        "camping": "कैंपिंग",
+        "farms": "खेत",
+        "arctic": "आर्कटिक",
+        "fiveStarRated": "5 सितारा रेटेड",
+        "mostLoved": "सबसे पसंदीदा"
+      },
+      "tax": {"display": "करों के बाद कुल दिखाएँ"},
+      "map": {"title": "मानचित्र पर लिस्टिंग देखें", "expand": "मानचित्र बड़ा करें"},
+      "controls": {
+        "minPrice": "न्यूनतम कीमत",
+        "maxPrice": "अधिकतम कीमत",
+        "minRating": "न्यूनतम रेटिंग",
+        "any": "कोई भी",
+        "fourPlus": "4+ सितारे",
+        "threePlus": "3+ सितारे",
+        "twoPlus": "2+ सितारे",
+        "onePlus": "1+ सितारा",
+        "apply": "लागू करें"
+      },
+      "card": {
+        "owner": "मालिक:",
+        "perNight": "/ रात",
+        "gst": "18% GST सहित"
+      }
+    },
+    "show": {
+      "ownedBy": "स्वामी:",
+      "perNight": "प्रति रात",
+      "bookNow": "अभी बुक करें",
+      "where": "आप कहाँ रहेंगे",
+      "map": {"expand": "मानचित्र बड़ा करें", "unavailable": "इस स्थान के लिए मानचित्र उपलब्ध नहीं है"},
+      "edit": "संपादित करें",
+      "delete": "हटाएँ",
+      "reviews": {
+        "leave": "समीक्षा छोड़ें",
+        "rating": "रेटिंग",
+        "legend": "पहली रेटिंग:",
+        "terrible": "बहुत खराब",
+        "notGood": "ठीक नहीं",
+        "average": "औसत",
+        "veryGood": "बहुत अच्छा",
+        "amazing": "कमाल का",
+        "star": "सितारा",
+        "stars": "सितारे",
+        "comments": "टिप्पणियाँ",
+        "invalidComment": "कृपया समीक्षा के लिए कुछ टिप्पणियाँ जोड़ें।",
+        "submit": "जमा करें",
+        "all": "सभी समीक्षाएँ",
+        "delete": "हटाएँ"
+      }
+    },
+    "new": {
+      "title": "नई लिस्टिंग बनाएं",
+      "fields": {
+        "title": {"label": "शीर्षक", "placeholder": "कोई आकर्षक शीर्षक दर्ज करें", "valid": "शीर्षक ठीक है!"},
+        "description": {"label": "विवरण", "invalid": "कृपया एक छोटा विवरण दर्ज करें"},
+        "image": {"label": "लिस्टिंग छवि अपलोड करें"},
+        "price": {"label": "कीमत", "placeholder": "1200", "invalid": "कीमत मान्य होनी चाहिए"},
+        "country": {"label": "देश", "placeholder": "भारत", "invalid": "देश का नाम मान्य होना चाहिए"},
+        "location": {"label": "स्थान", "placeholder": "गोवा", "invalid": "स्थान मान्य होना चाहिए"}
+      },
+      "addButton": "जोड़ें"
+    },
+    "edit": {
+      "title": "अपनी लिस्टिंग संपादित करें",
+      "originalImage": "मूल लिस्टिंग छवि",
+      "uploadNewImage": "नई छवि अपलोड करें",
+      "fields": {
+        "title": {"label": "शीर्षक", "valid": "शीर्षक ठीक है!"},
+        "description": {"label": "विवरण", "invalid": "कृपया एक छोटा विवरण दर्ज करें"},
+        "price": {"label": "कीमत", "invalid": "कीमत मान्य होनी चाहिए"},
+        "country": {"label": "देश", "invalid": "देश का नाम मान्य होना चाहिए"},
+        "location": {"label": "स्थान", "invalid": "स्थान मान्य होना चाहिए"}
+      },
+      "editButton": "संपादित करें"
+    }
+  }
+}

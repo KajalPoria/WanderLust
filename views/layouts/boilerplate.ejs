@@ -1,9 +1,9 @@
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="<%= locale %>">
 	<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>WanderLust</title>
+	<title><%= __('app.title') %></title>
 	
 	<!-- Dark mode script BEFORE any content loads -->
 	<script>
@@ -42,16 +42,16 @@
 	<div class="chat-widget" id="chat-widget">
 		<div class="chat-header">
 			<i class="fa-solid fa-robot"></i>
-			<h5>WanderLust Assistant</h5>
+			<h5><%= __('chat.title') %></h5>
 		</div>
 		<div class="chat-body" id="chat-body">
 			<div class="chat-message bot">
-				<p>Hello! I'm your WanderLust travel assistant. Ask me about destinations or our listings!</p>
+				<p><%= __('chat.greeting') %></p>
 			</div>
 		</div>
 		<div class="chat-footer">
 			<form id="chat-form">
-				<input type="text" id="chat-message" placeholder="Ask a question..." autocomplete="off" required>
+				<input type="text" id="chat-message" placeholder="<%= __('chat.placeholder') %>" autocomplete="off" required>
 				<button type="submit" id="chat-send" aria-label="Send message">
 					<i class="fa-solid fa-paper-plane"></i>
 				</button>

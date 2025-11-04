@@ -12,6 +12,8 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
+const i18n = require("i18n");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
@@ -44,6 +46,30 @@ app.use(express.json()); // For parsing JSON payloads
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(cookieParser());
+
+// Internationalization (i18n) configuration
+i18n.configure({
+    locales: ["en", "hi", "fr", "es"],
+    defaultLocale: "en",
+    queryParameter: "lang",
+    cookie: "locale",
+    directory: path.join(__dirname, "locales"),
+    autoReload: false,
+    updateFiles: false,
+    objectNotation: true,
+});
+app.use(i18n.init);
+
+// Persist locale in cookie when provided via query
+app.use((req, res, next) => {
+    const { lang } = req.query || {};
+    if (lang && i18n.getLocales().includes(lang)) {
+        res.cookie("locale", lang, { httpOnly: true, maxAge: 365*24*60*60*1000 });
+        req.setLocale(lang);
+    }
+    next();
+});
 
 
 const store = MongoStore.create({
@@ -89,6 +115,34 @@ app.use((req,res,next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
+    // make query params always available to views
+    res.locals.queryParams = req.query || {};
+    // expose i18n helpers to views
+    res.locals.__ = res.__.bind(res);
+    res.locals.__n = res.__n?.bind(res) || (() => {});
+    res.locals.locale = req.getLocale();
+    // helper to pick localized content objects (Map or plain object)
+    res.locals.pickLocale = (multi) => {
+        if (!multi) return undefined;
+        const code = req.getLocale();
+        try {
+            if (typeof multi.get === 'function') {
+                return multi.get(code) || multi.get('en');
+            }
+            return multi[code] || multi['en'];
+        } catch(e) {
+            return undefined;
+        }
+    };
+    // current path and a helper to build language-specific URLs
+    const baseUrl = req.originalUrl.split("?")[0];
+    res.locals.currentUrl = baseUrl;
+    res.locals.langUrl = (code) => {
+        const params = new URLSearchParams(req.query || {});
+        params.set("lang", code);
+        const qs = params.toString();
+        return `${baseUrl}${qs ? "?" + qs : ""}`;
+    };
     next();
 });
 

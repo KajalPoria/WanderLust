@@ -2,7 +2,7 @@
 
 <div class="row mt-3">
 <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <h3 class="text-center mb-4"><%= listing.title %></h3>
+    <h3 class="text-center mb-4"><%= pickLocale(listing.title_i18n) || listing.title %></h3>
 </div>
 <div class="card col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mb-3 show-card listing-card" style="position: relative;">
     <% if(currUser) { %>
@@ -12,18 +12,20 @@
             <i class="fa-regular fa-heart" style="color: #fe424d; font-size: 1.4rem;"></i>
         </button>
     <% } %>
-    <img
-    src="<%= listing.image.url%>"
-    class="card-img-top show-img"
-    alt="listing_image"
-    />
-    <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
+    <div class="card-media">
+        <img
+        src="<%= listing.image.url%>"
+        class="card-img-top show-img"
+        alt="listing_image"
+        />
+        <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
+    </div>
     <div class="card-body">
-    <% if(listing.owner) { %>
-  <p class="card-text"><i>Owned by: <%= listing.owner.username %></i></p>
+        <% if(listing.owner) { %>
+    <p class="card-text"><i><%= __('listings.show.ownedBy') %> <%= listing.owner.username %></i></p>
 <% } %>
-    <p class="card-text"><%= listing.description %><br /></p>
-    <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %> per night<br /></p>
+    <p class="card-text"><%= pickLocale(listing.description_i18n) || listing.description %><br /></p>
+        <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %> <%= __('listings.show.perNight') %><br /></p>
     <p class="card-text"><%= listing.location %></p>
     <p class="card-text"><%= listing.country %></p>
     </p>
@@ -33,16 +35,16 @@
 <% if(currUser && (!listing.owner || !listing.owner._id.equals(currUser._id))) { %>
 <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mb-3">
     <a href="/bookings/new/<%= listing._id %>" class="btn btn-primary btn-lg w-100">
-        <i class="fas fa-calendar-check me-2"></i>Book Now
+        <i class="fas fa-calendar-check me-2"></i><%= __('listings.show.bookNow') %>
     </a>
 </div>
 <% } %>
 
 <!-- Location Map Section -->
 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 mb-4">
-    <h4 class="mb-3">Where You'll Be</h4>
+    <h4 class="mb-3"><%= __('listings.show.where') %></h4>
     <div class="map-wrapper">
-        <button class="map-toggle" data-target="#property-map"><i class="fa-solid fa-expand"></i> Expand map</button>
+    <button class="map-toggle" data-target="#property-map"><i class="fa-solid fa-expand"></i> <%= __('listings.show.map.expand') %></button>
         <div id="property-map" class="map-container"></div>
     </div>
     <p class="mt-2 text-muted"><i class="fas fa-map-marker-alt me-2"></i><%= listing.location %>, <%= listing.country %></p>
@@ -52,13 +54,13 @@
 <% if(currUser && listing.owner && listing.owner._id.equals(currUser._id)) { %>
 <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mb-3">
     <div class="d-flex gap-2 justify-content-center">
-        <a href="/listings/<%=listing._id %>/edit" class="btn edit-btn flex-grow-1">Edit</a>
+    <a href="/listings/<%=listing._id %>/edit" class="btn edit-btn flex-grow-1"><%= __('listings.show.edit') %></a>
         <form
         method="POST"
         action="/listings/<%=listing._id %>?_method=DELETE"
         class="flex-grow-1"
         >
-        <button class="btn btn-danger w-100">Delete</button>
+    <button class="btn btn-danger w-100"><%= __('listings.show.delete') %></button>
         </form>
     </div>
 </div>
@@ -68,7 +70,7 @@
 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 mb-3">
     <hr />
     <% if(currUser) {%>
-    <h4>Leave a Review</h4>
+    <h4><%= __('listings.show.reviews.leave') %></h4>
     <form
     action="/listings/<%=listing._id %>/reviews"
     method="POST"
@@ -77,25 +79,25 @@
     >
     
     <div class="mb-3 mt-3">
-        <label for ="rating" class="form-label">Rating</label>
+        <label for ="rating" class="form-label"><%= __('listings.show.reviews.rating') %></label>
     <fieldset class="starability-slot">
-    <legend>First rating:</legend>
+    <legend><%= __('listings.show.reviews.legend') %></legend>
     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
     <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-    <label for="first-rate1" title="Terrible">1 star</label>
+    <label for="first-rate1" title="<%= __('listings.show.reviews.terrible') %>">1 <%= __('listings.show.reviews.star') %></label>
     <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-    <label for="first-rate2" title="Not good">2 stars</label>
+    <label for="first-rate2" title="<%= __('listings.show.reviews.notGood') %>">2 <%= __('listings.show.reviews.stars') %></label>
     <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-    <label for="first-rate3" title="Average">3 stars</label>
+    <label for="first-rate3" title="<%= __('listings.show.reviews.average') %>">3 <%= __('listings.show.reviews.stars') %></label>
     <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-    <label for="first-rate4" title="Very good">4 stars</label>
+    <label for="first-rate4" title="<%= __('listings.show.reviews.veryGood') %>">4 <%= __('listings.show.reviews.stars') %></label>
     <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-    <label for="first-rate5" title="Amazing">5 stars</label>
+    <label for="first-rate5" title="<%= __('listings.show.reviews.amazing') %>">5 <%= __('listings.show.reviews.stars') %></label>
     </fieldset>
     
 
     <div class="mb-3 mt-3">
-        <label for="comment" class="form-label">Comments</label>
+    <label for="comment" class="form-label"><%= __('listings.show.reviews.comments') %></label>
         <textarea
         name="review[comment]"
         id="comment"
@@ -104,15 +106,15 @@
         class="form-control"
         required
         ></textarea>
-        <div class="invalid-feedback">Please add some comments for review.</div>
+        <div class="invalid-feedback"><%= __('listings.show.reviews.invalidComment') %></div>
     </div>
-    <button class="btn btn-outline-dark">Submit</button>
+    <button class="btn btn-outline-dark"><%= __('listings.show.reviews.submit') %></button>
     </form>
     <hr />
     <% } %>
 
     <% if(listing.reviews && listing.reviews.length > 0) { %>
-    <p><b>All reviews</b></p>
+    <p><b><%= __('listings.show.reviews.all') %></b></p>
     <div class="row">
     <% for(review of listing.reviews) { %>
     <div class="card col-12 col-md-5 mb-3 mx-auto">
@@ -125,7 +127,7 @@
             method="POST"
             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
         >
-            <button class="btn btn-sm btn-dark">Delete</button>
+            <button class="btn btn-sm btn-dark"><%= __('listings.show.reviews.delete') %></button>
         </form>
         </div>
     </div>
@@ -187,7 +189,9 @@
             console.log("No valid geometry data for this listing");
             let mapElement = document.getElementById('property-map');
             if (mapElement) {
-                mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;">Map not available for this location</p></div>';
+                const msg = <%- JSON.stringify(__('listings.show.map.unavailable')) %>;
+                mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;"><p style="color: #666;"></p></div>';
+                mapElement.querySelector('p').textContent = msg;
             }
         <% } %>
     });

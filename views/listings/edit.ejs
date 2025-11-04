@@ -1,44 +1,44 @@
 <%layout("/layouts/boilerplate") %>
 <body>
     <br>
-    <h3 class="offset-2">Edit your Listing</h3>
+    <h3 class="offset-2"><%= __('listings.edit.title') %></h3>
     <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3 offset-2">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label"><%= __('listings.edit.fields.title.label') %></label>
             <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required>
-            <div class="valid-feedback">Title looks good!</div>
+            <div class="valid-feedback"><%= __('listings.edit.fields.title.valid') %></div>
         </div>
         <div class="mb-3 offset-2">
-        <label for="description" class="form-label">Description</label>
+    <label for="description" class="form-label"><%= __('listings.edit.fields.description.label') %></label>
         <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
-        <div class="invalid-feedback">Please enter a short description</div>
+    <div class="invalid-feedback"><%= __('listings.edit.fields.description.invalid') %></div>
         </div>
         <div class="mb-3 offset-2">
-            Original listing image <br>
+            <%= __('listings.edit.originalImage') %> <br>
         <img src="<%= originalImageUrl %>">
         </div>
         <div class="mb-3 offset-2">
-        <label for="image" class="form-label">Upload New Image</label>
+    <label for="image" class="form-label"><%= __('listings.edit.uploadNewImage') %></label>
         <input name="listing[image][url]" type="file" class="form-control">
         </div>
         <div class="row offset-2">
         <div class="mb-3 col-md-4">
-        <label for="price" class="form-label">Price</label>
+    <label for="price" class="form-label"><%= __('listings.edit.fields.price.label') %></label>
         <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required>
-        <div class="invalid-feedback">Price should be valid</div>
+    <div class="invalid-feedback"><%= __('listings.edit.fields.price.invalid') %></div>
         </div>
         <div class="mb-3 col-md-8">
-        <label for="country" class="form-label">Country</label>
+    <label for="country" class="form-label"><%= __('listings.edit.fields.country.label') %></label>
         <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required>
-        <div class="invalid-feedback">Country name should be valid</div>
+    <div class="invalid-feedback"><%= __('listings.edit.fields.country.invalid') %></div>
         </div>
         </div>
         <div class="mb-3 offset-2">
-        <label for="location" class="form-label">Location</label>
+    <label for="location" class="form-label"><%= __('listings.edit.fields.location.label') %></label>
         <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required>
-        <div class="invalid-feedback">Location should be valid</div>
+    <div class="invalid-feedback"><%= __('listings.edit.fields.location.invalid') %></div>
         </div>
-        <button class="btn btn-dark edit-btn">Edit</button>
+    <button class="btn btn-dark edit-btn"><%= __('listings.edit.editButton') %></button>
     </form>
     <br><br>
     <script src="/js/script.js"></script>

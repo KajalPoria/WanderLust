@@ -35,6 +35,7 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - **Real-time payment status updates via webhooks**
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
+- 🌐 Built-in internationalization (English, हिंदी, Français, Español)
 
 ---
 
@@ -226,7 +227,7 @@ Browse Listings → Select Dates & Guests → Proceed to Payment
 - 🔔 Enable real-time notifications using Socket.io
 - 🌟 Implement host verification and rating system
 - 📊 Build an Admin Dashboard for analytics
-- 🌍 Add multilingual support and currency conversion
+- 💱 Add currency conversion
 - 🤖 AI-powered personalized recommendations
 
 ---
@@ -269,6 +270,29 @@ This project serves as a practical foundation for modern travel and property pla
 - Check Passport.js configuration
 
 For more help, check the [Issues](https://github.com/ItsMeArm00n/WanderLust/issues) page or create a new issue.
+
+---
+
+## 🌐 Internationalization (i18n)
+
+WanderLust supports multiple languages using the `i18n` library.
+
+Supported languages:
+- English (`en` – default)
+- Hindi (`hi`)
+- French (`fr`)
+- Spanish (`es`)
+
+Usage:
+- Change language via the navbar language switcher, or by appending `?lang=<code>` to any URL (e.g., `/listings?lang=fr`).
+- The selection is stored in a cookie so it persists as you navigate the site.
+
+Add a new language:
+1. Create `locales/<code>.json` (e.g., `locales/de.json`).
+2. Copy keys from `locales/en.json` and translate the values.
+3. Add the new code to the `locales` array in the `i18n.configure` call in `app.js`.
+
+Currently translated UI: navbar, footer, chat widget, and login/sign-up pages. Other pages will fall back to English where translations are not yet provided.
 
 ---
 

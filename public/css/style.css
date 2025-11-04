@@ -1184,6 +1184,9 @@ body {
 }
 
 /* Category chip for listing image */
+.card-media {
+    position: relative;
+}
 .category-chip {
     display: inline-flex;
     align-items: center;
