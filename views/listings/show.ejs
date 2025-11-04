@@ -12,12 +12,14 @@
             <i class="fa-regular fa-heart" style="color: #fe424d; font-size: 1.4rem;"></i>
         </button>
     <% } %>
-    <img
-    src="<%= listing.image.url%>"
-    class="card-img-top show-img"
-    alt="listing_image"
-    />
-    <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
+    <div class="card-media">
+        <img
+        src="<%= listing.image.url%>"
+        class="card-img-top show-img"
+        alt="listing_image"
+        />
+        <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
+    </div>
     <div class="card-body">
         <% if(listing.owner) { %>
     <p class="card-text"><i><%= __('listings.show.ownedBy') %> <%= listing.owner.username %></i></p>

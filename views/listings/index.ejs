@@ -247,9 +247,11 @@
                 <% } %>
   
                 <a href="/listings/<%= listing._id %>" class="listing-link">
-                    <img src="<%= listing.image.url%>" class="card-img-top" alt="listing_image" style="height:20rem">
-                    <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
-                    <div class="card-img-overlay"></div>
+                    <div class="card-media">
+                        <img src="<%= listing.image.url%>" class="card-img-top" alt="listing_image" style="height:20rem">
+                        <span class="category-chip"><i class="fa-solid fa-tag"></i><%= listing.category || 'Trending' %></span>
+                        <div class="card-img-overlay"></div>
+                    </div>
                     <div class="card-body">
                         <p class="card-text">
                             <b><%= pickLocale(listing.title_i18n) || listing.title %><br></b>
