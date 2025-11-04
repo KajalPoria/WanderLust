@@ -131,5 +131,12 @@
       },
       "editButton": "Modifier"
     }
+  },
+  "weather": {
+    "feelsLike": "Ressenti",
+    "humidity": "Humidité",
+    "wind": "Vitesse du Vent",
+    "clouds": "Nébulosité",
+    "notAvailable": "Informations météorologiques non disponibles"
   }
 }
