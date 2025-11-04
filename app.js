@@ -26,6 +26,7 @@ const wishlistRouter = require("./routes/wishlist.js");
 const recommendationsRouter = require("./routes/recommendations.js");
 const bookingRouter = require("./routes/booking.js");
 const chatbotRouter = require("./routes/chatbot.js");
+const adminRouter = require("./routes/admin.js");
 
 const dbUrl = process.env.ATLAS_URL;
 
@@ -162,6 +163,7 @@ app.use("/wishlist", wishlistRouter);
 app.use("/recommendations", recommendationsRouter);
 app.use("/bookings", bookingRouter);
 app.use("/api/chatbot", chatbotRouter); // ADDED: The new chatbot API route
+app.use("/admin", adminRouter); // TEMPORARY: Admin migration endpoint
 
 
 // 404 CATCH-ALL HANDLER

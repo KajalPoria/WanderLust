@@ -1,0 +1,18 @@
+# Add i18n migration endpoint for production database
+
+## Changes
+- Added `/admin/migrate-i18n` endpoint to update existing listings with translation fields
+- Created `routes/admin.js` with migration logic
+- Added migration documentation in `I18N_MIGRATION.md`
+
+## Why
+The deployed production site doesn't show listing titles/descriptions in translated languages because the production database has old listings without `title_i18n` and `description_i18n` fields.
+
+## How to Use
+After deploying this update, visit:
+`https://your-site.onrender.com/admin/migrate-i18n`
+
+This will update all existing listings in the production database with the missing i18n fields.
+
+## Security
+Remove or protect the `/admin/migrate-i18n` endpoint after running it once.
