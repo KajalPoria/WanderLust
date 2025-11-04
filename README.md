@@ -33,6 +33,7 @@ This project demonstrates the power of full-stack JavaScript development and clo
 - Flash messages for user feedback
 - Role-based access control
 - **Real-time payment status updates via webhooks**
+- **Live weather information for destinations via OpenWeather API**
 - MVC (Model-View-Controller) architecture
 - Cloud deployment ready
 - 🌐 Built-in internationalization (English, हिंदी, Français, Español)
@@ -49,6 +50,7 @@ This project demonstrates the power of full-stack JavaScript development and clo
 | **Authentication** | Passport.js, bcrypt |
 | **Payment Gateway** | Razorpay |
 | **Cloud Storage** | Cloudinary |
+| **Weather API** | OpenWeather API |
 | **Deployment** | Render |
 
 ---
@@ -114,7 +116,10 @@ SECRET=your_session_secret
 RAZORPAY_KEY_ID=rzp_test_XXXXXXXX
 RAZORPAY_KEY_SECRET=your_secret_key
 RAZORPAY_WEBHOOK_SECRET=your_webhook_secret_here
+OPENWEATHER_API_KEY=your_openweather_api_key
 ```
+
+> **Note**: To get an OpenWeather API key, sign up at [OpenWeatherMap](https://openweathermap.org/api) and generate a free API key. This enables real-time weather display for each destination.
 
 ### 4. Start the Application
 ```bash

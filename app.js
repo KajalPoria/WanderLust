@@ -42,12 +42,43 @@ async function main() {
 
 app.set("view engine","ejs");
 app.set("views" , path.join(__dirname, "views"));
+// Asset version for cache-busting local CSS/JS in development
+app.locals.assetVersion = Date.now();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()); // For parsing JSON payloads
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
-app.use(express.static(path.join(__dirname, "/public")));
 app.use(cookieParser());
+
+// Caching and static assets configuration
+const staticDir = path.join(__dirname, 'public');
+if (process.env.NODE_ENV !== 'production') {
+    // Strongly disable caching for all responses in development
+    app.disable('etag');
+    app.use((req, res, next) => {
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        res.set('Surrogate-Control', 'no-store');
+        next();
+    });
+    // Serve static assets with no caching
+    app.use(express.static(staticDir, {
+        etag: false,
+        lastModified: false,
+        maxAge: 0,
+        cacheControl: true,
+        setHeaders: (res) => {
+            res.setHeader('Cache-Control', 'no-store');
+        }
+    }));
+} else {
+    // In production, allow caching of static assets
+    app.use(express.static(staticDir, {
+        maxAge: '1d',
+        etag: true
+    }));
+}
 
 // Internationalization (i18n) configuration
 i18n.configure({
@@ -97,7 +128,7 @@ const sessionOptions={
     },
 };
 
-app.use(express.static('public'));
+// (static assets already configured above)
 
 app.use(session(sessionOptions));
 app.use(flash());

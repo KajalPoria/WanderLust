@@ -1,5 +1,7 @@
 const Listing = require("../models/listing");
 let geocodingService = require("../mapConfig");
+const weatherService = require("../utils/weatherService");
+
 module.exports.index = async (req, res) => {
     // Extract all potential query params
     const { q, category, minPrice, maxPrice, minRating } = req.query;
@@ -63,8 +65,29 @@ if (!listing) {
         req.flash("error", "Listing you requested for does not exist!");
         return res.redirect("/listings"); //return used to exit the function otherwise it will continue to run
     }
-    console.log(listing);
-res.render("listings/show.ejs" , {listing});
+    console.log('Listing loaded:', { id: listing._id.toString(), location: listing.location, country: listing.country, geometry: listing.geometry });
+
+    // Fetch weather data for the listing location
+    let weather = null;
+    const hasValidCoords = (
+        listing.geometry &&
+        Array.isArray(listing.geometry.coordinates) &&
+        listing.geometry.coordinates.length === 2 &&
+        !(Number(listing.geometry.coordinates[0]) === 0 && Number(listing.geometry.coordinates[1]) === 0)
+    );
+
+    if (hasValidCoords) {
+        const [lon, lat] = listing.geometry.coordinates;
+        console.log('Fetching weather by coordinates:', { lat, lon });
+        weather = await weatherService.getWeatherByCoordinates(lat, lon);
+    } else if (listing.location) {
+        // Fallback to location name if coordinates are not available
+        console.log('Fetching weather by location:', { location: listing.location, country: listing.country });
+        weather = await weatherService.getWeatherByLocation(listing.location, listing.country);
+    }
+    console.log('Weather result:', weather ? { temp: weather.temp, desc: weather.description, city: weather.cityName } : 'none');
+
+res.render("listings/show.ejs" , {listing, weather});
 };
 
 module.exports.create = async(req,res,next)=>{
